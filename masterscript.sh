@@ -5,7 +5,7 @@ function print() {
 }
 print "HAS UPDATE, UPGRADE, & AUTOREMOVE BEEN RUN?"
 read runconfirm
-if [[runconfirm == "yes" || $runconfirm == "y" ]];
+if [[ $runconfirm == "yes" || $runconfirm == "y" ]];
 then
   print "Proceeding..."
 else
