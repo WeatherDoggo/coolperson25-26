@@ -8,7 +8,7 @@ print "What is your username?"
 read myusername
 
 USERS=`(cut -d':' -f1,6 /etc/passwd | grep '/home/' | cut -d':' -f1 | grep -vE "^${myusername}")`
-print "Users found on VM: $USERS"
+print "Users found on VM:\n$USERS"
 #Collect the user info given out by Cyberpatriot
 print "Copy and paste the list of the authorized user/password list here:"
 read givenuserlist
