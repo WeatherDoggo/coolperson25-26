@@ -15,7 +15,7 @@ echo -e "Users found on VM:\n$vmusers" | sudo tee -a $LOG
 #Collect the user info given out by Cyberpatriot
 print "Copy and paste the list of the authorized admin user/password list here, then press Ctrl + D:"
 givenadminlist=$(cat)
-print "Now copy and paste the list of the authorized admin user/password list here, then press Ctrl + D:"
+print "Now copy and paste the list of the authorized user list here, then press Ctrl + D:"
 givenuserlist=$(cat)
 authadmins=()
 authusers=()
