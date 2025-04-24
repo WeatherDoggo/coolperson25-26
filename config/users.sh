@@ -13,7 +13,6 @@ echo -e "Users found on VM:\n$USERS" | sudo tee -a $LOG
 print "Copy and paste the list of the authorized user/password list here:"
 read givenuserlist
 
-print "All other user's passwords have been changed."
 #Compare list of authorized users to the users on the VM. If one is found, append it to a list of usernames.
 print "The following unauthorized users were found: ____"
 print "Would you like to remove them?"
