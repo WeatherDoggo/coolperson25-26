@@ -3,16 +3,15 @@ LOG=""
 function print() {
   echo "$1" | sudo tee -a $LOG 
 }
-#Collect the users on the VM
+#Collect the users on the VM, and exclude the one i'm not supposed to edit.
 print "What is your username?"
 read myusername
-
 USERS=`(cut -d':' -f1,6 /etc/passwd | grep '/home/' | cut -d':' -f1 | grep -vE "^${myusername}")`
 echo -e "Users found on VM:\n$USERS" | sudo tee -a $LOG
+
 #Collect the user info given out by Cyberpatriot
 print "Copy and paste the list of the authorized user/password list here:"
 read givenuserlist
-#Change all passwords (except for the one for yourself)
 
 print "All other user's passwords have been changed."
 #Compare list of authorized users to the users on the VM. If one is found, append it to a list of usernames.
@@ -25,6 +24,8 @@ then
 else
   print "The users will not be removed (or invalid response)."
 fi
+#Change all passwords (except for the one for yourself)
+
 #Remove admin from unauthorized users
 
 #Give admin to authorized users
