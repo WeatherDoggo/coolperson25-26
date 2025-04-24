@@ -20,6 +20,7 @@ givenuserlist=$(cat)
 authadmins=()
 authusers=()
 
+#For the admins list:
 IFS=$'\n' read -r -d '' -a admin_lines <<< "$givenadminlist"
 for line in "${admin_lines[@]}"; do
   if [[ "$line" != *"password"* ]]; then #Removes password lines
@@ -30,9 +31,28 @@ for line in "${admin_lines[@]}"; do
     fi
   fi
 done
+
+#For the users list:
+IFS=$'\n' read -r -d '' -a user_lines <<< "$givenuserlist"
+for user in "${user_lines[@]}"; do
+  if [[ "$user" != "$myusername" ]]; then
+    # Check if the user is not already in authusers (from the admin list)
+    is_admin=false
+    for admin in "${authadmins[@]}"; do
+      if [[ "$user" == "$admin" ]]; then
+        is_admin=true
+        break
+      fi
+    done
+    if [[ "$is_admin" == false ]]; then
+      authusers+=("$user")
+    fi
+  fi
+done
+
 print ""
 print "Authorized Administrators: ${authadmins[*]}"
-#print "Authorized Users: ${authusers[*]}"
+print "Authorized Users: ${authusers[*]}"
 
 #Compare list of authorized users to the users on the VM. If one is found, append it to a list of usernames.
 
