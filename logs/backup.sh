@@ -1,8 +1,4 @@
 #!/bin/bash
-LOG = .mylog
-function print() {
-  echo "$1" | sudo tee -a $LOG 
-}
 #Makes a copy of all important files and saves them to a backups folder
 mkdir -pv backups
 chmod 777 backups
