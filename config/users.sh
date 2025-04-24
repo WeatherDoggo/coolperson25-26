@@ -1,4 +1,11 @@
 #!/bin/bash
+LOG = .mylog
+function print() {
+  echo "$1" | sudo tee -a $LOG 
+}
+
+
+
 #Collect the users on the VM, and exclude the one i'm not supposed to edit.
 print "What is your username?"
 read myusername
