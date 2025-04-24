@@ -1,5 +1,5 @@
 #!/bin/bash
-LOG = .mylog
+LOG=.mylog
 function print() {
   echo "$1" | sudo tee -a $LOG 
 }
