@@ -1,7 +1,7 @@
 #!/bin/bash
 LOG=.mylog
 function print() {
-  echo "$1" | sudo tee -a $LOG 
+  echo -e "$1" | sudo tee -a $LOG 
 }
 
 
@@ -15,7 +15,7 @@ echo -e "Users found on VM:\n$vmusers" | sudo tee -a $LOG
 #Collect the user info given out by Cyberpatriot
 print "Copy and paste the list of the authorized admin user/password list here, then press Ctrl + D:"
 givenadminlist=$(cat)
-print "Now copy and paste the list of the authorized user list here, then press Ctrl + D:"
+print "\nNow copy and paste the list of the authorized user list here, then press Ctrl + D:"
 givenuserlist=$(cat)
 authadmins=()
 authusers=()
@@ -51,8 +51,8 @@ for user in "${user_lines[@]}"; do
 done
 
 print ""
-echo -e "Authorized Administrators: ${authadmins[*]}" | sudo tee -a $LOG
-echo -e "Authorized Users: ${authusers[*]}" | sudo tee -a $LOG
+print "Authorized Administrators: ${authadmins[*]}"
+print "Authorized Users: ${authusers[*]}"
 
 #Compare list of authorized users to the users on the VM. If one is found, append it to a list of usernames.
 
