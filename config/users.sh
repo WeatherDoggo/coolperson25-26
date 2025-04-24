@@ -6,51 +6,23 @@ vmusers=`(cut -d':' -f1,6 /etc/passwd | grep '/home/' | cut -d':' -f1 | grep -vE
 echo -e "Users found on VM:\n$vmusers" | sudo tee -a $LOG
 
 #Collect the user info given out by Cyberpatriot
-print "Copy and paste the list of the authorized user/password list here, then press Ctrl + D:"
+print "Copy and paste the list of the authorized admin user/password list here, then press Ctrl + D:"
+givenadminlist=$(cat)
+print "Now copy and paste the list of the authorized admin user/password list here, then press Ctrl + D:"
 givenuserlist=$(cat)
-
 authadmins=()
 authusers=()
-admin_section=0
-user_section=0
 
-while IFS= read -r line; do
-  line=$(echo "$line" | tr -d '[:space:]') # Remove leading/trailing whitespace
-
-  # Skip lines containing "password" (case-insensitive)
-  if [[ "$(echo "$line" | grep -iq 'password')" ]]; then
-    continue
-  fi
-
-  # Case-insensitive check for "administrator" in the line
-  if [[ "$(echo "$line" | grep -io 'administrator')" ]]; then
-    admin_section=1
-    user_section=0
-    continue
-  # Case-insensitive check for "user" in the line
-  elif [[ "$(echo "$line" | grep -io 'user')" ]]; then
-    user_section=1
-    admin_section=0
-    continue
-  fi
-
-  if [[ $admin_section -eq 1 ]]; then
-    # Stop processing admin users when we reach the "Authorized Users:" header
-    if [[ "$(echo "$line" | grep -io 'user')" ]]; then
-      admin_section=0
-      user_section=1
-      continue
-    fi
-    # If the line is not empty and not containing $myusername
-    if [[ -n "$line" ]] && [[ ! "$line" == *"$myusername"* ]]; then
-      authadmins+=("$line")
-    fi
-  elif [[ $user_section -eq 1 ]]; then
-    if [[ -n "$line" ]] && [[ ! "$line" == *"$myusername"* ]]; then
-      authusers+=("$line")
+IFS=$'\n' read -r -d '' -a admin_lines <<< "$givenadminlist"
+for line in "${admin_lines[@]}"; do
+  if [[ "$line" != *"password"* ]]; then
+    username=$(echo "$line" | awk '{print $1}')
+    if [[ "$username" != "$myusername" ]]; then
+      authadmins+=("$username")
+      authusers+=("$username") # Admins are also users
     fi
   fi
-done <<< "$givenuserlist"
+done
 print ""
 print "Authorized Administrators: ${authadmins[*]}"
 #print "Authorized Users: ${authusers[*]}"
