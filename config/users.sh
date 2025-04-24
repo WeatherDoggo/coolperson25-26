@@ -51,8 +51,8 @@ for user in "${user_lines[@]}"; do
 done
 
 print ""
-print "Authorized Administrators: ${authadmins[*]}"
-print "Authorized Users: ${authusers[*]}"
+echo -e "Authorized Administrators: ${authadmins[*]}" | sudo tee -a $LOG
+echo -e "Authorized Users: ${authusers[*]}" | sudo tee -a $LOG
 
 #Compare list of authorized users to the users on the VM. If one is found, append it to a list of usernames.
 
