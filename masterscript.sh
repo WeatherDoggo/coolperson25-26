@@ -12,4 +12,5 @@ else
   print "Exiting..."
   exit
 fi
+print "running backup.sh..."
 source ./logs/backup.sh
