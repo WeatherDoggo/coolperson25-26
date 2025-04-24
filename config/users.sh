@@ -22,11 +22,11 @@ authusers=()
 
 IFS=$'\n' read -r -d '' -a admin_lines <<< "$givenadminlist"
 for line in "${admin_lines[@]}"; do
-  if [[ "$line" != *"password"* ]]; then
+  if [[ "$line" != *"password"* ]]; then #Removes password lines
     username=$(echo "$line" | awk '{print $1}')
-    if [[ "$username" != "$myusername" ]]; then
+    if [[ "$username" != "$myusername" ]]; then #Removes myusername from list
       authadmins+=("$username")
-      authusers+=("$username") # Admins are also users
+      authusers+=("$username")
     fi
   fi
 done
