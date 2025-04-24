@@ -4,7 +4,8 @@ function print() {
   echo "$1" | sudo tee -a $LOG 
 }
 #Collect the users on the VM
-USERS = ______
+USERS =`cut -d':' -f1 /etc/passwd | grep -vE '^(root|bin|daemon|adm|lp|sync|shutdown|halt|mail|news|uucp|operator|games|gopher|ftp|nobody|dbus|systemd-bus-proxy|systemd-networkd|systemd-resolve|systemd-timesyncd|systemd-oomd|messagebus|colord|saned|pulse|avahi|cups|rtkit|speech-dispatcher|usbmuxd|dnsmasq|kernoops|systemd-journald|systemd-logind|uuidd|geoclue|gnome-initial-setup|gdm|systemd-machine-id-commit|nm-dispatcher|ModemManager|NetworkManager|polkitd|chrony|sshd|snapd|lxd)'`
+print "Users found on VM: $USERS"
 #Collect the user info given out by Cyberpatriot
 print "Copy and paste the list of the authorized user/password list here:"
 read givenuserlist
