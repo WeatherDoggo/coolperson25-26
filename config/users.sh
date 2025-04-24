@@ -10,6 +10,7 @@ print "Copy and paste the list of the authorized user/password list here:"
 read givenuserlist
 #Change all passwords (except for the one for yourself)
 
+print "All other user's passwords have been changed."
 #Compare list of authorized users to the users on the VM. If one is found, append it to a list of usernames.
 print "The following unauthorized users were found: ____"
 print "Would you like to remove them?"
@@ -18,9 +19,11 @@ if [ $removeunwantedusers == "yes" ];
 then
 
 else
-  print "The users will not be removed. (Also maybe invalid response)"
+  print "The users will not be removed (or invalid response)."
 fi
 #Remove admin from unauthorized users
 
 #Give admin to authorized users
 
+#Lock root account
+#Check for UID 0 user
