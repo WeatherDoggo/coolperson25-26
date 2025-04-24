@@ -49,9 +49,7 @@ for user in "${user_lines[@]}"; do
     fi
   fi
 done
-
-print ""
-print "Authorized Administrators: ${authadmins[*]}"
+print "\nAuthorized Administrators: ${authadmins[*]}"
 print "Authorized Users: ${authusers[*]}"
 
 #Compare list of authorized users to the users on the VM. If one is found, append it to a list of usernames.
