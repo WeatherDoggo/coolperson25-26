@@ -6,20 +6,57 @@ vmusers=`(cut -d':' -f1,6 /etc/passwd | grep '/home/' | cut -d':' -f1 | grep -vE
 echo -e "Users found on VM:\n$vmusers" | sudo tee -a $LOG
 
 #Collect the user info given out by Cyberpatriot
-print "Copy and paste the list of the authorized user/password list here:"
-read givenuserlist
-authadmins=``
-authusers=``
-#Compare list of authorized users to the users on the VM. If one is found, append it to a list of usernames.
-print "The following unauthorized users were found: ____"
-print "Would you like to remove them?"
-read removeunwantedusers
-if [ $removeunwantedusers == "yes" ];
-then
+print "Copy and paste the list of the authorized user/password list here, then press Ctrl + D:"
+givenuserlist=$(cat)
 
-else
-  print "The users will not be removed (or invalid response)."
-fi
+authadmins=()
+authusers=()
+admin_section=0
+user_section=0
+
+while IFS= read -r line; do
+  line=$(echo "$line" | tr -d '[:space:]') # Remove leading/trailing whitespace
+
+  # Skip lines containing "password" (case-insensitive)
+  if [[ "$(echo "$line" | grep -iq 'password')" ]]; then
+    continue
+  fi
+
+  # Case-insensitive check for "administrator" in the line
+  if [[ "$(echo "$line" | grep -io 'administrator')" ]]; then
+    admin_section=1
+    user_section=0
+    continue
+  # Case-insensitive check for "user" in the line
+  elif [[ "$(echo "$line" | grep -io 'user')" ]]; then
+    user_section=1
+    admin_section=0
+    continue
+  fi
+
+  if [[ $admin_section -eq 1 ]]; then
+    # Stop processing admin users when we reach the "Authorized Users:" header
+    if [[ "$(echo "$line" | grep -io 'user')" ]]; then
+      admin_section=0
+      user_section=1
+      continue
+    fi
+    # If the line is not empty and not containing $myusername
+    if [[ -n "$line" ]] && [[ ! "$line" == *"$myusername"* ]]; then
+      authadmins+=("$line")
+    fi
+  elif [[ $user_section -eq 1 ]]; then
+    if [[ -n "$line" ]] && [[ ! "$line" == *"$myusername"* ]]; then
+      authusers+=("$line")
+    fi
+  fi
+done <<< "$givenuserlist"
+print ""
+print "Authorized Administrators: ${authadmins[*]}"
+print "Authorized Users: ${authusers[*]}"
+
+#Compare list of authorized users to the users on the VM. If one is found, append it to a list of usernames.
+
 #Change all passwords (except for the one for yourself)
 
 #Remove admin from unauthorized users
