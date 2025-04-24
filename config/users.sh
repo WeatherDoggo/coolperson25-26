@@ -29,5 +29,13 @@ fi
 
 #Give admin to authorized users
 
+
+#Set UID & GID 0 to root
+usermod -u 0 root
+usermod -g 0 root
+groupmod -g 0 root
+printlog "UID & GID for root set to 0."
+
 #Lock root account
-#Check for UID 0 user
+passwd -l root >> $LOG
+print "Root account locked."
