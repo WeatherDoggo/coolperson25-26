@@ -1,5 +1,5 @@
 #!/bin/bash
-LOG = ______
+LOG = log
 function print() {
   echo "$1" | sudo tee -a $LOG 
 }
