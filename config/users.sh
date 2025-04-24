@@ -9,7 +9,7 @@ function print() {
 #Collect the users on the VM, and exclude the one i'm not supposed to edit.
 print "What is your username?"
 read myusername
-vmusers=`(cut -d':' -f1,6 /etc/passwd | grep '/home/' | grep -v "nologin" | cut -d':' -f1 | grep -v "${myusername}")`
+vmusers=`(grep -v 'nologin' /etc/passwd | cut -d':' -f1,6 | grep 'home' | cut -d':' -f1 | grep -v "${myusername}")`
 echo -e "Users found on VM:\n$vmusers" | sudo tee -a $LOG
 
 #Collect the user info given out by Cyberpatriot
