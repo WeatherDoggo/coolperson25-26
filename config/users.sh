@@ -53,7 +53,7 @@ while IFS= read -r line; do
 done <<< "$givenuserlist"
 print ""
 print "Authorized Administrators: ${authadmins[*]}"
-print "Authorized Users: ${authusers[*]}"
+#print "Authorized Users: ${authusers[*]}"
 
 #Compare list of authorized users to the users on the VM. If one is found, append it to a list of usernames.
 
@@ -65,11 +65,11 @@ print "Authorized Users: ${authusers[*]}"
 
 
 #Set UID & GID 0 to root
-usermod -u 0 root
-usermod -g 0 root
-groupmod -g 0 root
-printlog "UID & GID for root set to 0."
+#usermod -u 0 root
+#usermod -g 0 root
+#groupmod -g 0 root
+#printlog "UID & GID for root set to 0."
 
 #Lock root account
-passwd -l root >> $LOG
-print "Root account locked."
+#passwd -l root >> $LOG
+#print "Root account locked."
