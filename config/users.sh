@@ -53,7 +53,30 @@ print "\nAuthorized Administrators: ${authadmins[*]}"
 print "Authorized Users: ${authusers[*]}"
 
 #Compare list of authorized users to the users on the VM. If one is found, append it to a list of usernames.
+IFS=$'\n' read -r -d '' -a vm_user_array <<< "$vmusers"
+userstoremove=()
 
+for vm_user in "${vm_user_array[@]}"; do
+  found=false
+  for authorized_user in "${authusers[@]}"; do
+    if [[ "$vm_user" == "$authorized_user" ]]; then
+      found=true
+      break
+    fi
+  done
+  if [[ "$found" == false ]]; then
+    userstoremove+=("$vm_user")
+  fi
+done
+
+if [[ ${#users_not_on_list[@]} -gt 0 ]]; then
+  print "The following users are present on the VM but are NOT on the provided authorized user list:"
+  for user in "${users_not_on_list[@]}"; do
+    print "- $user"
+  done
+else
+  print "All users found on the VM are present on the provided authorized user list."
+fi
 #Change all passwords (except for the one for yourself)
 
 #Remove admin from unauthorized users
