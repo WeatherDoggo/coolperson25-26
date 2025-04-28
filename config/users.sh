@@ -69,9 +69,9 @@ for vm_user in "${vm_user_array[@]}"; do
   fi
 done
 
-if [[ ${#users_not_on_list[@]} -gt 0 ]]; then
+if [[ ${userstoremove[@]} -gt 0 ]]; then
   print "The following users are present on the VM but are NOT on the provided authorized user list:"
-  for user in "${users_not_on_list[@]}"; do
+  for user in "${userstoremove[@]}"; do
     print "- $user"
   done
 else
