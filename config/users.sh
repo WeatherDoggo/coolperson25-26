@@ -85,7 +85,7 @@ if [[ ${#userstoremove[@]} -gt 0 ]]; then
       else
         print "Failed to remove $user"
       fi
-    done
+    done  #<<SYNTAX ERROR
   done
   else
     print "User skipped."
