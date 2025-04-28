@@ -80,6 +80,7 @@ if [[ ${#userstoremove[@]} -gt 0 ]]; then
     if [[ removestrangeuser == "y" || removestrangeuser == "yes" ]]; then
       print "Attempting to remove $user:"
       sudo userdel "$user"
+      #also remove these people from vmusers
       if [ $? -eq 0 ]; then
         print "Successfully removed $user"
       else
