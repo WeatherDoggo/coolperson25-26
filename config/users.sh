@@ -86,6 +86,7 @@ if [[ ${#userstoremove[@]} -gt 0 ]]; then
         print "Failed to remove $user"
       fi
     done
+  done
   else
     print "User skipped."
   fi
