@@ -74,6 +74,22 @@ if [[ ${#userstoremove[@]} -gt 0 ]]; then
   for user in "${userstoremove[@]}"; do
     print "- $user"
   done
+  for user in "${userstoremove[@]}"; do
+    print "Should $user be removed?"
+    read removestrangeuser
+    if [[ removestrangeuser == "y" || removestrangeuser == "yes" ]]; then
+      print "Attempting to remove $user:"
+      sudo userdel "$user"
+      if [ $? -eq 0 ]; then
+        print "Successfully removed $user"
+      else
+        print "Failed to remove $user"
+      fi
+    done
+  else
+    print "User skipped."
+  fi
+  print "Selected users removed."
 else
   print "All users found on the VM are present on the provided authorized user list."
 fi
