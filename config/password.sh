@@ -40,14 +40,14 @@ touch /usr/share/pam-configs/faillock_notify >> $LOG
 echo -e "Name: Notify on failed login attempts\nDefault: no\nPriority: 1024\nAuth-Type: Primary\nAuth:\n	requisite pam_faillock.so preauth\n" | sudo tee -a /usr/share/pam-configs/faillock-notify
 
 #faillock.conf
-cp importfiles/faillock.conf /etc/security/faillock.conf
+cp ../importfiles/faillock.conf /etc/security/faillock.conf
 chown root:root /etc/security/faillock.conf
 chmod og-rwx /etc/security/faillock.conf
 print "faillock.conf permissions configured."
 print "faillock.conf configured."
 
 #pwquality.conf
-cp importfiles/pwquality.conf /etc/security/pwquality.conf
+cp ../importfiles/pwquality.conf /etc/security/pwquality.conf
 chown root:root /etc/security/pwquality.conf
 chmod og-rwx /etc/security/pwquality.conf
 print "pwquality.conf permissions configured."
