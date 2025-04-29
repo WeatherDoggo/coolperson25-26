@@ -1,10 +1,8 @@
 #!/bin/bash
-
-LOG=.mylog
+LOG=../scriptlog
 function print() {
   echo -e "$1" | sudo tee -a $LOG 
 }
-
 
 #libpam modules
 apt-get purge libpam-cracklib -y -qq >> $LOG
