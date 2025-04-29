@@ -1,5 +1,5 @@
 #!/bin/bash
-LOG=scriptlog
+LOG=./main.log
 function print() {
   echo "$1" | sudo tee -a $LOG 
 }
