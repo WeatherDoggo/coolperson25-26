@@ -19,10 +19,10 @@ source ./logs/backup.sh
 announce "backup.sh done."
 
 announce "running users.sh..."
-source ./config/users.sh
+source ./usersconf.sh
 announce "users.sh done."
 
 announce "running password.sh..."
-source ./config/password.sh
+source .passwordconf.sh
 announce "backup.sh done."
 
