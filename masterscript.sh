@@ -23,6 +23,6 @@ source ./usersconf.sh
 announce "users.sh done."
 
 announce "running password.sh..."
-source .passwordconf.sh
+source ./passwordconf.sh
 announce "backup.sh done."
 
