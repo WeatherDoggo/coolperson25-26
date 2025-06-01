@@ -117,7 +117,7 @@ done
 usermod -u 0 root
 usermod -g 0 root
 groupmod -g 0 root
-printlog "UID & GID for root set to 0."
+print "UID & GID for root set to 0."
 
 #Lock root account
 passwd -l root >> $LOG
