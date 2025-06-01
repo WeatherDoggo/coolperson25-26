@@ -1,7 +1,7 @@
 #!/bin/bash
 LOG=../logs/main.log
 function print() {
-  echo -e "$1" | sudo tee -a $LOG 
+  echo -e "$1" | sudo tee -a "$LOG" 
 }
 
 #Collect the users on the VM, and exclude the one i'm not supposed to edit.
@@ -84,6 +84,7 @@ if [[ ${#userstoremove[@]} -gt 0 ]]; then
       else
         print "Failed to remove $user"
       fi
+    fi
     done  #<<SYNTAX ERROR
   done
   else
