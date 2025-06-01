@@ -9,6 +9,7 @@ print "What is your username?"
 read myusername
 vmusers=`(grep -v 'nologin' /etc/passwd | cut -d':' -f1,6 | grep 'home' | cut -d':' -f1 | grep -v "${myusername}")`
 echo -e "Users found on VM:\n$vmusers" | sudo tee -a $LOG
+echo -e "\n"
 
 #Collect the user info given out by Cyberpatriot
 print "Copy and paste the list of the authorized admin user/password list here, then press Ctrl + D:"
@@ -68,14 +69,14 @@ for vm_user in "${vm_user_array[@]}"; do
 done
 
 if [[ ${#userstoremove[@]} -gt 0 ]]; then
-  print "The following users are present on the VM but are NOT on the provided authorized user list:"
+  print "\nThe following users are present on the VM but are NOT on the provided authorized user list:"
   for user in "${userstoremove[@]}"; do
     print "- $user"
   done
   for user in "${userstoremove[@]}"; do
     print "Should $user be removed?"
     read removestrangeuser
-    if [[ removestrangeuser == "y" || removestrangeuser == "yes" ]]; then
+    if [[ "$removestrangeuser" == "y" || "$removestrangeuser" == "yes" ]]; then
       print "Attempting to remove $user:"
       sudo userdel "$user"
       #also remove these people from vmusers
