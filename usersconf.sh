@@ -84,12 +84,10 @@ if [[ ${#userstoremove[@]} -gt 0 ]]; then
       else
         print "Failed to remove $user"
       fi
+    else
+      print "User skipped."
     fi
-    done  #<<SYNTAX ERROR
   done
-  else
-    print "User skipped."
-  fi
   print "Selected users removed."
 else
   print "All users found on the VM are present on the provided authorized user list."
