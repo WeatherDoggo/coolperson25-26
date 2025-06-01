@@ -78,7 +78,6 @@ if [[ ${#userstoremove[@]} -gt 0 ]]; then
     if [[ "$removestrangeuser" == "y" || "$removestrangeuser" == "yes" ]]; then
       print "Attempting to remove $user:"
       sudo userdel -r "$user"
-      #also remove these people from vmusers
       if [ $? -eq 0 ]; then
         print "Successfully removed $user"
       else
@@ -93,33 +92,22 @@ else
   print "All users found on the VM are present on the provided authorized user list."
 fi
 
-current_vm_users=$(awk -F: '($3 >= 1000 && $7 != "/usr/sbin/nologin" && $7 != "/bin/false" && $1 != "'"$myusername"'") { print $1 }' /etc/passwd)
-IFS=$'\n' read -r -d '' -a current_vm_user_array <<< "$current_vm_users"
+#Refresh vmusers
+vmusers=`(grep -v 'nologin' /etc/passwd | cut -d':' -f1,6 | grep 'home' | cut -d':' -f1 | grep -v "${myusername}")`
 
 #Change all passwords (except for the one for yourself)
 newpassword="Cyb3r1a!"
 for user in $vmusers; do
     echo "Changing password for $user:"
-    # Use chpasswd to set the password securely
+    # Use chpasswd to set the password
     # The 'echo' command pipes the username:password to chpasswd
-    echo "$vmusers:$newpassword" | sudo chpasswd
+    echo "$user:$newpassword" | sudo chpasswd
     if [ $? -eq 0 ]; then
         echo "Password for $user changed."
     else
-        echo "Failed to change password for $users."
+        echo "Failed to change password for $user."
     fi
 done
-for user in $vmusers; do
-    echo "Changing password for $vmusers:"
-    # Use chpasswd to set the password securely
-   # The 'echo' command pipes the username:password to chpasswd
-    echo "$vmusers:$newpassword" | sudo chpasswd
-   if [ $? -eq 0 ]; then
-        echo "Password for $user changed."
-    else
-        echo "Failed to change password for $vmusers."
-    fi
-#done
 
 #Remove admin from unauthorized users
 
