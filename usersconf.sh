@@ -96,7 +96,7 @@ fi
 vmusers=`(grep -v 'nologin' /etc/passwd | cut -d':' -f1,6 | grep 'home' | cut -d':' -f1 | grep -v "${myusername}")`
 
 #Change all passwords (except for the one for yourself)
-newpassword="Cyb3r1a!"
+newpassword="Cyb3r1a!!!"
 for user in $vmusers; do
     echo "Changing password for $user:"
     # Use chpasswd to set the password
