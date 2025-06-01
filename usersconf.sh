@@ -98,27 +98,27 @@ IFS=$'\n' read -r -d '' -a current_vm_user_array <<< "$current_vm_users"
 
 #Change all passwords (except for the one for yourself)
 newpassword="Cyb3r1a!"
-#for user in $vmusers; do
-#    echo "Changing password for $user:"
-#    # Use chpasswd to set the password securely
-#    # The 'echo' command pipes the username:password to chpasswd
-#    echo "$user:$newpassword" | sudo chpasswd
-#    if [ $? -eq 0 ]; then
-#        echo "Password for $user changed."
-#    else
-#        echo "Failed to change password for $user."
-#    fi
-#done
-#for user in $vmusers; do
-#    echo "Changing password for $user:"
-#    # Use chpasswd to set the password securely
-#   # The 'echo' command pipes the username:password to chpasswd
-#    echo "$user:$newpassword" | sudo chpasswd
-#   if [ $? -eq 0 ]; then
-#        echo "Password for $user changed."
-#    else
-#        echo "Failed to change password for $user."
-#    fi
+for user in $vmusers; do
+    echo "Changing password for $user:"
+    # Use chpasswd to set the password securely
+    # The 'echo' command pipes the username:password to chpasswd
+    echo "$vmusers:$newpassword" | sudo chpasswd
+    if [ $? -eq 0 ]; then
+        echo "Password for $user changed."
+    else
+        echo "Failed to change password for $users."
+    fi
+done
+for user in $vmusers; do
+    echo "Changing password for $vmusers:"
+    # Use chpasswd to set the password securely
+   # The 'echo' command pipes the username:password to chpasswd
+    echo "$vmusers:$newpassword" | sudo chpasswd
+   if [ $? -eq 0 ]; then
+        echo "Password for $user changed."
+    else
+        echo "Failed to change password for $vmusers."
+    fi
 #done
 
 #Remove admin from unauthorized users
