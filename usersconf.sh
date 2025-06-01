@@ -67,7 +67,7 @@ for vm_user in "${vm_user_array[@]}"; do
   fi
 done
 
-if [[ ${#userstoremove[@]} -gt 0 ]]; then
+if [[ ${#userstoremove[@]} -gt 0 ]]; then   #<<<Random pound sign???
   print "\nThe following users are present on the VM but are NOT on the provided authorized user list:"
   for user in "${userstoremove[@]}"; do
     print "- $user"
@@ -110,8 +110,33 @@ for user in $vmusers; do
 done
 
 #Remove admin from unauthorized users
+print "Checking for unauthorized admins to remove from admin..."
+for user in $vmusers; do
+  if id -nG "$user" | grep -qw "sudo"; then
+    is_auth_admin=false
+    for authadmin in "${authadmins[@]}"; do
+      if [[ "$user" == "$authadmin" ]]; then
+        is_auth_admin=true
+        break
+      fi
+    done
+    if [[ "$is_auth_admin" == false ]]; then
+      print "Removing $user's sudo access..."
+      sudo deluser "$user" sudo
+    fi
+  fi
+done
 
 #Give admin to authorized users
+print "Adding authorized admins to the sudo group..."
+for user in "${authadmins[@]}"; do
+  if id -nG "$user" | grep -qw "sudo"; then
+    print "$user is already an admin."
+  else
+    print "Adding $user to sudo group..."
+    sudo usermod -aG sudo "$user"
+  fi
+done
 
 #Set UID & GID 0 to root
 usermod -u 0 root
