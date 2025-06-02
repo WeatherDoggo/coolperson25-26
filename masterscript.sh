@@ -18,11 +18,11 @@ announce "running backup.sh..."
 source ./logs/backup.sh
 announce "backup.sh done."
 
-announce "running users.sh..."
+announce "running usersconf.sh..."
 source ./usersconf.sh
 announce "users.sh done."
 
-announce "running password.sh..."
+announce "running passwordconf.sh..."
 source ./passwordconf.sh
 announce "backup.sh done."
 
