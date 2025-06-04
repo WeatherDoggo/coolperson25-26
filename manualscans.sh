@@ -24,8 +24,8 @@ print "Ran lsof to list all open network connections and the processes that open
 
 for pid in $(ls /proc | grep -E '^[0-9]+$'); do 
   if [ -e "/proc/$pid/exe" ];
-    then echo "PID: $pid, Command: $(readlink -f /proc/$pid/exe)"; 
-    fi; 
+    then print "PID: $pid, Command: $(readlink -f /proc/$pid/exe)" >> /scans/PIDpaths.txt; 
+    fi 
   done
 print "Resolved all of the executible paths of PIDS in /scans/PIDpaths. Look for ones in /tmp, /dev/shm, or ones that have been deleted but are still running."
 
