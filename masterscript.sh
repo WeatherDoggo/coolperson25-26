@@ -18,6 +18,10 @@ announce "running backup.sh..."
 source ./logs/backup.sh
 announce "backup.sh done."
 
+announce "running manualscans.sh..."
+source ./manualscans.sh
+announce "manualscans.sh done."
+
 announce "running usersconf.sh..."
 source ./usersconf.sh
 announce "users.sh done."
