@@ -21,6 +21,11 @@ announce "backup.sh done."
 announce "running manualscans.sh..."
 source ./manualscans.sh
 announce "manualscans.sh done."
+announce "Finish the forensics questions now."
+read done1
+announce "Are you sure you are done with the forensics questions?"
+read done2
+announce "Proceeding..."
 
 announce "running usersconf.sh..."
 source ./usersconf.sh
