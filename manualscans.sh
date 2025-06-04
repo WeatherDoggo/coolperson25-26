@@ -27,19 +27,24 @@ for pid in $(ls /proc | grep -E '^[0-9]+$'); do
     then print "PID: $pid, Command: $(readlink -f /proc/$pid/exe)" >> /scans/PIDpaths.txt; 
     fi 
   done
-print "Resolved all of the executible paths of PIDS in /scans/PIDpaths. Look for ones in /tmp, /dev/shm, or ones that have been deleted but are still running."
+print "Resolved all of the executible paths of PIDS in PIDpaths.txt. Look for ones in /tmp, /dev/shm, or ones that have been deleted but are still running."
 
-find / -type f -mtime -7 -print0 | xargs -0 ls -lt
-#prints all files modified in the last 7 days
+find / -type f -mtime -7 -print0 | xargs -0 ls -lt | sudo tee -a $LOG > /scans/modifiedfiles.txt
+print "Listed all files modified in the last 7 days."
 
-find / -type f -perm /6000 -ls
+find / -type f -perm /6000 -ls | sudo tee -a $LOG > /scans/binaryconfigs.txt
+print "Listed all SUID/SGID binaries in binaryconfigs.txt to check for misconfiguration (privilege escalation)."
 #Finds SUID/SGID binaries. Misconfigured SUID/SGID binaries can be exploited for privilege escalation.
 #Look for: Any SUID/SGID binaries that are not standard system binaries or are in unexpected locations.
-find / -type f -name ".*" -ls
+
+find / -type f -name ".*" -ls | sudo tee -a $LOG > /scans/hiddenfiles.txt
+print "Listed all hidden files in /hiddenfiles.txt."
 #Finds hidden files. Malware often hides its components.
-cat /etc/hosts
+
+cat /etc/hosts | sudo tee -a $LOG > /scans/hostentries.txt
 #Check for any unusual entries that redirect legitimate traffic to malicious IPs.
-cat /etc/resolv.conf
+
+cat /etc/resolv.conf | sudo tee -a $LOG > /scans/suspiciousDNS.txt
 #Check for suspicious DNS servers that could be redirecting traffic.
 
 #Malware-Specific Tools:
