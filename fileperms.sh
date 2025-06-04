@@ -1,4 +1,7 @@
 #!/bin/bash
+#TO-DO:
+#Transfer over file perms from mainscript
+#add some for password-related files
 
 chmod 640 /etc/shadow >> $LOG
 print "/etc/shadow permissions configured."
