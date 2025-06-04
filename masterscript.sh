@@ -26,3 +26,7 @@ announce "running passwordconf.sh..."
 source ./passwordconf.sh
 announce "backup.sh done."
 
+announce "running firewall.sh..."
+source ./firewall.sh
+announce "firewall.sh done."
+
