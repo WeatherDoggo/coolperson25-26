@@ -42,5 +42,6 @@ announce "firewall.sh done."
 apt-get autoclean -y -qq >> $LOG
 apt-get clean -y -qq >> $LOG
 apt-get autoremove -y -qq >> $LOG
-print "Unecessary packages removed."
+announce "Unecessary packages removed."
+announce "-------SCRIPT COMPLETE :3-------"
 
