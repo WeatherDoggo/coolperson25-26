@@ -6,7 +6,7 @@ function print() {
 
 print "Running scans and sending results to /scans/..."
 
-print "Applications with hack or crack in the name (remove these):\n" >> /scans/hackcrack.txt
+print "Applications with hack or crack in the name (remove these):\n" > /scans/hackcrack.txt
 dpkg -l | grep -E 'hack|crack' | sudo tee -a $LOG >> /scans/hackcrack.txt
 print "Apps with hack or crack have been scanned for."
 
@@ -22,6 +22,7 @@ print "Ran systemctl list-unit-files to see all processes on the VM."
 lsof -i -P -n | sudo tee -a $LOG > /scans/lsof.txt
 print "Ran lsof to list all open network connections and the processes that opened them."
 
+print "PIDpaths" | sudo tee -a $LOG > /scans/PIDpaths.txt
 for pid in $(ls /proc | grep -E '^[0-9]+$'); do 
   if [ -e "/proc/$pid/exe" ];
     then print "PID: $pid, Command: $(readlink -f /proc/$pid/exe)" >> /scans/PIDpaths.txt; 
