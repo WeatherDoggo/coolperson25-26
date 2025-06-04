@@ -34,3 +34,8 @@ announce "running firewall.sh..."
 source ./firewall.sh
 announce "firewall.sh done."
 
+apt-get autoclean -y -qq >> $LOG
+apt-get clean -y -qq >> $LOG
+apt-get autoremove -y -qq >> $LOG
+print "Unecessary packages removed."
+
