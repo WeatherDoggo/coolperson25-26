@@ -37,11 +37,7 @@ print "Listed all files modified in the last 7 days."
 
 find / -type f -perm /6000 -ls | sudo tee -a $LOG > ./scans/binaryconfigs.txt
 print "Listed all SUID/SGID binaries in binaryconfigs.txt to check for misconfiguration."
-print "Watch for the following:\n Setuid on scripts (.sh, .py, etc.)\nBinaries in user-writable paths like /tmp, /home, or /var/tmp\nBinaries with 777 permissions"
-
-find / -type f -name ".*" -ls | sudo tee -a $LOG > ./scans/hiddenfiles.txt
-print "Listed all hidden files in /hiddenfiles.txt."
-#Finds hidden files. Malware often hides its components.
+print "Watch for the following:\nSetuid on scripts (.sh, .py, etc.)\nBinaries in user-writable paths like /tmp, /home, or /var/tmp\nBinaries with 777 permissions"
 
 cat /etc/hosts | sudo tee -a $LOG > ./scans/hostentries.txt
 #Check for any unusual entries that redirect legitimate traffic to malicious IPs.
