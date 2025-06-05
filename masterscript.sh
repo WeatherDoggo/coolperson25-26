@@ -27,6 +27,10 @@ announce "Are you sure you are done with the forensics questions?"
 read done2
 announce "Proceeding..."
 
+announce "running universalfileperms.sh..."
+source ./logs/universalfileperms.sh
+announce "universalfileperms.sh done."
+
 announce "running usersconf.sh..."
 source ./usersconf.sh
 announce "users.sh done."
