@@ -27,23 +27,23 @@ print "Ran lsof to list all open network connections and the processes that open
 print "PIDpaths" | sudo tee -a $LOG > ./scans/PIDpaths.txt
 for pid in $(ls /proc | grep -E '^[0-9]+$'); do 
   if [ -e "/proc/$pid/exe" ];
-    then print "PID: $pid, Command: $(readlink -f /proc/$pid/exe)" >> ./scans/PIDpaths.txt; 
+    then print "PID: $pid, Command: $(readlink -f /proc/$pid/exe)" >> ./scans/PIDpaths.txt
     fi 
   done
-print "Resolved all of the executible paths of PIDS in PIDpaths.txt. Look for ones in /tmp, /dev/shm, or ones that have been deleted but are still running."
+print "Resolved all of the executible paths of PIDS in PIDpaths.txt. Look for ones in /tmp, /dev/shm, or ones that have been deleted but are still running." >> ./scans/PIDpaths.txt
 
 find / -type f -mtime -7 -print0 | xargs -0 ls -lt | sudo tee -a $LOG > ./scans/modifiedfiles.txt
 print "Listed all files modified in the last 7 days."
 
 find / -type f -perm /6000 -ls | sudo tee -a $LOG > ./scans/binaryconfigs.txt
 print "Listed all SUID/SGID binaries in binaryconfigs.txt to check for misconfiguration."
-print "Watch for the following:\nSetuid on scripts (.sh, .py, etc.)\nBinaries in user-writable paths like /tmp, /home, or /var/tmp\nBinaries with 777 permissions"
+print "Watch for the following:\nSetuid on scripts (.sh, .py, etc.)\nBinaries in user-writable paths like /tmp, /home, or /var/tmp\nBinaries with 777 permissions" >> ./scans/binaryconfigs.txt
 
 cat /etc/hosts | sudo tee -a $LOG > ./scans/hostentries.txt
-#Check for any unusual entries that redirect legitimate traffic to malicious IPs.
+print "Check for any unusual entries that redirect traffic to malicious IPs." >> ./scans/hostentries.txt
 
 cat /etc/resolv.conf | sudo tee -a $LOG > ./scans/suspiciousDNS.txt
-#Check for suspicious DNS servers that could be redirecting traffic.
+"Check for suspicious DNS servers that could be redirecting traffic." >> ./scans/suspiciousDNS.txt
 
 #Malware-Specific Tools:
 #apt-get install rkhunter and rkhunter --check: Rootkit Hunter checks for rootkits, backdoors, and local exploits by comparing file hashes, looking for suspicious modules, and checking system configuration.
