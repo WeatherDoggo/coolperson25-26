@@ -36,9 +36,8 @@ find / -type f -mtime -7 -print0 | xargs -0 ls -lt | sudo tee -a $LOG > ./scans/
 print "Listed all files modified in the last 7 days."
 
 find / -type f -perm /6000 -ls | sudo tee -a $LOG > ./scans/binaryconfigs.txt
-print "Listed all SUID/SGID binaries in binaryconfigs.txt to check for misconfiguration (privilege escalation)."
-#Finds SUID/SGID binaries. Misconfigured SUID/SGID binaries can be exploited for privilege escalation.
-#Look for: Any SUID/SGID binaries that are not standard system binaries or are in unexpected locations.
+print "Listed all SUID/SGID binaries in binaryconfigs.txt to check for misconfiguration."
+print "Watch for the following:\n Setuid on scripts (.sh, .py, etc.)\nBinaries in user-writable paths like /tmp, /home, or /var/tmp\nBinaries with 777 permissions"
 
 find / -type f -name ".*" -ls | sudo tee -a $LOG > ./scans/hiddenfiles.txt
 print "Listed all hidden files in /hiddenfiles.txt."
