@@ -9,22 +9,22 @@ chmod 777 ./scans/
 print "Running scans and sending results to /scans/..."
 
 print "Applications with hack or crack in the name (remove these):\n" > ./scans/hackcrack.txt
-dpkg -l | grep -E 'hack|crack' | sudo tee -a $LOG >> ./scans/hackcrack.txt
+dpkg -l | grep -E 'hack|crack' >> ./scans/hackcrack.txt
 print "Apps with hack or crack have been scanned for."
 
-ss -tulnp | sudo tee -a $LOG > ./scans/ss_-tulnp.txt
+ss -tulnp > ./scans/ss_-tulnp.txt
 print "Ran ss -tulnp to scan listening ports."
 
-ps aux | sudo tee -a $LOG > ./scans/ps_aux.txt
+ps aux > ./scans/ps_aux.txt
 print "Ran ps aux to see running processes."
 
-systemctl list-unit-files --type=service | sudo tee -a $LOG > ./scans/list-unit-files.txt
+systemctl list-unit-files --type=service > ./scans/list-unit-files.txt
 print "Ran systemctl list-unit-files to see all processes on the VM."
 
-lsof -i -P -n | sudo tee -a $LOG > ./scans/lsof.txt
+lsof -i -P -n > ./scans/lsof.txt
 print "Ran lsof to list all open network connections and the processes that opened them."
 
-print "PIDpaths" | sudo tee -a $LOG > ./scans/PIDpaths.txt
+print "PIDpaths"  > ./scans/PIDpaths.txt
 for pid in $(ls /proc | grep -E '^[0-9]+$'); do 
   if [ -e "/proc/$pid/exe" ];
     then print "PID: $pid, Command: $(readlink -f /proc/$pid/exe)" >> ./scans/PIDpaths.txt
@@ -32,17 +32,17 @@ for pid in $(ls /proc | grep -E '^[0-9]+$'); do
   done
 print "Resolved all of the executible paths of PIDS in PIDpaths.txt. Look for ones in /tmp, /dev/shm, or ones that have been deleted but are still running." >> ./scans/PIDpaths.txt
 
-find / -type f -mtime -7 -print0 | xargs -0 ls -lt | sudo tee -a $LOG > ./scans/modifiedfiles.txt
+find / -type f -mtime -7 -print0 | xargs -0 ls -lt > ./scans/modifiedfiles.txt
 print "Listed all files modified in the last 7 days."
 
-find / -type f -perm /6000 -ls | sudo tee -a $LOG > ./scans/binaryconfigs.txt
+find / -type f -perm /6000 -ls > ./scans/binaryconfigs.txt
 print "Listed all SUID/SGID binaries in binaryconfigs.txt to check for misconfiguration."
 print "Watch for the following:\nSetuid on scripts (.sh, .py, etc.)\nBinaries in user-writable paths like /tmp, /home, or /var/tmp\nBinaries with 777 permissions" >> ./scans/binaryconfigs.txt
 
-cat /etc/hosts | sudo tee -a $LOG > ./scans/hostentries.txt
+cat /etc/hosts > ./scans/hostentries.txt
 print "Check for any unusual entries that redirect traffic to malicious IPs." >> ./scans/hostentries.txt
 
-cat /etc/resolv.conf | sudo tee -a $LOG > ./scans/suspiciousDNS.txt
+cat /etc/resolv.conf > ./scans/suspiciousDNS.txt
 print "Check for suspicious DNS servers that could be redirecting traffic." >> ./scans/suspiciousDNS.txt
 
 #Malware-Specific Tools:
