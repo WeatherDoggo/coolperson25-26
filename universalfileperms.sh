@@ -38,3 +38,7 @@ chmod og-rwx /etc/cron.monthly/
 chown root:root /etc/cron.d/
 chmod og-rwx /etc/cron.d/
 print "cron file permissions updated."
+
+#DNS Resolution
+chmod 644 /etc/resolv.conf
+print "resolv.conf permissions configured."
