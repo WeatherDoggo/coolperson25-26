@@ -43,7 +43,7 @@ cat /etc/hosts | sudo tee -a $LOG > ./scans/hostentries.txt
 print "Check for any unusual entries that redirect traffic to malicious IPs." >> ./scans/hostentries.txt
 
 cat /etc/resolv.conf | sudo tee -a $LOG > ./scans/suspiciousDNS.txt
-"Check for suspicious DNS servers that could be redirecting traffic." >> ./scans/suspiciousDNS.txt
+print "Check for suspicious DNS servers that could be redirecting traffic." >> ./scans/suspiciousDNS.txt
 
 #Malware-Specific Tools:
 #apt-get install rkhunter and rkhunter --check: Rootkit Hunter checks for rootkits, backdoors, and local exploits by comparing file hashes, looking for suspicious modules, and checking system configuration.
