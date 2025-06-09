@@ -27,6 +27,20 @@ announce "Are you sure you are done with the forensics questions?"
 read done2
 announce "Proceeding..."
 
+neededservices=()
+function isitneeded() {
+  announce "Is $1 needed?"
+  read $1needed
+  if [[ $$1needed == "yes" || $$1needed == "y" ]]; then
+    announce "$1 marked as needed with var $1needed."
+    neededservices+=("$1 is needed\n")
+  else
+    announce "$1 marked as not needed."
+    exit
+  fi
+}
+isitneeded(ssh)
+
 announce "running universalfileperms.sh..."
 source ./logs/universalfileperms.sh
 announce "universalfileperms.sh done."
