@@ -14,11 +14,11 @@ else
   announce "Exiting..."
   exit
 fi
-announce "running backup.sh..."
+announce "Running backup.sh..."
 source ./logs/backup.sh
 announce "backup.sh done."
 
-announce "running manualscans.sh..."
+announce "Running manualscans.sh..."
 source ./manualscans.sh
 announce "manualscans.sh done."
 announce "Finish the forensics questions now."
@@ -50,20 +50,21 @@ isitneeded(squid)
 isitneeded(samba)
 isitneeded(FTP)
 #isitneeded(docker) SPECIFIFY WHAT DOCKER IS USED WITH SO IT ISNT DISABLED BY ACCIDENT!
+announce "Critical services marked."
 
-announce "running universalfileperms.sh..."
+announce "Running universalfileperms.sh..."
 source ./logs/universalfileperms.sh
 announce "universalfileperms.sh done."
 
-announce "running usersconf.sh..."
+announce "Running usersconf.sh..."
 source ./usersconf.sh
 announce "users.sh done."
 
-announce "running passwordconf.sh..."
+announce "Running passwordconf.sh..."
 source ./passwordconf.sh
 announce "backup.sh done."
 
-announce "running firewall.sh..."
+announce "Running firewall.sh..."
 source ./firewall.sh
 announce "firewall.sh done."
 
