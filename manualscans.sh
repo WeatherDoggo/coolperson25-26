@@ -45,10 +45,13 @@ print "Check for any unusual entries that redirect traffic to malicious IPs." >>
 cat /etc/resolv.conf > ./scans/suspiciousDNS.txt
 print "Check for suspicious DNS servers that could be redirecting traffic." >> ./scans/suspiciousDNS.txt
 
-#Malware-Specific Tools:
-#apt-get install rkhunter and rkhunter --check: Rootkit Hunter checks for rootkits, backdoors, and local exploits by comparing file hashes, looking for suspicious modules, and checking system configuration.
-#apt-get install chkrootkit and chkrootkit: chkrootkit is another tool for detecting rootkits.
-#ClamAV: apt-get install clamav and then freshclam (to update signatures) followed by clamscan -r /home /var /tmp (to scan specific directories).
+#Rootkit checker:
+apt-get install rkhunter -y -qq >> $LOG
+rkhunter --update | sudo tee -a $LOG > ./scans/rkhunter.txt
+rkhunter --propupd | sudo tee -a $LOG >> ./scans/rkhunter.txt
+rkhunter --check >> ./scans/rkhunter.txt 
+print "Used Rootkit Hunter to check for rootkits, backdoors, and local exploits and saved results to rkhunter.txt."
+#It does this by comparing file hashes, looking for suspicious modules, and checking system configuration.
 
 #Confirmation before continuting with other scripts
 print "Have you reviewed the scans?"
