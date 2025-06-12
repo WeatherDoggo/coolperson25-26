@@ -1,5 +1,10 @@
 #!/bin/bash
+LOG=./logs/main.log
+function print() {
+  echo -e "$1" | sudo tee -a "$LOG" 
+}
 
+print "Removing processes..."
 function appremoval () {
     systemctl stop "$1".service >> $LOG 2>>$LOG
     sudo apt-get purge --auto-remove -y -qq "$1" >> $LOG
@@ -33,8 +38,6 @@ appremoval snmpd
 appremoval tftpd-hpa
 appremoval squid
 appremoval xinetd
-printlog "Unnecessary (RISKY) servers removed."
-
 appremoval lighttpd
 appremoval nikto
 appremoval nmap
@@ -67,7 +70,6 @@ appremoval socat
 appremoval socket
 appremoval sbd
 appremoval sucrack
-print "Common hacking tools removed."
 #nis
 appremoval nis
 #FTP
@@ -87,4 +89,5 @@ appremoval apport
 
 #Games
 apt-get purge aisleriot gnome-mahjongg gnome-mines gnome-sudoku -y -qq >> $LOG
-print "Common games removed."
+
+print "Common servers, hacking tools, games, and more removed."
