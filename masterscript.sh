@@ -40,6 +40,14 @@ function isitneeded() {
   fi
 }
 isitneeded(ssh)
+isitneeded(telnet)
+isitneeded(mail)
+isitneeded(printing)
+isitneeded(MySQL)
+isitneeded(apache)
+isitneeded(nginx)
+isitneeded(squid)
+#isitneeded(docker) SPECIFIFY WHAT DOCKER IS USED WITH SO IT ISNT DISABLED BY ACCIDENT!
 
 announce "running universalfileperms.sh..."
 source ./logs/universalfileperms.sh
