@@ -47,6 +47,8 @@ isitneeded(MySQL)
 isitneeded(apache)
 isitneeded(nginx)
 isitneeded(squid)
+isitneeded(samba)
+isitneeded(FTP)
 #isitneeded(docker) SPECIFIFY WHAT DOCKER IS USED WITH SO IT ISNT DISABLED BY ACCIDENT!
 
 announce "running universalfileperms.sh..."
