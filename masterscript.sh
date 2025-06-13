@@ -42,7 +42,6 @@ function isitneeded() {
 }
 isitneeded ssh
 isitneeded telnet
-isitneeded mail
 isitneeded printing
 isitneeded MySQL
 isitneeded apache
@@ -77,19 +76,46 @@ announce "Running misc.sh..."
 source ./misc.sh
 announce "misc.sh done."
 
-function confservice() {
-  varname="${1}needed"
-  eval "needed=\$$varname"
-  if [[ "$needed" == "yes" || "$needed" == "y" ]]; then
-    announce "Running $1.sh..."
-    source ./conditional/$1.sh
-    announce "$1.sh done."
-  else
-    announce "$1 not needed, skipping configuration."
-  fi
-}
-confservice ssh
-confservice nginx
+#Conditional configurations
+announce "Conditional configurations:"
+
+announce "Running ssh.sh..."
+source ./conditional/ssh.sh
+announce "ssh.sh done."
+
+announce "Running telnet.sh..."
+source ./conditional/telnet.sh
+announce "telnet.sh done."
+
+announce "Running printing.sh..."
+source ./conditional/printing.sh
+announce "printing.sh done."
+
+announce "Running MySQL.sh..."
+source ./conditional/MySQL.sh
+announce "MySQL.sh done."
+
+announce "Running apache.sh..."
+source ./conditional/apache.sh
+announce "apache.sh done."
+
+announce "Running nginx.sh..."
+source ./conditional/nginx.sh
+announce "nginx.sh done."
+
+announce "Running squid.sh..."
+source ./conditional/squid.sh
+announce "squid.sh done."
+
+announce "Running samba.sh..."
+source ./conditional/samba.sh
+announce "samba.sh done."
+
+announce "Running FTP.sh..."
+source ./conditional/FTP.sh
+announce "FTP.sh done."
+
+announce "Conditional configurations complete."
 
 apt-get autoclean -y -qq >> $LOG
 apt-get clean -y -qq >> $LOG
