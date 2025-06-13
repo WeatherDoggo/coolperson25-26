@@ -13,9 +13,9 @@ then
  	systemctl restart sshd >> $LOG
   print "SSH restarted."
 	print "SSH default port changed, PermitRootLogin set to no, MaxAuthTries set to 3, Client closes after 4 minutes inactive, LoginGraceTime set to 20, PermitEmptyPasswords is set to no, HostBasedAuthentication set to no, and StrictModes is set to yes."
- 	#manualtask "Optional SSH tasks include MaxSessions, TCPKeepAlive, & changing default port."
+ 	#Optional SSH tasks include MaxSessions, TCPKeepAlive, & changing default port.
 else
 	apt-get purge openssh-server openssh-client -y -qq >> $LOG
 	ufw deny ssh >> $LOG
-	printlog "SSH removed and SSH port closed."
+	print "SSH removed and SSH port closed."
 fi
