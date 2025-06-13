@@ -4,11 +4,19 @@ function print() {
   echo -e "$1" | sudo tee -a "$LOG" 
 }
 
-print "Removing processes..."
+print "HAVE YOU REVISED THE LIST OF SERVICES BEING REMOVED???"
+read removalconfirm
+if [[ "$removalconfirm" == "yes" || "$input" == "y" ]]; then
+  print "Removing processes..."
+  else
+  print "Rerun with proper app list configured."
+  exit
+fi
+
 function appremoval () {
-    systemctl stop "$1".service >> $LOG 2>>$LOG
-    sudo apt-get purge --auto-remove -y -qq "$1" >> $LOG
-    print "$1 removed."
+  systemctl stop "$1".service >> $LOG 2>>$LOG
+  sudo apt-get purge --auto-remove -y -qq "$1" >> $LOG
+  print "$1 removed."
 }
 
 appremoval autofs
