@@ -8,7 +8,7 @@ function print() {
 print "Enabling firewall..."
 apt-get install ufw -y -qq >> $LOG
 apt-get purge iptables-persistent -y -qq >> $LOG
-printlog "iptables-persistent removed."
+print "iptables-persistent removed."
 ufw enable >> $LOG
 ufw default deny incoming >> $LOG
 ufw default allow outgoing >> $LOG
