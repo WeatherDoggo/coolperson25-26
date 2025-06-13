@@ -6,12 +6,9 @@ function print() {
 
 print "Removing processes..."
 function appremoval () {
-    if [[ $$1needed == "" || $$1needed == "" ]]; then
-      systemctl stop "$1".service >> $LOG 2>>$LOG
-      sudo apt-get purge --auto-remove -y -qq "$1" >> $LOG
-      print "$1 removed."
-    else
-      print "Service is needed, so it will not be removed."
+    systemctl stop "$1".service >> $LOG 2>>$LOG
+    sudo apt-get purge --auto-remove -y -qq "$1" >> $LOG
+    print "$1 removed."
 }
 
 appremoval autofs
