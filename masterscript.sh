@@ -38,7 +38,6 @@ function isitneeded() {
     neededservices+=("$1 is needed")
   else
     announce "$1 marked as not needed."
-    exit
   fi
 }
 isitneeded ssh
