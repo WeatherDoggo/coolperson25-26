@@ -1,4 +1,5 @@
 #!/bin/bash
+mkdir ./logs
 LOG=./logs/main.log
 function print() {
   echo "$1" | sudo tee -a $LOG 
@@ -62,11 +63,19 @@ announce "users.sh done."
 
 announce "Running passwordconf.sh..."
 source ./passwordconf.sh
-announce "backup.sh done."
+announce "passwordconf.sh done."
 
 announce "Running firewall.sh..."
 source ./firewall.sh
 announce "firewall.sh done."
+
+announce "Running appremoval.sh..."
+source ./appremoval.sh
+announce "appremoval.sh done."
+
+announce "Running misc.sh..."
+source ./misc.sh
+announce "misc.sh done."
 
 apt-get autoclean -y -qq >> $LOG
 apt-get clean -y -qq >> $LOG
