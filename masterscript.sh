@@ -54,7 +54,7 @@ isitneeded(FTP)
 announce "Critical services marked."
 
 announce "Running universalfileperms.sh..."
-source ./logs/universalfileperms.sh
+source ./universalfileperms.sh
 announce "universalfileperms.sh done."
 
 announce "Running usersconf.sh..."
@@ -76,6 +76,14 @@ announce "appremoval.sh done."
 announce "Running misc.sh..."
 source ./misc.sh
 announce "misc.sh done."
+
+function confservice() {
+  if [[ $$1needed == "yes" || $$1needed == "y" ]]; then
+    announce "Running $1.sh..."
+    source ./$1.sh
+    announce "universalfileperms.sh done."
+  fi
+}
 
 apt-get autoclean -y -qq >> $LOG
 apt-get clean -y -qq >> $LOG
