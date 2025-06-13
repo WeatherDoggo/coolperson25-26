@@ -1,5 +1,4 @@
 #!/bin/bash
-mkdir -p ./logs
 LOG=./logs/main.log
 function print() {
   echo "$1" | sudo tee -a $LOG 
