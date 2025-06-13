@@ -82,7 +82,7 @@ function confservice() {
   eval "needed=\$$varname"
   if [[ "$needed" == "yes" || "$needed" == "y" ]]; then
     announce "Running $1.sh..."
-    source ./$1.sh
+    source ./conditional/$1.sh
     announce "$1.sh done."
   else
     announce "$1 not needed, skipping configuration."
