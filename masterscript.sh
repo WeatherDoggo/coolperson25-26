@@ -27,7 +27,6 @@ announce "Are you sure you are done with the forensics questions?"
 read done2
 announce "Proceeding..."
 
-neededservices=()
 function isitneeded() {
   announce "Is $1 needed?"
   read input
@@ -35,7 +34,6 @@ function isitneeded() {
   eval "$varname=\"$input\""
   if [[ "$input" == "yes" || "$input" == "y" ]]; then
     announce "$1 marked as needed with var $varname."
-    neededservices+=("$1 is needed")
   else
     announce "$1 marked as not needed."
   fi
