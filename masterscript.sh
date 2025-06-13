@@ -1,11 +1,11 @@
 #!/bin/bash
-mkdir ./logs
+mkdir -p ./logs
 LOG=./logs/main.log
 function print() {
   echo "$1" | sudo tee -a $LOG 
 }
 function announce() {
-  echo -e "${\033[1;36m}$1${\033[1;36m}" | sudo tee -a $LOG 
+  echo -e "\033[1;36m$1\033[0m" | sudo tee -a $LOG 
 }
 announce "HAS UPDATE, UPGRADE, & AUTOREMOVE BEEN RUN?"
 read runconfirm
@@ -31,25 +31,27 @@ announce "Proceeding..."
 neededservices=()
 function isitneeded() {
   announce "Is $1 needed?"
-  read $1needed
-  if [[ $$1needed == "yes" || $$1needed == "y" ]]; then
-    announce "$1 marked as needed with var $1needed."
-    neededservices+=("$1 is needed\n")
+  read input
+  varname="${1}needed"
+  eval "$varname=\"$input\""
+  if [[ "$input" == "yes" || "$input" == "y" ]]; then
+    announce "$1 marked as needed with var $varname."
+    neededservices+=("$1 is needed")
   else
     announce "$1 marked as not needed."
     exit
   fi
 }
-isitneeded(ssh)
-isitneeded(telnet)
-isitneeded(mail)
-isitneeded(printing)
-isitneeded(MySQL)
-isitneeded(apache)
-isitneeded(nginx)
-isitneeded(squid)
-isitneeded(samba)
-isitneeded(FTP)
+isitneeded ssh
+isitneeded telnet
+isitneeded mail
+isitneeded printing
+isitneeded MySQL
+isitneeded apache
+isitneeded nginx
+isitneeded squid
+isitneeded samba
+isitneeded FTP
 #isitneeded(docker) SPECIFIFY WHAT DOCKER IS USED WITH SO IT ISNT DISABLED BY ACCIDENT!
 announce "Critical services marked."
 
@@ -78,16 +80,22 @@ source ./misc.sh
 announce "misc.sh done."
 
 function confservice() {
-  if [[ $$1needed == "yes" || $$1needed == "y" ]]; then
+  varname="${1}needed"
+  eval "needed=\$$varname"
+  if [[ "$needed" == "yes" || "$needed" == "y" ]]; then
     announce "Running $1.sh..."
     source ./$1.sh
-    announce "universalfileperms.sh done."
+    announce "$1.sh done."
+  else
+    announce "$1 not needed, skipping configuration."
   fi
 }
+confservice ssh
+confservice nginx
 
 apt-get autoclean -y -qq >> $LOG
 apt-get clean -y -qq >> $LOG
 apt-get autoremove -y -qq >> $LOG
-announce "Unecessary packages removed."
+announce "Unnecessary packages removed."
 announce "-------SCRIPT COMPLETE :3-------"
 
