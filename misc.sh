@@ -12,6 +12,10 @@ echo 'APT::Periodic::Unattended-Upgrade "1";' |  sudo tee -a /etc/apt/apt.conf.d
 find /etc/apt -type f -name '*.list' -exec sed -i 's/^#\(deb.*-backports.*\)/\1/; s/^#\(deb.*-updates.*\)/\1/; s/^#\(deb.*-proposed.*\)/\1/; s/^#\(deb.*-security.*\)/\1/' {} +
 print "Updates set to daily (expand on what I am doing)."
 
+#sysctl.conf
+cp ./importfiles/sysctl.conf /etc/sysctl.conf
+print "sysctl.conf configured."
+
 #remove prohibited mp3 files
 print "Can users have media files?"
 read mediastatus
