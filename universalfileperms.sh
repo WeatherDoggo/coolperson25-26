@@ -37,7 +37,12 @@ chown root:root /etc/cron.monthly/
 chmod og-rwx /etc/cron.monthly/
 chown root:root /etc/cron.d/
 chmod og-rwx /etc/cron.d/
-print "cron file permissions updated."
+print "cron file permissions configured."
+
+#GRUB
+chmod 600 /boot/grub/grub.cfg
+chown root:root /boot/grub/grub.cfg
+print "GRUB permissions configured."
 
 #DNS Resolution
 chmod 644 /etc/resolv.conf
