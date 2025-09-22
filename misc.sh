@@ -9,6 +9,7 @@ echo 'APT::Periodic::Update-Package-Lists "1";' | sudo tee /etc/apt/apt.conf.d/9
 echo 'APT::Periodic::Download-Upgradeable-Packages "1";' | sudo tee -a /etc/apt/apt.conf.d/999custom > /dev/null
 echo 'APT::Periodic::AutocleanInterval "7";' | sudo tee -a /etc/apt/apt.conf.d/999custom > /dev/null
 echo 'APT::Periodic::Unattended-Upgrade "1";' |  sudo tee -a /etc/apt/apt.conf.d/999custom > /dev/null
+find /etc/apt -type f -name '*.list' -exec sed -i 's/^#\(deb.*-backports.*\)/\1/; s/^#\(deb.*-updates.*\)/\1/; s/^#\(deb.*-proposed.*\)/\1/; s/^#\(deb.*-security.*\)/\1/' {} +
 print "Updates set to daily (expand on what I am doing)."
 
 #remove prohibited mp3 files
