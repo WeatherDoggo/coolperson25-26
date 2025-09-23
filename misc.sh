@@ -13,7 +13,8 @@ find /etc/apt -type f -name '*.list' -exec sed -i 's/^#\(deb.*-backports.*\)/\1/
 print "Updates set to daily (expand on what I am doing)."
 
 #sysctl.conf
-cp ./importfiles/sysctl.conf /etc/sysctl.conf
+cp importfiles/sysctl.conf /etc/sysctl.conf
+sysctl -w net.ipv4.route.flush=1
 print "sysctl.conf configured."
 
 #remove prohibited mp3 files
