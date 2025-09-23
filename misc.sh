@@ -20,6 +20,7 @@ print "Automatic updates configured (expand on what I am doing)."
 #sysctl.conf
 cp ./importfiles/sysctl.conf /etc/sysctl.conf
 sysctl -w net.ipv4.route.flush=1
+sysctl --system
 print "sysctl.conf configured."
 
 #/etc/shells config
