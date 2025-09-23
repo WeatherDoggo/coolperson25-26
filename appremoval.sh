@@ -6,7 +6,7 @@ function print() {
 
 print "HAVE YOU REVISED THE LIST OF SERVICES BEING REMOVED???"
 read removalconfirm
-if [[ "$removalconfirm" == "yes" || "$input" == "y" ]]; then
+if [[ "$removalconfirm" == "yes" || "$removalconfirm" == "y" ]]; then
   print "Removing processes..."
   else
   print "Rerun with proper app list configured."
