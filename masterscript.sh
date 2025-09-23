@@ -14,6 +14,7 @@ else
   announce "Exiting..."
   exit
 fi
+
 OS=""
 announce "Mint or Ubuntu?"
 read OS
@@ -27,6 +28,7 @@ else
   announce "OS not recognized. Exiting..."
   exit
 fi
+
 announce "Running backup.sh..."
 source ./logs/backup.sh
 announce "backup.sh done."
