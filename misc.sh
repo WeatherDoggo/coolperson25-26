@@ -17,7 +17,11 @@ cp ./importfiles/sysctl.conf /etc/sysctl.conf
 sysctl -w net.ipv4.route.flush=1
 print "sysctl.conf configured."
 
-#remove prohibited mp3 files
+#Disable Ctrl+Alt+Delete Reboot
+echo "exec true" >> /etc/init/control-alt-delete.override
+print "Ctrl+Alt+Delete reboot disabled."
+
+#Remove prohibited mp3 files
 print "Can users have media files?"
 read mediastatus
 if [[ $mediastatus == "no" || $mediastatus == "n" ]];
