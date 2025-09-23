@@ -14,6 +14,19 @@ else
   announce "Exiting..."
   exit
 fi
+OS=""
+announce "Mint or Ubuntu?"
+read OS
+if [[ $OS == "mint" || $OS == "Mint" ]]; then
+  OS="mint"
+  announce "OS set to Mint."
+elif [[ $OS == "ubuntu" || $OS == "Ubuntu" ]]; then
+  OS="ubuntu"
+  announce "OS set to Ubuntu."
+else
+  announce "OS not recognized. Exiting..."
+  exit
+fi
 announce "Running backup.sh..."
 source ./logs/backup.sh
 announce "backup.sh done."
