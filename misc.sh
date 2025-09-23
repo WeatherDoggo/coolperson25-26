@@ -6,16 +6,18 @@ function print() {
 
 #Automatic Updates
 if $OS == ubuntu; then
-	echo 'APT::Periodic::Update-Package-Lists "1";' | sudo tee /etc/apt/apt.conf.d/999custom > /dev/nulll
-	echo 'APT::Periodic::Download-Upgradeable-Packages "1";' | sudo tee -a /etc/apt/apt.conf.d/999custom > /dev/null
-	echo 'APT::Periodic::AutocleanInterval "7";' | sudo tee -a /etc/apt/apt.conf.d/999custom > /dev/null
-	echo 'APT::Periodic::Unattended-Upgrade "1";' |  sudo tee -a /etc/apt/apt.conf.d/999custom > /dev/null
-	find /etc/apt -type f -name '*.list' -exec sed -i 's/^#\(deb.*-backports.*\)/\1/; s/^#\(deb.*-updates.*\)/\1/; s/^#\(deb.*-proposed.*\)/\1/; s/^#\(deb.*-security.*\)/\1/' {} +
+	sudo tee /etc/apt/apt.conf.d/20auto-upgrades > /dev/null <<'EOF'
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Download-Upgradeable-Packages "1";
+APT::Periodic::AutocleanInterval "7";
+APT::Periodic::Unattended-Upgrade "1";
+EOF
+	print "For Ubuntu 22, automatic updates should be reflected in the GUI."
 else #Mint 21
 	sudo cp ./importfiles/mintupdate.conf /etc/linuxmint/mintupdate.conf
 	print "For Mint 21, automatic updates will not be reflected properly in GUI."
 fi
-print "Automatic updates configured (expand on what I am doing)."
+print "Automatic updates configured."
 
 #sysctl.conf
 cp ./importfiles/sysctl.conf /etc/sysctl.conf
