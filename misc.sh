@@ -17,6 +17,10 @@ cp ./importfiles/sysctl.conf /etc/sysctl.conf
 sysctl -w net.ipv4.route.flush=1
 print "sysctl.conf configured."
 
+#/etc/shells config
+sed -i '/nologin/c\\' /etc/shells
+printlog "instances of noglogin removed from /etc/shells."
+
 #Disable Ctrl+Alt+Delete Reboot
 echo "exec true" >> /etc/init/control-alt-delete.override
 print "Ctrl+Alt+Delete reboot disabled."
