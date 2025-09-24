@@ -20,3 +20,6 @@ fi
 
 print "Do you want to run clamAV?"
 read clamAVinstallqueury
+
+print "Do you want to run debsums?"
+
