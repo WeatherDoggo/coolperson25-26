@@ -10,11 +10,12 @@ read rkinstallqueury
 if [[ "$rkinstallqueury" == "yes" || "$rkinstallqueury" == "y" ]]; then
   apt-get install rkhunter -y -qq >> $LOG
   cp importfiles/rkhunter.conf /etc/rkhunter.conf
-  rkhunter --config-check | sudo tee -a $LOG > ./scans/rkhunter.txt
-  rkhunter --update | sudo tee -a $LOG > ./scans/rkhunter.txt
-  rkhunter --propupd | sudo tee -a $LOG >> ./scans/rkhunter.txt
-  rkhunter --check >> ./scans/rkhunter.txt 
-  print "Used Rootkit Hunter to check for rootkits, backdoors, and local exploits and saved results to rkhunter.txt."
+  rkhunter --config-check >> $LOG ./scans/rkhunter.txt
+  rkhunter --update >> $LOG >
+  rkhunter --propupd >> $LOG
+  rkhunter --check
+  cp /var/log/rkhunter.log ./scans/rkhunter.log
+  print "Used Rootkit Hunter to check for rootkits, backdoors, and local exploits and saved results to rkhunter.log."
 else
   print "Skipped rkhunter."
 fi
