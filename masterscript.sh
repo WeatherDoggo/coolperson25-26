@@ -57,7 +57,7 @@ isitneeded ssh
 isitneeded telnet
 isitneeded printing
 isitneeded MySQL
-isitneeded apache
+isitneeded apache2
 isitneeded nginx
 isitneeded squid
 isitneeded samba
@@ -108,9 +108,9 @@ announce "Running MySQL.sh..."
 source ./conditional/MySQL.sh
 announce "MySQL.sh done."
 
-announce "Running apache.sh..."
-source ./conditional/apache.sh
-announce "apache.sh done."
+announce "Running apache2.sh..."
+source ./conditional/apache2.sh
+announce "apache2.sh done."
 
 announce "Running nginx.sh..."
 source ./conditional/nginx.sh
