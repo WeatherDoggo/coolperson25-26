@@ -8,7 +8,7 @@ function print() {
 print "Do you want to run rkhunter?"
 read rkinstallqueury
 if [[ "$rkinstallqueury" == "yes" || "$rkinstallqueury" == "y" ]]; then
-  apt-get install rkhunter -y -qq >> $LOG
+  apt-get install rkhunter -y -qq
   cp importfiles/rkhunter.conf /etc/rkhunter.conf
   rkhunter --config-check >> $LOG ./scans/rkhunter.txt
   rkhunter --update >> $LOG
