@@ -7,18 +7,23 @@ function print() {
 if [[ $apache2needed == "yes" || $apache2needed == "y" ]];
 then
 	ufw allow http >> $LOG
- 	ufw allow https >> $LOG
+	ufw allow https >> $LOG
 	print "HTTP and HTTPS ports opened."
- 	cp /etc/apache2/apache2.conf ../backups/apache2.conf
-  chmod 777 ../backups/apache2.conf
-  print "apache2.conf backed up."
+	
+	cp /etc/apache2/apache2.conf ../backups/apache2.conf
+	chmod 777 ../backups/apache2.conf
+	print "apache2.conf backed up."
+	
 	cp importfiles/apache2.conf /etc/apache2/apache2.conf
- 	print "apache2.conf configured."
-  chown root:root /etc/apache2/apache2.conf >> $LOG
-  chmod 644 /etc/apache2/apache2.conf >> $LOG
-  "apache2.conf ownership and permissions set."
+	chown root:root /etc/apache2/apache2.conf >> $LOG
+	chmod 644 /etc/apache2/apache2.conf >> $LOG
+	"apache2.conf ownership and permissions set."
+	
+	a2enmod headers
+	systemctl restart apache2
+	print "apache2.conf configured and restarted."
 else
 	systemctl stop apache2.socket apache2.service >> $LOG 2>>$LOG
-  apt-get purge apache2 -y -qq >> $LOG
-  print "apache2 removed."
+	apt-get purge apache2 -y -qq >> $LOG
+	print "apache2 removed."
 fi
