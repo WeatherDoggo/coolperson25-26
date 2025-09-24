@@ -9,6 +9,7 @@ print "Do you want to run rkhunter?"
 read rkinstallqueury
 if [[ "$rkinstallqueury" == "yes" || "$rkinstallqueury" == "y" ]]; then
   apt-get install rkhunter -y -qq >> $LOG
+  cp importfiles/rkhunter.conf /etc/rkhunter.conf
   rkhunter --update | sudo tee -a $LOG > ./scans/rkhunter.txt
   rkhunter --propupd | sudo tee -a $LOG >> ./scans/rkhunter.txt
   rkhunter --check >> ./scans/rkhunter.txt 
