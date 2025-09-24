@@ -10,6 +10,7 @@ read rkinstallqueury
 if [[ "$rkinstallqueury" == "yes" || "$rkinstallqueury" == "y" ]]; then
   apt-get install rkhunter -y
   cp importfiles/rkhunter.conf /etc/rkhunter.conf
+  print "rkhunter conf copied."
   rkhunter --config-check >> $LOG ./scans/rkhunter.txt
   rkhunter --update >> $LOG
   rkhunter --propupd >> $LOG
