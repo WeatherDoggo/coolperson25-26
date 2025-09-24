@@ -7,7 +7,7 @@ function print() {
 #Rootkit checker:
 print "Do you want to run rkhunter?"
 read rkinstallqueury
-if [[ $rkinstallqueury == "yes" || $rkinstallqueury == "y" ]]; then
+if [[ "$rkinstallqueury" == "yes" || "$rkinstallqueury" == "y" ]]; then
   apt-get install rkhunter -y -qq >> $LOG
   rkhunter --update | sudo tee -a $LOG > ./scans/rkhunter.txt
   rkhunter --propupd | sudo tee -a $LOG >> ./scans/rkhunter.txt
