@@ -17,6 +17,9 @@ then
 	print "nginx restarted with new configurations."
 else
 	systemctl stop nginx.service >> $LOG 2>>$LOG
-	apt-get purge nginx nginx-full nginx-extras -y -qq >> $LOG
+	apt-get purge nginx nginx-full nginx-core nginx-extras -y -qq >> $LOG
+	rm -rf /etc/nginx
+	rm -rf /var/log/nginx
+	rm -rf /var/cache/nginx
  	print "nginx removed."
 fi
