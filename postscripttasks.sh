@@ -9,4 +9,4 @@ print "Make sure hashing algorithm set in pam.unix.so is sha512 or yescrypt in p
 
 #Strange User IDs
 print "Check for strange users:"
-mawk -F: '$3 < 1000 || $3 > 65533 {print $1, $3}' /etc/passwd >> $MANUAL_FILE
+mawk -F: '$3 < 1000 || $3 > 65533 {print $1, $3}' /etc/passwd
