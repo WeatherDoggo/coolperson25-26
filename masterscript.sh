@@ -134,6 +134,10 @@ announce "Running postscripttasks.sh..."
 source ./postscripttasks.sh
 announce "postscipttasks.sh done."
 
+announce "Running longscans.sh..."
+source ./logs/longscans.sh
+announce "longscans.sh done."
+
 apt-get autoclean -y -qq >> $LOG
 apt-get clean -y -qq >> $LOG
 apt-get autoremove -y -qq >> $LOG
