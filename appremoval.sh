@@ -45,7 +45,6 @@ appremoval samba
 appremoval snmpd
 appremoval tftpd-hpa
 appremoval squid
-appremoval nginx
 appremoval xinetd
 appremoval lighttpd
 appremoval nikto
