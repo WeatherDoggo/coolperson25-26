@@ -12,7 +12,7 @@ then
 
 	cp importfiles/nginx.conf /etc/nginx/nginx.conf
 	chmod 600 /etc/nginx/nginx.conf
-	print "nginx.conf permissions configured."
+	print "nginx.conf configured."
 	nginx -t >> $LOG
 	systemctl reload nginx >> $LOG
 	print "nginx restarted with new configurations."
