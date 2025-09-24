@@ -130,6 +130,10 @@ announce "FTP.sh done."
 
 announce "Conditional configurations complete."
 
+announce "Running postscripttasks.sh..."
+source ./postscripttasks.sh
+announce "postscipttasks.sh done."
+
 apt-get autoclean -y -qq >> $LOG
 apt-get clean -y -qq >> $LOG
 apt-get autoremove -y -qq >> $LOG
