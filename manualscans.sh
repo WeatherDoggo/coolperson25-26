@@ -45,20 +45,6 @@ print "Check for any unusual entries that redirect traffic to malicious IPs." >>
 cat /etc/resolv.conf > ./scans/suspiciousDNS.txt
 print "Check for suspicious DNS servers that could be redirecting traffic." >> ./scans/suspiciousDNS.txt
 
-#Rootkit checker:
-print "Do you want to run rkhunter?"
-read rkinstallqueury
-if [[ $rkinstallqueury == "yes" || [[ $rkinstallqueury == "y" ]]; then
-  apt-get install rkhunter -y -qq >> $LOG
-  rkhunter --update | sudo tee -a $LOG > ./scans/rkhunter.txt
-  rkhunter --propupd | sudo tee -a $LOG >> ./scans/rkhunter.txt
-  rkhunter --check >> ./scans/rkhunter.txt 
-  print "Used Rootkit Hunter to check for rootkits, backdoors, and local exploits and saved results to rkhunter.txt."
-else
-  print "Skipped rkhunter."
-fi
-#It does this by comparing file hashes, looking for suspicious modules, and checking system configuration.
-
 #Confirmation before continuting with other scripts
 print "Have you reviewed the scans?"
 read confirm
