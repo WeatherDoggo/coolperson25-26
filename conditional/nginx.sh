@@ -11,7 +11,8 @@ then
 	print "nginx.conf backed up."
 
 	cp importfiles/nginx.conf /etc/nginx/nginx.conf
-	chmod 600 /etc/nginx/nginx.conf
+	chown root:root /etc/nginx/nginx.conf >> $LOG
+	chmod 600 /etc/nginx/nginx.conf >> $LOG
 	print "nginx.conf configured."
 	systemctl reload nginx >> $LOG
 	print "nginx restarted with new configurations."
