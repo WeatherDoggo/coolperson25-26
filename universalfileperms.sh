@@ -1,7 +1,4 @@
 #!/bin/bash
-#TO-DO:
-#Transfer over file perms from mainscript
-#add some for password-related files
 LOG=./logs/main.log
 function print() {
   echo -e "$1" | sudo tee -a "$LOG" 
