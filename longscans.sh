@@ -20,7 +20,7 @@ if [[ "$rkinstallqueury" == "yes" || "$rkinstallqueury" == "y" ]]; then
   cp /var/log/rkhunter.log scans/rkhunter.log
   chmod 777 scans/rkhunter.log
   echo -e "Summary of warnings:" >> /scans/rkhunter.log
-  grep -A 5 "Warning" /var/log/rkhunter.log >> /scans/rkhunter.log
+  grep -A 8 "Warning" /var/log/rkhunter.log >> /scans/rkhunter.log
 
   print "Used Rootkit Hunter to check for rootkits, backdoors, and local exploits and saved results to scans/rkhunter.log."
 else
