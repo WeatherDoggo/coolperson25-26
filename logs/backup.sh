@@ -8,6 +8,7 @@ function backup {
   chmod 777 ../backups/$(basename "$1")
 }
 
+touch backups/cronjobs.txt
 crontab -l > backups/cronjobs.txt #FIX
 backup /etc/group
 backup /etc/passwd
