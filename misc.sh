@@ -48,7 +48,6 @@ printlog "Cron.deny & cron.allow created and limited if they didn't exist."
 crontab -r >> $LOG
 print "Root crontab scheduled jobs removed with crontab -r."
 
-
 #Remove prohibited mp3 files
 print "Can users have media files?"
 read mediastatus
