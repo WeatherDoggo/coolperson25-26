@@ -14,8 +14,7 @@ APT::Periodic::Unattended-Upgrade "1";
 EOF
 	print "For Ubuntu 22, automatic updates should be reflected in the GUI."
 else #Mint 21
-	sudo cp ./importfiles/mintupdate.conf /etc/linuxmint/mintupdate.conf
-	print "For Mint 21, automatic updates will not be reflected properly in GUI."
+	print "DO THE AUTOMATIC UPDATES MANUALLY!!!"
 fi
 print "Automatic updates configured."
 
