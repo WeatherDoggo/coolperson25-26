@@ -4,6 +4,12 @@ function print() {
   echo -e "$1" | sudo tee -a "$LOG" 
 }
 
+#Set UID & GID 0 to root
+usermod -u 0 root
+usermod -g 0 root
+groupmod -g 0 root
+print "UID & GID for root set to 0."
+
 #Collect the users on the VM, and exclude the one i'm not supposed to edit.
 print "What is your username?"
 read myusername
@@ -137,12 +143,6 @@ for user in "${authadmins[@]}"; do
     sudo usermod -aG sudo "$user"
   fi
 done
-
-#Set UID & GID 0 to root
-usermod -u 0 root
-usermod -g 0 root
-groupmod -g 0 root
-print "UID & GID for root set to 0."
 
 #Lock root account
 passwd -l root >> $LOG
