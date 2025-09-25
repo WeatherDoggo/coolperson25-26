@@ -20,7 +20,7 @@ announce "Mint or Ubuntu?"
 read OS
 if [[ $OS == "mint" || $OS == "Mint" ]]; then
   OS="mint"
-  announce "OS set to Mint."
+  announce "OS set to Mint. MANUALLY DO THE AUTOMATIC UPDATES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 elif [[ $OS == "ubuntu" || $OS == "Ubuntu" ]]; then
   OS="ubuntu"
   announce "OS set to Ubuntu."
