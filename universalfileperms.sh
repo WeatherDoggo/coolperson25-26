@@ -39,6 +39,17 @@ chown root:root /etc/cron.d/
 chmod og-rwx /etc/cron.d/
 print "cron file permissions configured."
 
+touch /etc/cron.allow
+touch /etc/cron.deny
+chown root:root /etc/cron.allow
+chmod og-rwx /etc/cron.allow
+chown root:root /etc/cron.deny
+chmod og-rwx /etc/cron.deny
+chmod 600 /etc/cron.allow
+chmod 600 /etc/cron.deny
+chmod 700 /var/spool/cron/crontabs
+printlog "Cron.deny & cron.allow created and limited if they didn't exist."
+
 #GRUB
 chmod 600 /boot/grub/grub.cfg
 chown root:root /boot/grub/grub.cfg
