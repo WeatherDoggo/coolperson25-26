@@ -55,3 +55,31 @@ print "GRUB permissions configured."
 #DNS Resolution
 chmod 644 /etc/resolv.conf
 print "resolv.conf permissions configured."
+
+# Basic credential files
+chmod 644 /etc/passwd
+chmod 644 /etc/group
+chmod 600 /etc/gshadow
+print "/etc/passwd, /etc/group, /etc/gshadow permissions configured."
+
+# Home directories and SSH
+chmod 700 /home/* -R
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/id_rsa
+print "User home and SSH keys permissions configured."
+
+# Logs
+chown root:root /var/log/auth.log /var/log/syslog
+chmod 600 /var/log/auth.log /var/log/syslog
+print "Critical logs permissions configured."
+
+# tmp directories
+chmod +t /tmp
+chmod +t /var/tmp
+print "/tmp and /var/tmp sticky bit set."
+
+# Root directory
+chmod 700 /root
+print "/root directory permissions configured."
+
