@@ -8,8 +8,8 @@ print "Installing apparmor..."
 apt install apparmor apparmor-utils apparmor-profiles apparmor-profiles-extra apparmor-notify >> $LOG
 print "Installed. Checking status..."
 systemctl status apparmor >> $LOG
-systemctl enable apparmor >> $LOG
 systemctl start apparmor >> $LOG
+systemctl enable apparmor >> $LOG
 aa-status >> $LOG
 aa-enforce /etc/apparmor.d/* >> $LOG
 aa-remove-unknown >> $LOG
