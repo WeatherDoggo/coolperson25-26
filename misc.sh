@@ -33,6 +33,22 @@ printlog "instances of noglogin removed from /etc/shells."
 echo "exec true" >> /etc/init/control-alt-delete.override
 print "Ctrl+Alt+Delete reboot disabled."
 
+touch /etc/cron.allow
+touch /etc/cron.deny
+chown root:root /etc/cron.allow
+chmod og-rwx /etc/cron.allow
+chown root:root /etc/cron.deny
+chmod og-rwx /etc/cron.deny
+chmod 600 /etc/cron.allow
+chmod 600 /etc/cron.deny
+chmod 700 /var/spool/cron/crontabs
+printlog "Cron.deny & cron.allow created and limited if they didn't exist."
+
+#Remove startup tasks from crontab
+crontab -r >> $LOG
+print "Root crontab scheduled jobs removed with crontab -r."
+
+
 #Remove prohibited mp3 files
 print "Can users have media files?"
 read mediastatus
