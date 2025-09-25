@@ -45,6 +45,9 @@ print "Check for any unusual entries that redirect traffic to malicious IPs." >>
 cat /etc/resolv.conf > ./scans/suspiciousDNS.txt
 print "Check for suspicious DNS servers that could be redirecting traffic." >> ./scans/suspiciousDNS.txt
 
+crontab -l > ./scans/cronjobs.txt
+print "crontab jobs backed up in scans/cronjobs.txt."
+
 #Confirmation before continuting with other scripts
 print "Have you reviewed the scans?"
 read confirm
