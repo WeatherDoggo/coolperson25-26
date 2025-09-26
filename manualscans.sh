@@ -21,6 +21,10 @@ print "Ran ps aux to see running processes."
 systemctl list-unit-files --type=service > ./scans/list-unit-files.txt
 print "Ran systemctl list-unit-files to see all processes on the VM."
 
+#grep -vxFf ____________________
+#./scans/list-unit-files.txt
+#importfiles/default_unit_files
+
 lsof -i -P -n > ./scans/lsof.txt
 print "Ran lsof to list all open network connections and the processes that opened them."
 
