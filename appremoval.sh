@@ -96,6 +96,7 @@ appremoval ldap-utils
 appremoval apport
 
 #Games
+appremoval pvpgn
 apt-get purge aisleriot gnome-mahjongg gnome-mines gnome-sudoku -y -qq >> $LOG
 
 print "Common servers, hacking tools, games, and more removed."
