@@ -1,0 +1,7 @@
+Name: Enforce failed login attempt counter
+Default: no
+Priority: 0
+Auth-Type: Primary
+Auth:
+    [default=die] pam_faillock.so authfail deny=4 unlock_time=1000 even_deny_root
+    sufficient pam_faillock.so authsucc
