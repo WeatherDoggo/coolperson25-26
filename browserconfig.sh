@@ -15,9 +15,6 @@ while true; do
   elif [[ $browser == "Firefox" || $browser == "firefox" ]]; then
     browser="Firefox"
     print "Browser set to Firefox."
-    rm -rf ~/.mozilla/firefox/*.default-release
-    echo 'user_pref("dom.security.https_only_mode", true);' >> ~/.mozilla/firefox/*.default-release/user.js
-    print "Settings reset to default, HTTPS-only mode has been enabled."
     break
   elif [[ $browser == "skip" || $browser == "Skip" ]]; then
     print "Browser config skipped. Please config browser manually."
