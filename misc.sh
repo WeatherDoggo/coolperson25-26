@@ -54,45 +54,29 @@ chmod 777 ../backups/sudoers
 chmod 777 ../backups/sudoers.d
 print "sudoers & sudoers.d backed up."
 
-# Remove lines preserving LD_PRELOAD
-sed -i '/env_keep += *"LD_PRELOAD"/d' /etc/sudoers
-for file in /etc/sudoers.d/*; do
-    sed -i '/env_keep += *"LD_PRELOAD"/d' "$file"
+# Remove LD_PRELOAD keeps from sudoers and fragments
+sed -E -i '/^[[:space:]]*Defaults([[:space:]]+[^#]*)?env_keep[[:space:]]*\+?=[[:space:]]*"([^"]*,)?LD_PRELOAD(,[^"]*)*"[[:space:]]*(#.*)?$/d' /etc/sudoers
+for f in /etc/sudoers.d/*; do
+  [ -f "$f" ] || continue
+  sed -E -i '/^[[:space:]]*Defaults([[:space:]]+[^#]*)?env_keep[[:space:]]*\+?=[[:space:]]*"([^"]*,)?LD_PRELOAD(,[^"]*)*"[[:space:]]*(#.*)?$/d' "$f"
 done
 
-# Remove all NOPASSWD and !authenticate from /etc/sudoers
-sed -i '/NOPASSWD/d' /etc/sudoers
-sed -i '/!authenticate/d' /etc/sudoers
+# Remove entire lines that grant NOPASSWD or use !authenticate
+sed -E -i '/NOPASSWD/ d' /etc/sudoers
+sed -E -i '/!authenticate/ d' /etc/sudoers
 
-# Ensure Defaults include use_pty, env_reset, timestamp_timeout=15
-if grep -q "^Defaults" /etc/sudoers; then
-    # Update existing Defaults lines to include required settings
-    sed -i '/^Defaults/ {
-        s/use_pty//g
-        s/env_reset//g
-        s/timestamp_timeout=[0-9]*//g
-        s/\s\+/, /g
-        s/,\+,/,/g
-    }' /etc/sudoers
+# Append-only for required Defaults (no rewriting of existing lines)
+grep -Eq '^[[:space:]]*Defaults([[:space:]]+.*)?\buse_pty\b' /etc/sudoers || echo 'Defaults use_pty' >> /etc/sudoers
+grep -Eq '^[[:space:]]*Defaults([[:space:]]+.*)?\benv_reset\b' /etc/sudoers || echo 'Defaults env_reset' >> /etc/sudoers
+grep -Eq '^[[:space:]]*Defaults([[:space:]]+.*)?\btimestamp_timeout=15\b' /etc/sudoers || echo 'Defaults timestamp_timeout=15' >> /etc/sudoers
 
-    # Append missing Defaults lines if they don't exist individually
-    grep -q 'Defaults use_pty' /etc/sudoers || echo 'Defaults use_pty' >> /etc/sudoers
-    grep -q 'Defaults env_reset' /etc/sudoers || echo 'Defaults env_reset' >> /etc/sudoers
-    grep -q 'Defaults timestamp_timeout=15' /etc/sudoers || echo 'Defaults timestamp_timeout=15' >> /etc/sudoers
-else
-    # Add Defaults if none present
-    echo 'Defaults use_pty' >> /etc/sudoers
-    echo 'Defaults env_reset' >> /etc/sudoers
-    echo 'Defaults timestamp_timeout=15' >> /etc/sudoers
-fi
-
-# Validate sudoers syntax
+# Validate live file and restore if needed
 if visudo -c; then
-    echo "Sudoers syntax validated successfully."
+  print "Sudoers syntax validated successfully."
 else
-    echo "Syntax error detected, restoring backups. CONFIGURE MANUALLY!!!!"
-    cp ../backups/sudoers /etc/sudoers
-    cp ../backups/sudoers.d /etc/sudoers.d
+  print "Syntax error detected, restoring backups. CONFIGURE MANUALLY!!!!"
+  cp -a ../backups/sudoers /etc/sudoers
+  cp -a ../backups/sudoers.d /etc/sudoers.d
 fi
 
 
