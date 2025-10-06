@@ -61,14 +61,12 @@ for f in /etc/sudoers.d/*; do
   sed -E -i '/^[[:space:]]*Defaults([[:space:]]+[^#]*)?env_keep[[:space:]]*\+?=[[:space:]]*"([^"]*,)?LD_PRELOAD(,[^"]*)*"[[:space:]]*(#.*)?$/d' "$f"
 done
 
-# Remove entire lines that grant NOPASSWD or use !authenticate
+# Remove entire lines that grant NOPASSWD or use !authenticate or have env_keep
 sed -E -i '/NOPASSWD/ d' /etc/sudoers
 sed -E -i '/!authenticate/ d' /etc/sudoers
+sed -E -i '/env_keep/ d' /etc/sudoers
 
 # Append-only for required Defaults (no rewriting of existing lines)
-grep -Eq '^[[:space:]]*Defaults([[:space:]]+.*)?\buse_pty\b' /etc/sudoers || echo 'Defaults use_pty' >> /etc/sudoers
-grep -Eq '^[[:space:]]*Defaults([[:space:]]+.*)?\benv_reset\b' /etc/sudoers || echo 'Defaults env_reset' >> /etc/sudoers
-grep -Eq '^[[:space:]]*Defaults([[:space:]]+.*)?\btimestamp_timeout=15\b' /etc/sudoers || echo 'Defaults timestamp_timeout=15' >> /etc/sudoers
 
 # Validate live file and restore if needed
 if visudo -c; then
