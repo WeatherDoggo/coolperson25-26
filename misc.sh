@@ -92,7 +92,7 @@ if visudo -c; then
 else
     echo "Syntax error detected, restoring backups. CONFIGURE MANUALLY!!!!"
     cp ../backups/sudoers /etc/sudoers
-    cp -r ../backups/sudoers.d /etc/sudoers.d
+    cp ../backups/sudoers.d /etc/sudoers.d
 fi
 
 
