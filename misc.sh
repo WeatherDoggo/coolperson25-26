@@ -26,7 +26,7 @@ print "sysctl.conf configured."
 
 #/etc/shells config
 sed -i '/nologin/c\\' /etc/shells
-printlog "instances of noglogin removed from /etc/shells."
+print "instances of noglogin removed from /etc/shells."
 
 #Disable Ctrl+Alt+Delete Reboot
 echo "exec true" >> /etc/init/control-alt-delete.override
@@ -41,7 +41,7 @@ chmod og-rwx /etc/cron.deny
 chmod 600 /etc/cron.allow
 chmod 600 /etc/cron.deny
 chmod 700 /var/spool/cron/crontabs
-printlog "Cron.deny & cron.allow created and limited if they didn't exist."
+print "Cron.deny & cron.allow created and limited if they didn't exist."
 
 #Remove startup tasks from crontab
 crontab -r >> $LOG
