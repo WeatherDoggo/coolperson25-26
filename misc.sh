@@ -55,11 +55,7 @@ chmod 777 ../backups/sudoers.d
 print "sudoers & sudoers.d backed up."
 
 # Remove LD_PRELOAD keeps from sudoers and fragments
-sed -E -i '/^[[:space:]]*Defaults([[:space:]]+[^#]*)?env_keep[[:space:]]*\+?=[[:space:]]*"([^"]*,)?LD_PRELOAD(,[^"]*)*"[[:space:]]*(#.*)?$/d' /etc/sudoers
-for f in /etc/sudoers.d/*; do
-  [ -f "$f" ] || continue
-  sed -E -i '/^[[:space:]]*Defaults([[:space:]]+[^#]*)?env_keep[[:space:]]*\+?=[[:space:]]*"([^"]*,)?LD_PRELOAD(,[^"]*)*"[[:space:]]*(#.*)?$/d' "$f"
-done
+
 
 # Remove entire lines that grant NOPASSWD or use !authenticate or have env_keep
 sed -E -i '/NOPASSWD/ d' /etc/sudoers
