@@ -56,13 +56,7 @@ print "sudoers & sudoers.d backed up."
 
 # Remove LD_PRELOAD keeps from sudoers and fragments
 #look at postscripttasks to figure out what to add here
-
-# Remove entire lines that grant NOPASSWD or use !authenticate or have env_keep
-sed -E -i '/NOPASSWD/ d' /etc/sudoers
-sed -E -i '/!authenticate/ d' /etc/sudoers
-sed -E -i '/env_keep/ d' /etc/sudoers
-
-# Append-only for required Defaults (no rewriting of existing lines)
+# Remove any instance of NOPASSWD or !authenticate or env_keep
 
 # Validate live file and restore if needed
 if visudo -c; then
