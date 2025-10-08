@@ -3,7 +3,7 @@ LOG=./logs/main.log
 function print() {
   echo "$1" | sudo tee -a $LOG 
 }
-
+print "PAM-AUTH-UPDATE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 #Privilege Escalation
 print "sudo visudo /etc/sudoers, add/fix to 'Defaults use_pty'"
 print "sudo visudo /etc/sudoers, add/fix to Defaults 'env_reset, timestamp_timeout=15'"
