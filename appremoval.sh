@@ -75,6 +75,7 @@ appremoval zeitgeist
 #appremoval socket
 appremoval sbd
 appremoval sucrack
+appremoval imagemagick*
 #nis
 appremoval nis
 #FTP
