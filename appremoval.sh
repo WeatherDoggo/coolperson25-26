@@ -76,6 +76,7 @@ appremoval zeitgeist
 appremoval sbd
 appremoval sucrack
 appremoval imagemagick*
+appremoval openvpn
 #nis
 appremoval nis
 #FTP
