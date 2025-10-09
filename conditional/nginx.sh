@@ -14,7 +14,8 @@ then
 	chown root:root /etc/nginx/nginx.conf >> $LOG
 	chmod 600 /etc/nginx/nginx.conf >> $LOG
 	print "nginx.conf configured."
-	systemctl reload nginx >> $LOG
+	systemctl enable nginx
+	systemctl restart nginx >> $LOG
 	print "nginx restarted with new configurations."
 else
 	systemctl stop nginx.service >> $LOG 2>>$LOG
