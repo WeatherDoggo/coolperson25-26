@@ -26,7 +26,6 @@ systemctl stop isc-dhcp-server6.service >> $LOG 2>>$LOG
 appremoval isc-dhcp-server
 appremoval bind9
 appremoval dnsmasq
-appremoval vsftpd
 appremoval slapd
 systemctl stop dovecot.socket dovecot.service >> $LOG 2>>$LOG
 apt-get purge dovecot-imapd dovecot-pop3d -y -qq >> $LOG 2>>$LOG
@@ -67,20 +66,19 @@ appremoval zeitgeist-core
 appremoval zeitgeist-datahub
 appremoval rhythmbox-plugin-zeitgeist
 appremoval zeitgeist
-#appremoval netcat
-#appremoval netcat-openbsd
-#appremoval netcat-traditional
-#appremoval ncat
-#appremoval socat
-#appremoval socket
-appremoval sbd
 appremoval sucrack
 appremoval imagemagick*
 appremoval openvpn
+
+appremoval netcat
+appremoval netcat-openbsd
+appremoval netcat-traditional
+appremoval ncat
+appremoval socat
+appremoval socket
+appremoval sbd
 #nis
 appremoval nis
-#FTP
-appremoval ftp
 #Telnet
 appremoval telnet
 ufw deny 23 >> $LOG
