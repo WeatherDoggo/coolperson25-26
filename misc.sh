@@ -21,6 +21,13 @@ print "Automatic updates configured."
 #sysctl.conf
 cp ./importfiles/sysctl.conf /etc/sysctl.conf
 sysctl -w net.ipv4.route.flush=1
+
+#enable Kernel ExecShield
+sudo sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/{
+  /exec-shield=1/! s/"$/ exec-shield=1"/
+}' /etc/default/grub
+update-grub
+
 sysctl --system
 sysctl -p
 sudo systemctl daemon-reload
