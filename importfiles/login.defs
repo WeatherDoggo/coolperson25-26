@@ -190,7 +190,7 @@ GID_MAX			60000
 # in of 3 retries. However, this is a safe fallback in case you are using
 # an authentication module that does not enforce PAM_MAXTRIES.
 #
-LOGIN_RETRIES		9999
+LOGIN_RETRIES		3
 
 #
 # Max time in seconds for login
@@ -209,7 +209,7 @@ CHFN_RESTRICT		rwh
 # Should login be allowed if we can't cd to the home directory?
 # Default in no.
 #
-DEFAULT_HOME	yes
+DEFAULT_HOME	no
 
 #
 # If defined, this command is run when removing a user.
