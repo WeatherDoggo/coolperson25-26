@@ -34,9 +34,9 @@ apt-get purge dovecot-imapd dovecot-pop3d -y -qq >> $LOG 2>>$LOG
 #apt-get purge nfs-kernel-server -y -qq >> $LOG 2>>$LOG
 #print "network file system service removed."
 #appremoval ypserv
-#appremoval cups
 #appremoval rpcbind
-#appremoval rsync
+appremoval cups
+appremoval rsync
 appremoval samba
 appremoval snmpd
 appremoval tftpd-hpa
