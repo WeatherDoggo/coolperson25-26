@@ -23,6 +23,7 @@ cp ./importfiles/sysctl.conf /etc/sysctl.conf
 sysctl -w net.ipv4.route.flush=1
 sysctl --system
 sysctl -p
+sudo systemctl daemon-reload
 print "sysctl.conf configured."
 
 #/etc/shells config
