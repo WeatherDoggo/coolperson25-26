@@ -33,6 +33,9 @@ grep -q '^\s*auth\s+sufficient\s+pam_faillock.so\s+authsucc\s*$' /etc/pam.d/comm
   echo 'auth sufficient pam_faillock.so authsucc' | sudo tee -a /etc/pam.d/common-auth
 
 
+sudo sed -i '/pam_unix.so/ s/remember=[0-9]\+/remember=24/' /etc/pam.d/common-password
+sudo grep -q 'pam_unix.so.*remember=' /etc/pam.d/common-password || sudo sed -i '/pam_unix.so/ s/$/ remember=24/' /etc/pam.d/common-password
+
 #login.defs
 cp ./importfiles/login.defs /etc/login.defs
 print "login.defs configured."
