@@ -4,12 +4,14 @@ function print() {
   echo "$1" | sudo tee -a $LOG 
 }
 
-if [[ $ftpneeded == "yes" || $ftpneeded == "y" ]];
+if [[ $vsftpneeded == "yes" || $vsftpneeded == "y" ]];
 then
 	#cp /etc/nginx/nginx.conf ../backups/nginx.conf
 	#chmod 777 ../backups/nginx.conf
 	#print "nginx.conf backed up."
 
+	systemctl enable vsftpd
+	systemctl restart vsftpd
 	#cp importfiles/nginx.conf /etc/nginx/nginx.conf
 	#chown root:root /etc/nginx/nginx.conf >> $LOG
 	#chmod 600 /etc/nginx/nginx.conf >> $LOG
@@ -19,5 +21,7 @@ then
 else
 	systemctl stop vsftpd.service >> $LOG 2>>$LOG
 	apt-get purge vsftpd -y -qq >> $LOG
- 	print "vsftpd removed."
+	systemctl stop ftp.service >> $LOG 2>>$LOG
+	apt-get purge ftp -y -qq >> $LOG
+ 	print "ftp & vsftpd removed."
 fi
