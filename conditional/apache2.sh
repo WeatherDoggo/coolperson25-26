@@ -20,6 +20,7 @@ then
 	"apache2.conf ownership and permissions set."
 	
 	a2enmod headers
+	systemctl enable apache2
 	systemctl restart apache2
 	print "apache2.conf configured and restarted."
 else
