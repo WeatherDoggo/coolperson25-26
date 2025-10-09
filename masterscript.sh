@@ -61,6 +61,7 @@ isitneeded apache2
 isitneeded nginx
 isitneeded squid
 isitneeded samba
+isitneeded vsftpd
 isitneeded ftp
 #isitneeded(docker) SPECIFIFY WHAT DOCKER IS USED WITH SO IT ISNT DISABLED BY ACCIDENT!
 announce "Critical services marked."
@@ -128,9 +129,13 @@ announce "Running samba.sh..."
 source ./conditional/samba.sh
 announce "samba.sh done."
 
-announce "Running ftp.sh..."
-source ./conditional/ftp.sh
-announce "ftp.sh done."
+announce "Running vsftpd.sh..."
+source ./conditional/vsftpd.sh
+announce "vsftpd.sh done."
+
+#announce "Running ftp.sh..."
+#source ./conditional/ftp.sh
+#announce "ftp.sh done."
 
 announce "Conditional configurations complete."
 
