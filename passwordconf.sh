@@ -26,6 +26,13 @@ cp ./importfiles/faillock_notify /usr/share/pam-configs/faillock_notify
 sed -i 's/nullok//g' /etc/pam.d/common-auth
 print "Null passwords disabled."
 
+grep -q '^\s*auth\s+\[default=die\]\s+pam_faillock.so\s+authfail\s*$' /etc/pam.d/common-auth || \
+  echo 'auth [default=die] pam_faillock.so authfail' | sudo tee -a /etc/pam.d/common-auth
+
+grep -q '^\s*auth\s+sufficient\s+pam_faillock.so\s+authsucc\s*$' /etc/pam.d/common-auth || \
+  echo 'auth sufficient pam_faillock.so authsucc' | sudo tee -a /etc/pam.d/common-auth
+
+
 #login.defs
 cp ./importfiles/login.defs /etc/login.defs
 print "login.defs configured."
