@@ -27,7 +27,7 @@ sed -i 's/nullok//g' /etc/pam.d/common-auth
 print "Null passwords disabled."
 
 #login.defs
-sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS   90/' /etc/login.defs
+sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS   29/' /etc/login.defs
 sed -i 's/^PASS_MIN_DAYS.*/PASS_MIN_DAYS   10/' /etc/login.defs
 sed -i 's/^PASS_WARN_AGE.*/PASS_WARN_AGE   7/' /etc/login.defs
 
