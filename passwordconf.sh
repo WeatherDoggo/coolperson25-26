@@ -27,15 +27,8 @@ sed -i 's/nullok//g' /etc/pam.d/common-auth
 print "Null passwords disabled."
 
 #login.defs
-echo "PASS_MAX_DAYS   29" >> /etc/login.defs
-echo "PASS_MIN_DAYS   10" >> /etc/login.defs
-echo "PASS_WARN_AGE   7" >> /etc/login.defs
-echo "ENCRYPT_METHOD  SHA512" >> /etc/login.defs
-
-#sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS   29/' /etc/login.defs
-#sed -i 's/^PASS_MIN_DAYS.*/PASS_MIN_DAYS   10/' /etc/login.defs
-#sed -i 's/^PASS_WARN_AGE.*/PASS_WARN_AGE   7/' /etc/login.defs
-#sed -i 's/^ENCRYPT_METHOD.*/ENCRYPT_METHOD  SHA512/' /etc/login.defs
+cp ./importfiles/login.defs /etc/login.defs
+print "login.defs configured."
 
 pam-auth-update --force --package >> $LOG
 print "PAM modules updated."
