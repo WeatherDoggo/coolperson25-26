@@ -4,7 +4,7 @@ function print() {
   echo "$1" | sudo tee -a $LOG 
 }
 
-if [[ $vsftpneeded == "yes" || $vsftpneeded == "y" ]];
+if [[ $vsftpdneeded == "yes" || $vsftpdneeded == "y" ]];
 then
 	#cp /etc/nginx/nginx.conf ../backups/nginx.conf
 	#chmod 777 ../backups/nginx.conf
