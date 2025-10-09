@@ -51,7 +51,3 @@ print "Check for suspicious DNS servers that could be redirecting traffic." >> .
 
 crontab -l > ./scans2/cronjobs.txt
 print "crontab jobs backed up in scans2/cronjobs.txt."
-
-#Confirmation before continuting with other scripts
-print "Have you reviewed the scans2?"
-read confirm
