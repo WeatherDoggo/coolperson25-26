@@ -18,6 +18,9 @@ then
 	chown root:root /etc/apache2/apache2.conf >> $LOG
 	chmod 644 /etc/apache2/apache2.conf >> $LOG
 	"apache2.conf ownership and permissions set."
+
+	ufw allow 'Apache Secure'
+	print "ufw configured for apache."
 	
 	a2enmod headers
 	systemctl enable apache2
