@@ -30,8 +30,8 @@ appremoval slapd
 systemctl stop dovecot.socket dovecot.service >> $LOG 2>>$LOG
 apt-get purge dovecot-imapd dovecot-pop3d -y -qq >> $LOG 2>>$LOG
 #print "message access server services removed."
-#systemctl stop nfs-server.service >> $LOG 2>>$LOG
-#apt-get purge nfs-kernel-server -y -qq >> $LOG 2>>$LOG
+systemctl stop nfs-server.service >> $LOG 2>>$LOG
+appremoval nfs*
 #print "network file system service removed."
 #appremoval ypserv
 #appremoval rpcbind
