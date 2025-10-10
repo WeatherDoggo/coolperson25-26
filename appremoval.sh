@@ -67,6 +67,7 @@ appremoval zeitgeist
 appremoval sucrack
 appremoval imagemagick*
 appremoval openvpn
+appremoval filezilla
 
 appremoval netcat
 appremoval netcat-openbsd
