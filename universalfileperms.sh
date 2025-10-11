@@ -83,3 +83,6 @@ print "/tmp and /var/tmp sticky bit set."
 chmod 700 /root
 print "/root directory permissions configured."
 
+chmod 600 /swapfile
+print "swapfile secured."
+
