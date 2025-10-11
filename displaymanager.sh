@@ -7,5 +7,7 @@ function print() {
 if [[ $OS == "mint" ]]; then
   print "Configure lightdm!"
 elif [[ $OS == "ubuntu" ]]; then
-  print "Check /etc/gdm(3)/custom.conf for improper AutomaticLogin & delete and User/Group specification & TCP is disallowed"
+  cp ./importfiles/custom.conf /etc/gdm/custom.conf
+  cp ./importfiles/custom.conf /etc/gdm3/custom.conf
+  print "gdm & gdm3 custom.conf configured. More work to be done!!!!"
 fi
