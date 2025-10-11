@@ -15,7 +15,7 @@ print "sudo visudo /etc/sudoers, add Defaults logfile =''/var/log/sudo.log''"
 print "Remove all instances of NOPASSWD and !authenticate in /etc/sudoers"
 print "Make sure hashing algorithm set in pam.unix.so is sha512 or yescrypt in pam.d (pg 647 for specific file script)"
 print "Files to check:/n /etc/sudoers, /etc/pam.d/common-password & common-auth, tmp files, all unit files, grub.d/(custom?)"
-print "Check /etc/gdm(3)/custom.conf for improper AutomaticLogin"
+print "Check /etc/gdm(3)/custom.conf for improper AutomaticLogin & delete and User/Group specification"
 
 print "PAM-AUTH-UPDATE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 print "RESTART THE COMPUTER FOR GRUB CONFIG!!!"
