@@ -135,7 +135,7 @@ announce "ftp.sh done."
 announce "Conditional configurations complete."
 
 announce "Running manualscans2.sh..."
-source ./manualscans.sh
+source ./manualscans2.sh
 announce "manualscans2.sh done."
 
 announce "Running postscripttasks.sh..."
