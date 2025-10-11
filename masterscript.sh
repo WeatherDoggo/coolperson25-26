@@ -85,6 +85,10 @@ announce "Running firewall.sh..."
 source ./firewall.sh
 announce "firewall.sh done."
 
+announce "Running displaymanager.sh..."
+source ./displaymanager.sh
+announce "displaymanager.sh done."
+
 announce "Running appremoval.sh..."
 source ./appremoval.sh
 announce "appremoval.sh done."
