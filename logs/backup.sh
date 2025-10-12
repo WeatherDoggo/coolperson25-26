@@ -18,6 +18,7 @@ backup /etc/pam.d/common-auth
 backup /etc/security/faillock.conf
 backup /etc/security/pwquality.conf
 backup /etc/sysctl.conf
+backup /etc/audit/auditd.conf
 if "$OS" == "Mint"; then
   backup /etc/linuxmint/mintupdate.conf
 fi
