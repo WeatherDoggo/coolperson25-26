@@ -19,7 +19,10 @@ backup /etc/security/faillock.conf
 backup /etc/security/pwquality.conf
 backup /etc/sysctl.conf
 backup /etc/audit/auditd.conf
-if "$OS" == "Mint"; then
-  backup /etc/linuxmint/mintupdate.conf
+if "$OS" == "mint"; then
+  backup /etclinuxmint/mintupdate.conf
+elif [[ $OS == "ubuntu" ]]; then
+  backup /etc/gdm/custom.conf
+  backup /etc/gdm3/custom.conf
 fi
 print "Critical files backed up. More files may need to conditionally be backed up depending on the application!"
