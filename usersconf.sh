@@ -15,6 +15,7 @@ print "What is your username?"
 read myusername
 vmusers=`(grep -v 'nologin' /etc/passwd | cut -d':' -f1,6 | grep 'home' | cut -d':' -f1 | grep -v "${myusername}")`
 print "\nUsers found on VM:\n$vmusers"
+print "Any users like syslog should be nologin! (sudo usermod -s /sbin/nologin <username>)"
 
 #Collect the user info given out by Cyberpatriot
 print "Copy and paste the list of the authorized admin user/password list here, then press Ctrl + D:"
