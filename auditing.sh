@@ -7,9 +7,8 @@ function print() {
 apt-get install auditd audispd-plugins -y -qq
 systemctl enable auditd
 systemctl start auditd
-print "auditd installed, enabled, and started. More work to be done here!!!!"
+cp ./importfiles/auditd.conf /etc/audit/auditd.conf
+print "auditd installed, enabled, configured. More work to be done here!!!!"
 
 
-#curl -o /etc/audit/rules.d/audit.rules https://raw.githubusercontent.com/Neo23x0/auditd/master/audit.rules
-#augenrules --load
-#systemctl restart auditd
+systemctl restart auditd
