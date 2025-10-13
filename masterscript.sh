@@ -65,9 +65,9 @@ isitneeded ftp
 #isitneeded(docker) SPECIFIFY WHAT DOCKER IS USED WITH SO IT ISNT DISABLED BY ACCIDENT!
 announce "Critical services marked."
 
-#announce "Running browserconfig.sh..."
-#source ./browserconfig.sh
-#announce "browserconfig.sh done."
+announce "Running browserconfig.sh..."
+source ./browserconfig.sh
+announce "browserconfig.sh done."
 
 announce "Running universalfileperms.sh..."
 source ./universalfileperms.sh
