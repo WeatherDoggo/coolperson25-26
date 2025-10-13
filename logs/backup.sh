@@ -7,7 +7,7 @@ function backup {
   cp $1 ../backups/$(basename "$1")
   chmod 777 ../backups/$(basename "$1")
 }
-
+chmod 777 ./logs/main.log
 touch backups/cronjobs.txt
 crontab -l > backups/cronjobs.txt #FIX
 backup /etc/group
