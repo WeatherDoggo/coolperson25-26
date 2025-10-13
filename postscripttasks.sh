@@ -14,7 +14,11 @@ print "sudo visudo /etc/sudoers, add/fix to Defaults 'env_reset, timestamp_timeo
 print "sudo visudo /etc/sudoers, add Defaults logfile =''/var/log/sudo.log''"
 print "Remove all instances of NOPASSWD and !authenticate in /etc/sudoers"
 print "Make sure hashing algorithm set in pam.unix.so is sha512 or yescrypt in pam.d (pg 647 for specific file script)"
-print "Files to check:/n /etc/sudoers, /etc/pam.d/common-password & common-auth, tmp files, all unit files, grub.d/(custom?)"
+print "Set screen timeout policy to 5 minutes or less"
+print "Enable automatic screen lock"
+print "Enable automatic check for updates"
+print "In /etc/grub.d/40_custom, set check_signatures=enforce"
+print "Files to check:/n /etc/sudoers, /etc/pam.d/common-password & common-auth, tmp files, all unit files, grub.d/(custom_10,40,more?)"
 
 print "PAM-AUTH-UPDATE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 print "RESTART THE COMPUTER FOR GRUB CONFIG!!!"
