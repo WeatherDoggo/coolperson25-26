@@ -10,11 +10,11 @@ then
 	chmod 777 ../backups/sshd_config
 	print "sshd_config backed up."
 	
-	cp importfiles/sshd_config /etc/ssh/sshd_config
-	chmod u-x,og-rwx /etc/ssh/sshd_config
-	chown root:root /etc/ssh/sshd_config
+	cp importfiles/sshd_config /etc/ssh/sshd_config >> $LOG
+	chmod u-x,og-rwx /etc/ssh/sshd_config >> $LOG
+	chown root:root /etc/ssh/sshd_config >> $LOG
 	print "sshd_config permissions configured."
-	systemctl enable sshd
+	systemctl enable sshd >> $LOG
  	systemctl restart sshd >> $LOG
 	print "SSH restarted."
 	print "SSH default port changed, PermitRootLogin set to no, MaxAuthTries set to 3, Client closes after 4 minutes inactive, LoginGraceTime set to 20, PermitEmptyPasswords is set to no, HostBasedAuthentication set to no, and StrictModes is set to yes."
