@@ -47,7 +47,7 @@ print "sysctl.conf configured."
 
 #/etc/shells config
 sed -i '/nologin/c\\' /etc/shells
-print "instances of noglogin removed from /etc/shells."
+print "instances of nologin removed from /etc/shells."
 
 #Disable Ctrl+Alt+Delete Reboot
 echo "exec true" >> /etc/init/control-alt-delete.override
