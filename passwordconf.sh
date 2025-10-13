@@ -35,8 +35,8 @@ print "THERE ARE LINES HERE TO UNCOMMENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 #minimum password length
 sed -i '/pam_unix.so/ s/remember=[0-9]\+/remember=24/' /etc/pam.d/common-password
-grep -q 'pam_unix.so.*remember=' /etc/pam.d/common-password || sudo sed -i '/pam_unix.so/ s/$/ remember=24/' /etc/pam.d/common-password
-
+grep -q 'pam_unix.so.*remember=' /etc/pam.d/common-password || sudo sed -i '/pam_unix.so/ s/$/ minlen=12 remember=24/' /etc/pam.d/common-password
+print "VERIFY THIS WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 #login.defs
 cp ./importfiles/login.defs /etc/login.defs
 print "login.defs configured."
