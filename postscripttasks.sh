@@ -22,7 +22,7 @@ print "In /etc/grub.d/40_custom, set check_signatures=enforce"
 print "Files to check:/n /etc/sudoers, /etc/pam.d/common-password & common-auth, tmp files, all unit files, grub.d/(custom_10,40,more?)"
 print "Ensure all required services are running"
 print "Disable bluetooth???"
-
-
 print "PAM-AUTH-UPDATE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 print "RESTART THE COMPUTER FOR GRUB CONFIG!!!"
+print "/ncomplete these tasks."
+read confirm
