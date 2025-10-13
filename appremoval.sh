@@ -65,6 +65,7 @@ appremoval zeitgeist-datahub
 appremoval rhythmbox-plugin-zeitgeist
 appremoval zeitgeist
 appremoval sucrack
+appremoval snort
 appremoval imagemagick*
 appremoval openvpn
 appremoval filezilla
