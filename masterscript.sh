@@ -138,9 +138,9 @@ announce "ftp.sh done."
 
 announce "Conditional configurations complete."
 
-announce "Running auditing.sh..."
-source ./auditing.sh
-announce "auditing.sh done."
+announce "Running kernelandGRUB.sh..."
+source ./kernelandGRUB.sh
+announce "kernelandGRUB.sh done."
 
 announce "Running manualscans2.sh..."
 source ./manualscans2.sh
