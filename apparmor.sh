@@ -5,7 +5,7 @@ function print() {
 }
 
 print "Installing apparmor..."
-apt-get install apparmor apparmor-utils apparmor-profiles apparmor-profiles-extra apparmor-notify -y -qq  | sudo tee -a "$LOG" 
+apt-get install apparmor apparmor-utils apparmor-profiles apparmor-profiles-extra apparmor-notify -y -qq
 print "Installed. Checking status..."
 systemctl status apparmor | sudo tee -a "$LOG" 
 systemctl start apparmor | sudo tee -a "$LOG" 
