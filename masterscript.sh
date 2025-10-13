@@ -97,6 +97,10 @@ announce "Running misc.sh..."
 source ./misc.sh
 announce "misc.sh done."
 
+announce "Running apparmor.sh..."
+source ./apparmor.sh
+announce "apparmor.sh done."
+
 #Conditional configurations
 announce "Conditional configurations:"
 
