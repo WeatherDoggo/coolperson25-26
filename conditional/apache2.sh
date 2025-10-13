@@ -17,7 +17,7 @@ then
 	cp importfiles/apache2.conf /etc/apache2/apache2.conf
 	chown root:root /etc/apache2/apache2.conf >> $LOG
 	chmod 644 /etc/apache2/apache2.conf >> $LOG
-	"apache2.conf ownership and permissions set."
+	print "apache2.conf ownership and permissions set."
 
 	ufw allow 'Apache Secure'
 	print "ufw configured for apache."
