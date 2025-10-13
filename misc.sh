@@ -33,11 +33,12 @@ fi
 cp ./importfiles/sysctl.conf /etc/sysctl.conf
 sysctl -w net.ipv4.route.flush=1
 
-#enable Kernel ExecShield
-sudo sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/{
-  /exec-shield=1/! s/"$/ exec-shield=1"/
-}' /etc/default/grub
-update-grub
+apt-get install auditd audispd-plugins -y -qq
+systemctl enable auditd
+systemctl start auditd
+cp ./importfiles/auditd.conf /etc/audit/auditd.conf
+print "auditd installed, enabled, configured. More work to be done here!!!!"
+systemctl restart auditd
 
 sysctl --system
 sysctl -p
