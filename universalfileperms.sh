@@ -45,7 +45,7 @@ chmod og-rwx /etc/cron.deny
 chmod 600 /etc/cron.allow
 chmod 600 /etc/cron.deny
 chmod 700 /var/spool/cron/crontabs
-printlog "Cron.deny & cron.allow created and limited if they didn't exist."
+print "Cron.deny & cron.allow created and limited if they didn't exist."
 
 #GRUB
 chmod 600 /boot/grub/grub.cfg
