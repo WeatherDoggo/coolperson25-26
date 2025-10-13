@@ -24,5 +24,6 @@ print "Ensure all required services are running"
 print "Disable bluetooth???"
 print "PAM-AUTH-UPDATE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 print "RESTART THE COMPUTER FOR GRUB CONFIG!!!"
-print "/ncomplete these tasks."
+print ""
+print "COMPLETE THE TASKS ABOVE."
 read confirm
