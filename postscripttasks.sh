@@ -20,6 +20,7 @@ print "Enable automatic screen lock"
 print "Enable automatic check for updates"
 print "In /etc/grub.d/40_custom, set check_signatures=enforce"
 print "Files to check:/n /etc/sudoers, /etc/pam.d/common-password & common-auth, tmp files, all unit files, grub.d/(custom_10,40,more?)"
+print "Disable bluetooth???"
 
 print "PAM-AUTH-UPDATE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 print "RESTART THE COMPUTER FOR GRUB CONFIG!!!"
