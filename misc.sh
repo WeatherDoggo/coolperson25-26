@@ -18,12 +18,12 @@ EOF
 	print "For Ubuntu 22, automatic updates should be reflected in the GUI."
 
 #Automatic screen lock enabled
-	-u $USERNAME gsettings set org.gnome.desktop.screensaver lock-enabled true
-	print "Automatic screen lock has been enabled."
+#	-u $USERNAME gsettings set org.gnome.desktop.screensaver lock-enabled true
+#	print "Automatic screen lock has been enabled."
 
 #Screen timeout policy
-	-u $USERNAME gsettings set org.gnome.desktop.session idle-delay 240
-	print "Screen timeout policy set to 4 minutes."
+#	-u $USERNAME gsettings set org.gnome.desktop.session idle-delay 240
+#	print "Screen timeout policy set to 4 minutes."
 
 else #Mint 21
 	print "DO THE AUTOMATIC UPDATES MANUALLY!!!"
