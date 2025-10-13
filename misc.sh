@@ -7,7 +7,7 @@ print "What is your username?"
 read USERNAME
 
 #OS-Specific Changed
-if $OS == ubuntu; then
+if [[ $OS == ubuntu ]]; then
 #Automatic Updates
 	sudo tee /etc/apt/apt.conf.d/20auto-upgrades > /dev/null <<'EOF'
 APT::Periodic::Update-Package-Lists "1";
