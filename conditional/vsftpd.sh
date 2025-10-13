@@ -11,6 +11,7 @@ then
 	#print "nginx.conf backed up."
 
 	systemctl enable vsftpd
+	systemctl start vsftpd
 	systemctl restart vsftpd
 	#cp importfiles/nginx.conf /etc/nginx/nginx.conf
 	#chown root:root /etc/nginx/nginx.conf >> $LOG
