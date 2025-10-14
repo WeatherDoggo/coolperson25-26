@@ -73,7 +73,6 @@ appremoval netcat-openbsd
 appremoval netcat-traditional
 appremoval ncat
 appremoval socat
-appremoval socket
 appremoval sbd
 #nis
 appremoval nis
