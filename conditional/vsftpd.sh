@@ -18,6 +18,9 @@ then
 	systemctl start vsftpd
 	systemctl restart vsftpd
 	print "vsftpd.conf restarted."
+
+	ufw allow vsftpd
+	print "UFW configured."
 else
 	systemctl stop vsftpd.service >> $LOG 2>>$LOG
 	apt-get purge vsftpd -y -qq >> $LOG
