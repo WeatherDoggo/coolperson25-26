@@ -6,23 +6,20 @@ function print() {
 
 if [[ $vsftpdneeded == "yes" || $vsftpdneeded == "y" ]];
 then
-	#cp /etc/nginx/nginx.conf ../backups/nginx.conf
-	#chmod 777 ../backups/nginx.conf
-	#print "nginx.conf backed up."
+	cp /etc/vsftpd/vsftpd.conf ../backups/vsftpd.conf
+	chmod 777 ../backups/vsftpd.conf
+	print "vsftpd.conf backed up."
 
+	cp importfiles/vsftpd.conf /etc/vsftpd/vsftpd.conf
+	chown root:root /etc/vsftpd/vsftpd.conf >> $LOG
+	chmod 600 /etc/vsftpd/vsftpd.conf >> $LOG
+	print "vsftpd.conf configured."
 	systemctl enable vsftpd
 	systemctl start vsftpd
 	systemctl restart vsftpd
-	#cp importfiles/nginx.conf /etc/nginx/nginx.conf
-	#chown root:root /etc/nginx/nginx.conf >> $LOG
-	#chmod 600 /etc/nginx/nginx.conf >> $LOG
-	#print "nginx.conf configured."
-	#systemctl reload nginx >> $LOG
-	#print "nginx restarted with new configurations."
+	print "vsftpd.conf restarted."
 else
 	systemctl stop vsftpd.service >> $LOG 2>>$LOG
 	apt-get purge vsftpd -y -qq >> $LOG
-	systemctl stop ftp.service >> $LOG 2>>$LOG
-	apt-get purge ftp -y -qq >> $LOG
- 	print "ftp & vsftpd removed."
+ 	print "vsftpd removed."
 fi
