@@ -17,6 +17,10 @@ then
 	systemctl enable nginx
 	systemctl restart nginx >> $LOG
 	print "nginx restarted with new configurations."
+
+	ufw allow 'Nginx Secure'
+	print "ufw configured for nginx."
+	
 else
 	systemctl stop nginx.service >> $LOG 2>>$LOG
 	apt-get purge nginx nginx-full nginx-core nginx-extras -y -qq >> $LOG
