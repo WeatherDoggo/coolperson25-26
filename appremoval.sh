@@ -67,6 +67,8 @@ appremoval snort
 appremoval imagemagick*
 appremoval openvpn
 appremoval filezilla
+appremoval bluetooth
+appremoval bluez*
 
 appremoval netcat
 appremoval netcat-openbsd
