@@ -15,4 +15,6 @@ else
 	systemctl stop telnet.service >> $LOG 2>>$LOG
 	apt-get purge *telnet* -y -qq >> $LOG
  	print "telnet removed."
+	ufw deny 23 >> $LOG
+	print "port 23 closed."
 fi
