@@ -8,8 +8,8 @@ mkdir ./scans/
 chmod 777 ./scans/
 print "Running scans and sending results to /scans/..."
 
-print "Applications with hack or crack in the name (remove these):\n" > ./scans/hackcrack.txt
-dpkg -l | grep -E 'hack|crack' >> ./scans/hackcrack.txt
+print "Applications with hack, crack, or evil in the name:\n" > ./scans/hackcrack.txt
+dpkg -l | grep -E 'hack|crack|evil' >> ./scans/hackcrack.txt
 chmod 777 ./scans/hackcrack.txt
 print "Apps with hack or crack have been scanned for."
 
