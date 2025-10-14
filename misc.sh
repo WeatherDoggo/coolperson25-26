@@ -9,20 +9,14 @@ read USERNAME
 #OS-Specific Changed
 if [[ $OS == ubuntu ]]; then
 #Automatic Updates
-	sudo tee /etc/apt/apt.conf.d/20auto-upgrades > /dev/null <<'EOF'
-APT::Periodic::Update-Package-Lists "1";
-APT::Periodic::Download-Upgradeable-Packages "1";
-APT::Periodic::AutocleanInterval "7";
-APT::Periodic::Unattended-Upgrade "1";
-EOF
-	print "For Ubuntu 22, automatic updates should be reflected in the GUI."
+
 
 #Automatic screen lock enabled
-#	-u $USERNAME gsettings set org.gnome.desktop.screensaver lock-enabled true
+
 #	print "Automatic screen lock has been enabled."
 
 #Screen timeout policy
-#	-u $USERNAME gsettings set org.gnome.desktop.session idle-delay 240
+
 #	print "Screen timeout policy set to 4 minutes."
 
 else #Mint 21
