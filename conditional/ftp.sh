@@ -12,6 +12,8 @@ then
 	systemctl restart ftp
 	#cp importfiles/nginx.conf /etc/nginx/nginx.conf
 
+	ufw allow ftp
+	print "UFW configured for ftp."
 else
 	systemctl stop ftp.service >> $LOG 2>>$LOG
 	apt-get purge ftp -y -qq >> $LOG
