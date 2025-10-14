@@ -35,10 +35,8 @@ appremoval nfs*
 #appremoval rpcbind
 appremoval cups
 appremoval rsync
-appremoval samba
 appremoval snmpd
 appremoval tftpd-hpa
-appremoval squid
 appremoval xinetd
 appremoval lighttpd
 appremoval nikto
@@ -79,10 +77,6 @@ appremoval socket
 appremoval sbd
 #nis
 appremoval nis
-#Telnet
-appremoval telnet
-ufw deny 23 >> $LOG
-print "port 23 closed."
 #rsh-client
 appremoval rsh-client
 #talk
