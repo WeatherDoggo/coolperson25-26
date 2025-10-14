@@ -7,6 +7,7 @@ function print() {
 if [[ $MySQLneeded == "yes" || $MySQLneeded == "y" ]];
 then
 	#cp /etc/nginx/nginx.conf ../backups/nginx.conf
+	print "CONFIGURE MySQL!!!!!!!!!!!!!!!!!"
 	#cp importfiles/nginx.conf /etc/nginx/nginx.conf
 
 else
