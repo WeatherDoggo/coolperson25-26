@@ -8,8 +8,8 @@ mkdir ./scans2/
 chmod 777 ./scans2/
 print "Running scans and sending results to /scans2/..."
 
-print "Applications with hack or crack in the name (remove these):\n" > ./scans2/hackcrack.txt
-dpkg -l | grep -E 'hack|crack' >> ./scans2/hackcrack.txt
+print "Applications with hack, crack, or evil in the name:\n" > ./scans/hackcrack.txt
+dpkg -l | grep -E 'hack|crack|evil' >> ./scans/hackcrack.txt
 print "Apps with hack or crack have been scanned for."
 
 ss -tulnp > ./scans2/ss_-tulnp.txt
@@ -20,10 +20,6 @@ print "Ran ps aux to see running processes."
 
 systemctl list-unit-files --type=service > ./scans2/list-unit-files.txt
 print "Ran systemctl list-unit-files to see all processes on the VM."
-
-#grep -vxFf ____________________
-#./scans/list-unit-files.txt
-#importfiles/default_unit_files
 
 lsof -i -P -n > ./scans2/lsof.txt
 print "Ran lsof to list all open network connections and the processes that opened them."
