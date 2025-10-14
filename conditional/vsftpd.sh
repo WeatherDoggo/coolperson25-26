@@ -6,13 +6,13 @@ function print() {
 
 if [[ $vsftpdneeded == "yes" || $vsftpdneeded == "y" ]];
 then
-	cp /etc/vsftpd/vsftpd.conf ../backups/vsftpd.conf
+	cp /etc/vsftpd.conf ../backups/vsftpd.conf
 	chmod 777 ../backups/vsftpd.conf
 	print "vsftpd.conf backed up."
 
-	cp importfiles/vsftpd.conf /etc/vsftpd/vsftpd.conf
-	chown root:root /etc/vsftpd/vsftpd.conf >> $LOG
-	chmod 600 /etc/vsftpd/vsftpd.conf >> $LOG
+	cp importfiles/vsftpd.conf /etc/vsftpd.conf
+	chown root:root /etc/vsftpd.conf >> $LOG
+	chmod 600 /etc/vsftpd.conf >> $LOG
 	print "vsftpd.conf configured."
 	systemctl enable vsftpd
 	systemctl start vsftpd
