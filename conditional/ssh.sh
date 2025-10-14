@@ -18,6 +18,8 @@ then
 	ufw allow OpenSSH
 	print "UFW rule added for ssh."
 	
+	systemctl enable ssh >> $LOG
+ 	systemctl restart ssh >> $LOG
 	systemctl enable sshd >> $LOG
  	systemctl restart sshd >> $LOG
 	print "SSH restarted."
