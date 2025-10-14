@@ -26,12 +26,11 @@ cp ./importfiles/faillock_notify /usr/share/pam-configs/faillock_notify
 sed -i 's/nullok//g' /etc/pam.d/common-auth
 print "Null passwords disabled."
 
-#grep -q '^\s*auth\s+sufficient\s+pam_faillock.so\s+authsucc\s*$' /etc/pam.d/common-auth || \
-#  echo 'auth sufficient pam_faillock.so authsucc' | sudo tee -a /etc/pam.d/common-auth
+grep -q '^\s*auth\s+sufficient\s+pam_faillock.so\s+authsucc\s*$' /etc/pam.d/common-auth || \
+  echo 'auth sufficient pam_faillock.so authsucc' | sudo tee -a /etc/pam.d/common-auth
 
-#grep -q '^\s*auth\s+\[default=die\]\s+pam_faillock.so\s+authfail\s*$' /etc/pam.d/common-auth || \
-#  echo 'auth [default=die] pam_faillock.so authfail' | sudo tee -a /etc/pam.d/common-auth
-print "THERE ARE LINES HERE TO UNCOMMENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+grep -q '^\s*auth\s+\[default=die\]\s+pam_faillock.so\s+authfail\s*$' /etc/pam.d/common-auth || \
+  echo 'auth [default=die] pam_faillock.so authfail' | sudo tee -a /etc/pam.d/common-auth
 
 #minimum password length
 sed -i '/pam_unix.so/ s/remember=[0-9]\+/remember=24/' /etc/pam.d/common-password
