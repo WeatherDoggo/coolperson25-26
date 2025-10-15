@@ -23,7 +23,7 @@ then
 	print "ufw configured for apache."
 	
 	a2enmod headers
-	a2enconf security
+#	a2enconf security
 	systemctl restart apache2
 
 	
