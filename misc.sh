@@ -19,8 +19,8 @@ if [[ $OS == ubuntu ]]; then
 
 #	print "Screen timeout policy set to 4 minutes."
 
-else #Mint 21
-	print "DO THE AUTOMATIC UPDATES MANUALLY!!!"
+#else #Mint 21
+#	print "DO THE AUTOMATIC UPDATES MANUALLY!!!"
 fi
 
 #sysctl.conf
