@@ -11,18 +11,18 @@ while true; do
   if [[ $browser == "chrome" || $browser == "Chrome" ]]; then
     browser="Chrome"
     print "Browser set to Chrome."
-    apt-get purge firefox -y -qq
-    apt-get purge brave-browser -y -qq
-    apt-get purge opera-stable -y -qq
-    apt-get purge microsoft-edge-stable -y -qq
+    apt-get purge firefox -y -qq --auto-remove >> $LOG
+    apt-get purge brave-browser -y -qq --auto-remove >> $LOG
+    apt-get purge opera-stable -y -qq --auto-remove >> $LOG
+    apt-get purge microsoft-edge-stable -y -qq --auto-remove >> $LOG
     break
   elif [[ $browser == "Firefox" || $browser == "firefox" ]]; then
     browser="Firefox"
     print "Browser set to Firefox."
-    apt-get purge google-chrome* -y -qq
-    apt-get purge brave browser -y -qq
-    apt-get purge opera-stable -y -qq
-    apt-get purge microsoft-edge-stable -y -qq
+    apt-get purge google-chrome* -y -qq --auto-remove >> $LOG
+    apt-get purge brave browser -y -qq --auto-remove >> $LOG
+    apt-get purge opera-stable -y -qq --auto-remove >> $LOG
+    apt-get purge microsoft-edge-stable -y -qq --auto-remove >> $LOG
     break
   elif [[ $browser == "skip" || $browser == "Skip" ]]; then
     print "Browser config skipped. Please config and remove browsers manually."
