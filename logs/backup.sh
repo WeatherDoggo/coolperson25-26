@@ -1,11 +1,11 @@
 #!/bin/bash
 #Makes a copy of all important files and saves them to a backups folder
-mkdir -pv ../backups
-chmod 777 ../backups
+mkdir -pv ./backups
+chmod 777 ./backups
 
 function backup {
-  cp $1 ../backups/$(basename "$1")
-  chmod 777 ../backups/$(basename "$1")
+  cp $1 ./backups/$(basename "$1")
+  chmod 777 ./backups/$(basename "$1")
 }
 chmod 777 ./logs/main.log
 touch backups/cronjobs.txt
