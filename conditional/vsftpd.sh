@@ -6,8 +6,8 @@ function print() {
 
 if [[ $vsftpdneeded == "yes" || $vsftpdneeded == "y" ]];
 then
-	cp /etc/vsftpd.conf ../backups/vsftpd.conf
-	chmod 777 ../backups/vsftpd.conf
+	cp /etc/vsftpd.conf ./backups/vsftpd.conf
+	chmod 777 ./backups/vsftpd.conf
 	print "vsftpd.conf backed up."
 
 	cp importfiles/vsftpd.conf /etc/vsftpd.conf
