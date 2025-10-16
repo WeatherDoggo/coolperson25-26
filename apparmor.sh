@@ -6,12 +6,10 @@ function print() {
 
 print "Installing apparmor..."
 apt-get install apparmor apparmor-utils apparmor-profiles apparmor-profiles-extra apparmor-notify -y -qq >> $LOG
-print "Installed. Checking status..."
-systemctl status apparmor | sudo tee -a "$LOG" 
-systemctl start apparmor | sudo tee -a "$LOG" 
-systemctl enable apparmor | sudo tee -a "$LOG" 
-aa-status | sudo tee -a "$LOG" 
-aa-enforce /etc/apparmor.d/* | sudo tee -a "$LOG" 
-aa-remove-unknown | sudo tee -a "$LOG" 
+systemctl start apparmor >> $LOG
+systemctl enable apparmor >> $LOG
+aa-status >> $LOG
+aa-enforce /etc/apparmor.d/* >> $LOG
+aa-remove-unknown >> $LOG
 systemctl restart apparmor | sudo tee -a "$LOG" 
 print "Apparmor configured to enforce default profiles and remove unknown profiles. Additional manual profiles may need to be added."
