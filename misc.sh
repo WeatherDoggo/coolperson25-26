@@ -82,10 +82,6 @@ else
   cp -a ./backups/sudoers.d /etc/sudoers.d
 fi
 
-#Disable system core dumps
-cp ./importfiles/limits.conf /etc/security/limits.conf
-print "Core dumps disabled with limits.conf."
-
 #Remove prohibited mp3 files
 print "Can users have media files?"
 read mediastatus
