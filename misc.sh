@@ -7,7 +7,7 @@ print "What is your username?"
 read USERNAME
 
 #OS-Specific Changed
-if [[ $OS == ubuntu ]]; then
+#if [[ $OS == ubuntu ]]; then
 #Automatic Updates
 
 
@@ -21,7 +21,7 @@ if [[ $OS == ubuntu ]]; then
 
 #else #Mint 21
 #	print "DO THE AUTOMATIC UPDATES MANUALLY!!!"
-fi
+#fi
 
 #sysctl.conf
 cp ./importfiles/sysctl.conf /etc/sysctl.conf
