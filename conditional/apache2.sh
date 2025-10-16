@@ -25,7 +25,7 @@ then
 	a2enmod headers
 	apt-get install libapache2-mod-security2 -y -qq >> $LOG
 	a2enconf security2
-	cp /etc/apache2/conf-enabled/security.conf ../backups/security.conf
+	cp /etc/apache2/conf-enabled/security.conf ./backups/security.conf
 	cp ./importfiles/security.conf /etc/apache2/conf-enabled/security.conf
 	systemctl restart apache2
 
