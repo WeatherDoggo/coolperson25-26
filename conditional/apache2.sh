@@ -10,8 +10,8 @@ then
 	ufw allow https >> $LOG
 	print "HTTP and HTTPS ports opened."
 	
-	cp /etc/apache2/apache2.conf ../backups/apache2.conf
-	chmod 777 ../backups/apache2.conf
+	cp /etc/apache2/apache2.conf ./backups/apache2.conf
+	chmod 777 ./backups/apache2.conf
 	print "apache2.conf backed up."
 	
 	cp importfiles/apache2.conf /etc/apache2/apache2.conf
