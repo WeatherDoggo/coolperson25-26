@@ -63,10 +63,10 @@ crontab -r >> $LOG
 print "Root crontab scheduled jobs removed with crontab -r."
 
 #Visudo
-cp /etc/sudoers ../backups/sudoers
-cp /etc/sudoers.d ../backups/sudoers.d
-chmod 777 ../backups/sudoers
-chmod 777 ../backups/sudoers.d
+cp /etc/sudoers ./backups/sudoers
+cp /etc/sudoers.d ./backups/sudoers.d
+chmod 777 ./backups/sudoers
+chmod 777 ./backups/sudoers.d
 print "sudoers & sudoers.d backed up."
 
 # Remove LD_PRELOAD keeps from sudoers and fragments
@@ -78,8 +78,8 @@ if visudo -c; then
   print "Sudoers syntax validated successfully."
 else
   print "Syntax error detected, restoring backups. CONFIGURE MANUALLY!!!!"
-  cp -a ../backups/sudoers /etc/sudoers
-  cp -a ../backups/sudoers.d /etc/sudoers.d
+  cp ./backups/sudoers /etc/sudoers
+  cp -a ./backups/sudoers.d /etc/sudoers.d
 fi
 
 #Disable system core dumps
