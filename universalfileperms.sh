@@ -83,6 +83,10 @@ print "/tmp and /var/tmp sticky bit set."
 chmod 700 /root
 print "/root directory permissions configured."
 
+#/home
+chown root:root /home
+print "/home is now owned by root."
+
 chmod 600 /swapfile
 print "swapfile secured."
 
