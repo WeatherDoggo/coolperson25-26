@@ -14,4 +14,8 @@ sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/{
 #enable Kernel Lockdown
 sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT=\"\(.*\)\"/GRUB_CMDLINE_LINUX_DEFAULT=\"\1 lockdown=confidentiality\"/" /etc/default/grub
 
+#Disable system core dumps
+cp ./importfiles/limits.conf /etc/security/limits.conf
+print "Core dumps disabled and limit of 2000 processes set with limits.conf."
+
 update-grub
