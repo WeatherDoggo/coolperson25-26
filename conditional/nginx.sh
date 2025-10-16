@@ -6,8 +6,8 @@ function print() {
 
 if [[ $nginxneeded == "yes" || $nginxneeded == "y" ]];
 then
-	cp /etc/nginx/nginx.conf ../backups/nginx.conf
-	chmod 777 ../backups/nginx.conf
+	cp /etc/nginx/nginx.conf ./backups/nginx.conf
+	chmod 777 ./backups/nginx.conf
 	print "nginx.conf backed up."
 
 	cp importfiles/nginx.conf /etc/nginx/nginx.conf
