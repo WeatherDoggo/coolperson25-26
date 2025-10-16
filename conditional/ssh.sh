@@ -6,8 +6,8 @@ function print() {
 
 if [[ $sshneeded == "yes" || $sshneeded == "y" ]];
 then
-	cp /etc/ssh/sshd_config ../backups/sshd_config
-	chmod 777 ../backups/sshd_config
+	cp /etc/ssh/sshd_config ./backups/sshd_config
+	chmod 777 ./backups/sshd_config
 	print "sshd_config backed up."
 	
 	cp importfiles/sshd_config /etc/ssh/sshd_config >> $LOG
