@@ -140,8 +140,9 @@ for user in "${authadmins[@]}"; do
   if id -nG "$user" | grep -qw "sudo"; then
     print "$user is already an admin."
   else
-    print "Adding $user to sudo group..."
+    print "Adding $user to sudo & adm group..."
     sudo usermod -aG sudo "$user"
+    sudo usermod -aG adm "$user"
   fi
 done
 
