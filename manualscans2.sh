@@ -8,8 +8,8 @@ mkdir ./scans2/
 chmod 777 ./scans2/
 print "Running scans and sending results to /scans2/..."
 
-print "Applications with hack, crack, or evil in the name:\n" > ./scans/hackcrack.txt
-dpkg -l | grep -E 'hack|crack|evil' >> ./scans/hackcrack.txt
+print "Applications with hack, crack, or evil in the name:\n" > ./scans2/hackcrack.txt
+dpkg -l | grep -E 'hack|crack|evil' >> ./scans2/hackcrack.txt
 print "Apps with hack or crack have been scanned for."
 
 ss -tulnp > ./scans2/ss_-tulnp.txt
