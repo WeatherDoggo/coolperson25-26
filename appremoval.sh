@@ -34,7 +34,7 @@ appremoval nfs*
 #appremoval ypserv
 #appremoval rpcbind
 appremoval cups
-appremoval rsync
+#appremoval rsync
 appremoval snmpd
 appremoval tftpd-hpa
 appremoval xinetd
