@@ -13,6 +13,7 @@ ufw enable >> $LOG
 ufw default deny incoming >> $LOG
 ufw default allow outgoing >> $LOG
 ufw default deny routed >> $LOG
+ufw logging on
 ufw deny 1337 >> $LOG
 ufw allow in on lo
 ufw allow out on lo
