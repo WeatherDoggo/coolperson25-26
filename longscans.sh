@@ -30,6 +30,21 @@ fi
 
 print "Do you want to run clamAV?"
 read clamAVinstallqueury
+if [[ "$clamAVinstallquery" == "y" || "$clamAVinstallquery" == "yes" ]]; then
+    print "Installing ClamAV..."
+    apt-get install clamav clamav-daemon -y -qq
+
+    print "Updating virus database..."
+    systemctl stop clamav-freshclam || true
+    freshclam
+
+    print "Running full system scan (this may take a while)..."
+    # Only print files that are suspicious/infected
+    clamscan -r -i --bell / | tee ~/clamav-results.txt
+    print "Scan complete. Any suspicious findings are shown above and saved to ~/clamav-results.txt"
+else
+    print "ClamAV skipped."
+fi
 
 print "Do you want to run debsums?"
 
