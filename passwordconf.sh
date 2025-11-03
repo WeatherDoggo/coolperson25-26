@@ -32,12 +32,13 @@ grep -q '^\s*auth\s+sufficient\s+pam_faillock.so\s+authsucc\s*$' /etc/pam.d/comm
 grep -q '^\s*auth\s+\[default=die\]\s+pam_faillock.so\s+authfail\s*$' /etc/pam.d/common-auth || \
   echo 'auth [default=die] pam_faillock.so authfail' | sudo tee -a /etc/pam.d/common-auth
 
-#minimum password length
+#minimum password length & passwords are remembered
 sed -i '/pam_pwquality.so.*retry=3/ s/remember=[0-9]\+/remember=24/' /etc/pam.d/common-password
 sed -i '/pam_pwquality.so.*retry=3/ { /remember=/! s/$/ remember=24/ }' /etc/pam.d/common-password
-#sed -i '/pam_unix.so/ s/remember=[0-9]\+/remember=24/' /etc/pam.d/common-password
-#grep -q 'pam_unix.so.*remember=' /etc/pam.d/common-password || sudo sed -i '/pam_unix.so/ s/$/ minlen=12 remember=24/' /etc/pam.d/common-password
-print "VERIFY THIS WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+
+sed -i '/pam_pwquality.so.*retry=3/ s/minlen=[0-9]\+/minlen=12/' /etc/pam.d/common-password
+sed -i '/pam_pwquality.so.*retry=3/ { /minlen=/! s/$/ minlen=12/ }' /etc/pam.d/common-password
+
 #login.defs
 cp ./importfiles/login.defs /etc/login.defs
 print "login.defs configured."
