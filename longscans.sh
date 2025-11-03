@@ -29,8 +29,8 @@ fi
 #It does this by comparing file hashes, looking for suspicious modules, and checking system configuration.
 
 print "Do you want to run clamAV?"
-read clamAVinstallqueury
-if [[ "$clamAVinstallquery" == "y" || "$clamAVinstallquery" == "yes" ]]; then
+read clamAVinstallquery
+if [[ "$clamAVinstallquery" == "yes" || "$clamAVinstallquery" == "y" ]]; then
     print "Installing ClamAV..."
     apt-get install clamav clamav-daemon -y -qq
 
