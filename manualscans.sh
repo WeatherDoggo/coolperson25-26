@@ -51,7 +51,7 @@ cat /etc/resolv.conf > ./scans/suspiciousDNS.txt
 chmod 777 ./scans/suspiciousDNS.txt
 print "Check for suspicious DNS servers that could be redirecting traffic." >> ./scans/suspiciousDNS.txt
 
-crontab -l > ./scans/cronjobs.txt
+cat /etc/crontab > ./scans/cronjobs.txt
 chmod 777 ./scans/cronjobs.txt
 print "crontab jobs backed up in scans/cronjobs.txt."
 
