@@ -18,10 +18,10 @@ then
 	ufw allow OpenSSH
 	print "UFW rule added for ssh."
 	
-	systemctl enable ssh >> $LOG
- 	systemctl restart ssh >> $LOG
-	systemctl enable sshd >> $LOG
- 	systemctl restart sshd >> $LOG
+	systemctl enable ssh.service >> $LOG
+ 	systemctl restart ssh.service >> $LOG
+	systemctl enable sshd.service >> $LOG
+ 	systemctl restart sshd.service >> $LOG
 	print "SSH restarted."
 	print "SSH default port changed, PermitRootLogin set to no, MaxAuthTries set to 3, Client closes after 4 minutes inactive, LoginGraceTime set to 20, PermitEmptyPasswords is set to no, HostBasedAuthentication set to no, and StrictModes is set to yes."
  	print "Optional SSH tasks include MaxSessions & TCPKeepAlive."
