@@ -18,9 +18,9 @@ then
 	ufw allow vsftpd
 	print "UFW configured."
 
-	systemctl enable vsftpd
-	systemctl start vsftpd
-	systemctl restart vsftpd
+	systemctl enable vsftpd.service
+	systemctl start vsftpd.service
+	systemctl restart vsftpd.service
 	print "vsftpd.conf restarted."
 else
 	systemctl stop vsftpd.service >> $LOG 2>>$LOG
