@@ -65,7 +65,7 @@ appremoval zeitgeist
 appremoval sucrack
 appremoval snort
 appremoval doona
-appremoval xproble
+appremoval xprobe
 appremoval imagemagick*
 appremoval openvpn
 appremoval filezilla
