@@ -14,13 +14,14 @@ then
 	chown root:root /etc/vsftpd.conf >> $LOG
 	chmod 600 /etc/vsftpd.conf >> $LOG
 	print "vsftpd.conf configured."
+	
+	ufw allow vsftpd
+	print "UFW configured."
+
 	systemctl enable vsftpd
 	systemctl start vsftpd
 	systemctl restart vsftpd
 	print "vsftpd.conf restarted."
-
-	ufw allow vsftpd
-	print "UFW configured."
 else
 	systemctl stop vsftpd.service >> $LOG 2>>$LOG
 	apt-get purge vsftpd -y -qq >> $LOG
