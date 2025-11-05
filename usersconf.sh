@@ -84,7 +84,7 @@ if [[ ${#userstoremove[@]} -gt 0 ]]; then   #<<<Random pound sign???
     read removestrangeuser
     if [[ "$removestrangeuser" == "y" || "$removestrangeuser" == "yes" ]]; then
       print "Attempting to remove $user:"
-      sudo userdel -r "$user"
+      userdel -r "$user"
       if [ $? -eq 0 ]; then
         print "Successfully removed $user"
       else
@@ -105,15 +105,17 @@ vmusers=`(grep -v 'nologin' /etc/passwd | cut -d':' -f1,6 | grep 'home' | cut -d
 #Change all passwords (except for the one for yourself)
 newpassword="Cyb3r1a!!!"
 for user in $vmusers; do
-    echo "Changing password for $user:"
+    print "Changing password for $user:"
     # Use chpasswd to set the password
     # The 'echo' command pipes the username:password to chpasswd
-    echo "$user:$newpassword" | sudo chpasswd
+    print "$user:$newpassword" | sudo chpasswd
     if [ $? -eq 0 ]; then
-        echo "Password for $user changed."
+        print "Password for $user changed."
     else
-        echo "Failed to change password for $user."
+        print "Failed to change password for $user."
     fi
+    chage -M 90 $user
+    print "Maximum password age set for $user."
 done
 
 #Remove admin from unauthorized users
@@ -129,7 +131,7 @@ for user in $vmusers; do
     done
     if [[ "$is_auth_admin" == false ]]; then
       print "Removing $user's sudo access..."
-      sudo deluser "$user" sudo
+      deluser "$user" sudo
     fi
   fi
 done
@@ -141,8 +143,8 @@ for user in "${authadmins[@]}"; do
     print "$user is already an admin."
   else
     print "Adding $user to sudo & adm group..."
-    sudo usermod -aG sudo "$user"
-    sudo usermod -aG adm "$user"
+    usermod -aG sudo "$user"
+    usermod -aG adm "$user"
   fi
 done
 
