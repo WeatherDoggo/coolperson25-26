@@ -64,6 +64,8 @@ appremoval rhythmbox-plugin-zeitgeist
 appremoval zeitgeist
 appremoval sucrack
 appremoval snort
+appremoval doona
+appremoval xproble
 appremoval imagemagick*
 appremoval openvpn
 appremoval filezilla
