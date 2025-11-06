@@ -33,8 +33,9 @@ grep -q '^\s*auth\s+\[default=die\]\s+pam_faillock.so\s+authfail\s*$' /etc/pam.d
   echo 'auth [default=die] pam_faillock.so authfail' | sudo tee -a /etc/pam.d/common-auth
 
 #minimum password length & passwords are remembered
-sed -i '/pam_pwquality.so.*retry=3/ s/remember=[0-9]\+/remember=24/' /etc/pam.d/common-password
-sed -i '/pam_pwquality.so.*retry=3/ { /remember=/! s/$/ remember=24/ }' /etc/pam.d/common-password
+sed -i '/pam_unix.so.*retry=/ s/remember=[0-9]\+/remember=24/' /etc/pam.d/common-password
+sed -i '/pam_unix.so.*retry=3/ { /remember=/! s/$/ remember=24/ }' /etc/pam.d/common-password
+print "VERIFY THIS WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
 sed -i '/pam_pwquality.so.*retry=3/ s/minlen=[0-9]\+/minlen=12/' /etc/pam.d/common-password
 sed -i '/pam_pwquality.so.*retry=3/ { /minlen=/! s/$/ minlen=12/ }' /etc/pam.d/common-password
