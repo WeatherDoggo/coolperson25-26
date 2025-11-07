@@ -12,6 +12,6 @@ then
 
 else
 	systemctl stop mysql.service >> $LOG 2>>$LOG
-	apt-get purge mysql -y -qq >> $LOG
+	apt-get purge mysql* -y -qq >> $LOG
  	print "MySQL removed."
 fi
