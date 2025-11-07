@@ -6,9 +6,10 @@ function print() {
 
 if [[ $squidneeded == "yes" || $squidneeded == "y" ]];
 then
-	#cp /etc/nginx/nginx.conf ../backups/nginx.conf
-	print "CONFIGURE SQUID!!!!!!!!!!!!!!!!!"
-	#cp importfiles/nginx.conf /etc/nginx/nginx.conf
+	cp /etc/squid/squid.conf ./backups/squid.conf
+	cp ./imporfiles/squid.conf /etc/squid/squid.conf
+	print "CONFIGURE SQUID CONF FILE!!!!!!!!!!!!!!!!!"
+	sudo ufw allow 'Squid' >> $LOG
 	systemctl enable squid.service >> $LOG
 	systemctl restart squid.service >> $LOG
 	systemctl status squid.service
