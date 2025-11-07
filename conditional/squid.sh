@@ -9,6 +9,9 @@ then
 	#cp /etc/nginx/nginx.conf ../backups/nginx.conf
 	print "CONFIGURE SQUID!!!!!!!!!!!!!!!!!"
 	#cp importfiles/nginx.conf /etc/nginx/nginx.conf
+	systemctl enable squid.service >> $LOG
+	systemctl restart squid.service >> $LOG
+	systemctl status squid.service
 
 else
 	systemctl stop squid >> $LOG 2>>$LOG
