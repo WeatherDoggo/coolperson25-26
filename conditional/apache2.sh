@@ -27,11 +27,12 @@ then
 	a2enconf security2
 	cp /etc/apache2/conf-enabled/security.conf ./backups/security.conf
 	cp ./importfiles/security.conf /etc/apache2/conf-enabled/security.conf
-	systemctl restart apache2
+	systemctl restart apache2.service
 
 	
-	systemctl enable apache2
-	systemctl restart apache2
+	systemctl enable apache2.service >> $LOG
+	systemctl restart apache2.service >> $LOG
+	systemctl status apache2.service
 	print "apache2.conf configured and restarted."
 else
 	systemctl stop apache2.socket apache2.service >> $LOG 2>>$LOG
