@@ -55,7 +55,7 @@ cat /etc/crontab > ./scans/cronjobs.txt
 chmod 777 ./scans/cronjobs.txt
 print "crontab jobs backed up in scans/cronjobs.txt."
 
-find /home -type f -iname "*.zip" > ./scans/zippaths.txt
+locate *.zip > ./scans/zippaths.txt
 chmod 777 ./scans/zippaths.txt
 print ".zip file paths listed in zippaths.txt."
 
