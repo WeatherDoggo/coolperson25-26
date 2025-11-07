@@ -18,9 +18,10 @@ then
 	ufw allow vsftpd
 	print "UFW configured."
 
-	systemctl enable vsftpd.service
-	systemctl start vsftpd.service
-	systemctl restart vsftpd.service
+	systemctl enable vsftpd.service >> $LOG
+	systemctl start vsftpd.service >> $LOG
+	systemctl restart vsftpd.service >> $LOG
+	systemctl status vsftpd.service
 	print "vsftpd.conf restarted."
 	print "DO THE SSL CONFIGS MANUALLY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 else
