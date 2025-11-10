@@ -11,6 +11,9 @@ print "/etc/shadow permissions configured."
 chmod 600 /etc/sysctl.conf >> $LOG
 print "sysctl.conf permissions configured."
 
+chmod 644 /etc/fstab >> $LOG
+print "/etc/fstab permissions configured."
+
 #Password related
 chown root:root /etc/security/faillock.conf
 chmod og-rwx /etc/security/faillock.conf
