@@ -114,10 +114,10 @@ for user in $vmusers; do
     else
         print "Failed to change password for $user."
     fi
-    chage -M 90 $user
-    print "Maximum password age set for $user."
     chage -m 7 $user
     print "Minimum password age set for $user."
+    chage -M 90 $user
+    print "Maximum password age set for $user."
 done
 
 #Remove admin from unauthorized users
