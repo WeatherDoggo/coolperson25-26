@@ -4,7 +4,6 @@ function print() {
   echo -e "$1" | sudo tee -a "$LOG" 
 }
 
-
 chmod 640 /etc/shadow >> $LOG
 print "/etc/shadow permissions configured."
 
