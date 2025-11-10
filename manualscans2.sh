@@ -55,6 +55,10 @@ cat /etc/resolv.conf > ./scans2/suspiciousDNS.txt
 chmod 777 ./scans2/suspiciousDNS.txt
 print "Check for suspicious DNS servers that could be redirecting traffic." >> ./scans2/suspiciousDNS.txt
 
-crontab -l > ./scans2/cronjobs.txt
+cat /etc/crontab > ./scans2/cronjobs.txt
 chmod 777 ./scans2/cronjobs.txt
-print "crontab jobs backed up in scans2/cronjobs.txt."
+print "crontab jobs backed up in scans/cronjobs.txt."
+
+locate *.zip > ./scans2/zippaths.txt
+chmod 777 ./scans2/zippaths.txt
+print ".zip file paths listed in zippaths.txt."
