@@ -10,15 +10,6 @@ read USERNAME
 #if [[ $OS == ubuntu ]]; then
 #Automatic Updates
 
-
-#Automatic screen lock enabled
-
-#	print "Automatic screen lock has been enabled."
-
-#Screen timeout policy
-
-#	print "Screen timeout policy set to 4 minutes."
-
 #else #Mint 21
 #	print "DO THE AUTOMATIC UPDATES MANUALLY!!!"
 #fi
