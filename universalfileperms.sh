@@ -92,3 +92,4 @@ print "/home is now owned by root."
 chmod 600 /swapfile
 print "swapfile secured."
 
+chmod 740 /usr/bin/journalctl
