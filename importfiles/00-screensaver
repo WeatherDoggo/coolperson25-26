@@ -1,0 +1,6 @@
+[org/gnome/desktop/screensaver]
+lock-enabled=true
+lock-delay=0
+
+[org/gnome/desktop/session]
+idle-delay=300
