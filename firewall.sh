@@ -9,7 +9,7 @@ print "Enabling firewall..."
 apt-get install ufw -y -qq >> $LOG
 apt-get purge iptables-persistent -y -qq >> $LOG
 print "iptables-persistent removed."
-ufw enable >> $LOG
+ufw enable --now >> $LOG
 ufw default deny incoming >> $LOG
 ufw default allow outgoing >> $LOG
 ufw default deny routed >> $LOG
