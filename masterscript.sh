@@ -101,6 +101,10 @@ announce "Running apparmor.sh..."
 source ./apparmor.sh
 announce "apparmor.sh done."
 
+announce "Running logs.sh..."
+source ./logs/logs.sh
+announce "logs.sh done."
+
 #Conditional configurations
 announce "Conditional configurations:"
 
