@@ -71,6 +71,31 @@ appremoval openvpn
 appremoval filezilla
 appremoval bluetooth
 appremoval bluez*
+print "remove tftpd?????????"
+
+appremoval settoolkit
+appremoval social-engineer-toolkit
+appremoval burpsuite
+appremoval reaver
+appremoval wash
+appremoval mdk3
+appremoval mdk4
+appremoval proxychains
+appremoval tsocks
+appremoval nemesis
+appremoval scapy
+appremoval hping3
+appremoval airgraph-ng
+appremoval kismet
+appremoval zmap
+appremoval masscan
+appremoval angryip
+appremoval ltrace
+appremoval strace
+appremoval gdb
+appremoval radare2
+appremoval hashcat
+
 
 appremoval netcat
 appremoval netcat-openbsd
@@ -88,6 +113,10 @@ appremoval talk
 appremoval ldap-utils
 #apport (collects sensitive data)
 appremoval apport
+#Metasploit
+appremoval metasploit-framework
+appremoval msfconsole
+appremoval msfdb
 
 #Games
 appremoval pvpgn
