@@ -23,7 +23,8 @@ systemctl enable auditd
 systemctl start auditd
 cp ./importfiles/auditd.conf /etc/audit/auditd.conf
 print "auditd installed, enabled, configured. More work to be done here!!!!"
-systemctl restart auditd
+systemctl kill auditd -s SIGHUP
+systemctl start auditd
 
 sysctl --system
 sysctl -p
