@@ -9,5 +9,9 @@ if [[ $OS == "mint" ]]; then
 elif [[ $OS == "ubuntu" ]]; then
   cp importfiles/custom.conf /etc/gdm/custom.conf
   cp importfiles/custom.conf /etc/gdm3/custom.conf
+  
+  cp importfiles/00-screensaver /etc/dconf/db/local.d/00-screensaver
+  print "screensaver automatically set after 5 minutes."
+  
   print "gdm & gdm3 custom.conf configured. More work to be done!!!!"
 fi
