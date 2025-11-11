@@ -6,14 +6,12 @@ function print() {
 
 if [[ $ftpneeded == "yes" || $ftpneeded == "y" ]];
 then
-	#cp /etc/nginx/nginx.conf ../backups/nginx.conf
+	ufw allow ftp
+	print "UFW configured for ftp."
 
 	systemctl enable ftp
 	systemctl restart ftp
-	#cp importfiles/nginx.conf /etc/nginx/nginx.conf
-
-	ufw allow ftp
-	print "UFW configured for ftp."
+	print "CONFIGURE FTP!!!!!!!!!!!!!!!!!"
 else
 	systemctl stop ftp.service >> $LOG 2>>$LOG
 	apt-get purge ftp -y -qq >> $LOG
