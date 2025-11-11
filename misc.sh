@@ -44,7 +44,9 @@ sed -i '/nologin/c\\' /etc/shells
 print "instances of nologin removed from /etc/shells."
 
 #Disable Ctrl+Alt+Delete Reboot
-echo "exec true" >> /etc/init/control-alt-delete.override
+systemctl disable ctrl-alt-del.target
+systemctl mash ctrl-alt-del.target
+systemctl daemon-reload
 print "Ctrl+Alt+Delete reboot disabled."
 
 touch /etc/cron.allow
