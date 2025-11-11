@@ -18,13 +18,6 @@ read USERNAME
 cp ./importfiles/sysctl.conf /etc/sysctl.conf
 sysctl -w net.ipv4.route.flush=1
 
-apt-get install auditd audispd-plugins -y -qq
-systemctl enable auditd.service --now
-cp ./importfiles/auditd.conf /etc/audit/auditd.conf
-print "auditd installed, enabled, configured. More work to be done here!!!!"
-systemctl kill auditd -s SIGHUP
-systemctl enable auditd.service --now
-
 sysctl --system
 sysctl -p
 sudo systemctl daemon-reload
