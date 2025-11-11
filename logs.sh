@@ -7,3 +7,5 @@ function print() {
 apt-get install rsyslog -y -qq >>$LOG
 systemctl enable rsyslog.service --now
 print "rsyslog installed and enabled."
+
+chown syslog /var/log/syslog
