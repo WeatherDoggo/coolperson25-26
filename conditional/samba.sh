@@ -12,6 +12,6 @@ then
 
 else
 	systemctl stop samba.service >> $LOG 2>>$LOG
-	apt-get purge samba -y -qq >> $LOG
+	apt-get purge samba samba-common -y -qq >> $LOG
  	print "samba removed."
 fi
