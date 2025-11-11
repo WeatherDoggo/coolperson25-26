@@ -15,7 +15,7 @@ then
 	systemctl status squid.service
 
 else
-	systemctl stop squid >> $LOG 2>>$LOG
+	systemctl stop squid.service >> $LOG 2>>$LOG
 	apt-get purge squid -y -qq >> $LOG
  	print "squid removed."
 fi
