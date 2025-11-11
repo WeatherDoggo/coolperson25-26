@@ -40,6 +40,10 @@ print "VERIFY THIS WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 sed -i '/pam_pwquality.so.*retry=3/ s/minlen=[0-9]\+/minlen=12/' /etc/pam.d/common-password
 sed -i '/pam_pwquality.so.*retry=3/ { /minlen=/! s/$/ minlen=12/ }' /etc/pam.d/common-password
 
+#logon attempt delay
+echo 'auth     required     pam_faildelay.so     delay=4000000' | sudo tee -a /etc/pam.d/common-auth
+print "VERIFY THIS WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 #login.defs
 cp ./importfiles/login.defs /etc/login.defs
 print "login.defs configured."
