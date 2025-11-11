@@ -72,8 +72,9 @@ chmod 600 ~/.ssh/id_rsa
 print "User home and SSH keys permissions configured."
 
 # Logs
-chown root:root /var/log/auth.log /var/log/syslog
-chmod 600 /var/log/auth.log /var/log/syslog
+chgrp syslog /var/log
+chown root /var/log
+chmod 0755 /var/log
 print "Critical logs permissions configured."
 
 # tmp directories
