@@ -150,6 +150,9 @@ for user in "${authadmins[@]}"; do
   fi
 done
 
+#disable account identifiers after 30 days of password expiration
+useradd -D -f 30 >> $LOG
+
 #Lock root account
 passwd -l root >> $LOG
 print "Root account locked."
