@@ -32,13 +32,11 @@ grep -q '^\s*auth\s+sufficient\s+pam_faillock.so\s+authsucc\s*$' /etc/pam.d/comm
 grep -q '^\s*auth\s+\[default=die\]\s+pam_faillock.so\s+authfail\s*$' /etc/pam.d/common-auth || \
   echo 'auth [default=die] pam_faillock.so authfail' | sudo tee -a /etc/pam.d/common-auth
 
-#minimum password length & passwords are remembered
-sed -i '/pam_unix.so.*retry=/ s/remember=[0-9]\+/remember=24/' /etc/pam.d/common-password
-sed -i '/pam_unix.so.*retry=3/ { /remember=/! s/$/ remember=24/ }' /etc/pam.d/common-password
-print "VERIFY THIS WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+#pwquality.so confs
+sed -i '/pam_pwquality.so/c\password        requisite                       pam_pwquality.so retry=3 minlen=12' /etc/pam.d/common-password
 
-sed -i '/pam_pwquality.so.*retry=3/ s/minlen=[0-9]\+/minlen=12/' /etc/pam.d/common-password
-sed -i '/pam_pwquality.so.*retry=3/ { /minlen=/! s/$/ minlen=12/ }' /etc/pam.d/common-password
+#pam_unix.so confs
+sed -i '/pam_unix.so/c\password        [success=1 default=ignore]      pam_unix.so obscure sha512 shadow rounds=100000 remember=24' /etc/pam.d/common-password
 
 #logon attempt delay
 echo 'auth     required     pam_faildelay.so     delay=4000000' | sudo tee -a /etc/pam.d/common-auth
