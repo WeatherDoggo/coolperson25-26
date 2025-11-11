@@ -105,8 +105,9 @@ appremoval socat
 appremoval sbd
 #nis
 appremoval nis
-#rsh-client
+#rsh (remote shell)
 appremoval rsh-client
+appremoval rsh-server
 #talk
 appremoval talk
 #ldap
