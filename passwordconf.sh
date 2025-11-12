@@ -24,6 +24,7 @@ cp ./importfiles/faillock_notify /usr/share/pam-configs/faillock_notify
 
 #No null passwords/common-auth
 sed -i 's/nullok//g' /etc/pam.d/common-auth
+sed -i 's/nullok//g' /etc/pam.d/common-password
 print "Null passwords disabled."
 
 grep -q '^\s*auth\s+sufficient\s+pam_faillock.so\s+authsucc\s*$' /etc/pam.d/common-auth || \
