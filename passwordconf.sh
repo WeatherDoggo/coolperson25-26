@@ -40,6 +40,10 @@ sed -i '/pam_pwquality.so/c\password        requisite                       pam_
 
 #pam_unix.so confs
 sed -i '/pam_unix.so/c\password        [success=1 default=ignore]      pam_unix.so obscure use_authok try_first_pass yescrypt sha512 shadow rounds=100000 remember=24' /etc/pam.d/common-password
+sed -i '/Password:/{
+    n
+    s/$/ sha512 shadow rounds=100000 remember=24/
+}' /usr/share/pam-configs/unix
 
 #logon attempt delay
 echo 'auth     required     pam_faildelay.so     delay=4000000' | sudo tee -a /etc/pam.d/common-auth
