@@ -9,7 +9,7 @@ read USERNAME
 #OS-Specific Changed
 #if [[ $OS == ubuntu ]]; then
 #Automatic Updates
-
+#change smth in /etc/apt/apt.conf.d/ (50unattended-upgrades?)
 #else #Mint 21
 #	print "DO THE AUTOMATIC UPDATES MANUALLY!!!"
 #fi
