@@ -14,9 +14,8 @@ then
 	chown root:root /etc/vsftpd.conf >> $LOG
 	chmod 600 /etc/vsftpd.conf >> $LOG
 	print "vsftpd.conf configured."
-	
-	ufw allow vsftpd
-	print "UFW configured."
+
+	#ufw config?
 
 	systemctl enable vsftpd.service >> $LOG
 	systemctl start vsftpd.service >> $LOG
