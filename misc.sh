@@ -52,7 +52,7 @@ print "Root crontab scheduled jobs removed with crontab -r."
 cp /etc/sudoers ./backups/sudoers
 cp /etc/sudoers.d ./backups/sudoers.d
 chmod 777 ./backups/sudoers
-chmod 777 ./backups/sudoers.d
+#chmod 777 ./backups/sudoers.d
 print "sudoers & sudoers.d backed up."
 
 # Remove LD_PRELOAD keeps from sudoers and fragments
