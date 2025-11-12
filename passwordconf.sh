@@ -16,6 +16,8 @@ print "faillock.conf configured."
 #pwquality.conf
 cp ./importfiles/pwquality.conf /etc/security/pwquality.conf
 print "pwquality.conf configured."
+sed -i '/pam_pwquality\.so/ s/$/ minlen=12/' /usr/share/pam-configs/pwquality
+print "minlen added to pwquality pam-configs."
 
 print "Deploying PAM config fragments for faillock..."
 rm -f /usr/share/pam-configs/faillock /usr/share/pam-configs/faillock_notify
