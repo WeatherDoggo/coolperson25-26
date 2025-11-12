@@ -167,7 +167,7 @@ announce "RUN LONGSCANS.SH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 apt-get autoclean -y -qq >> $LOG
 apt-get clean -y -qq >> $LOG
 apt-get autoremove -y -qq >> $LOG
-sysctl --system
+sysctl --system >> $LOG
 announce "Unnecessary packages removed."
 announce "-------SCRIPT COMPLETE :3-------"
 
