@@ -29,7 +29,7 @@ print "instances of nologin removed from /etc/shells."
 
 #Disable Ctrl+Alt+Delete Reboot
 systemctl disable ctrl-alt-del.target
-systemctl mash ctrl-alt-del.target
+systemctl mask ctrl-alt-del.target
 systemctl daemon-reload
 print "Ctrl+Alt+Delete reboot disabled."
 
