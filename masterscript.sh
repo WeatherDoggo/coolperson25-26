@@ -105,6 +105,10 @@ announce "Running logs.sh..."
 source ./logs/logs.sh
 announce "logs.sh done."
 
+announce "Running aide.sh..."
+source ./aide.sh
+announce "aide.sh done."
+
 #Conditional configurations
 announce "Conditional configurations:"
 
