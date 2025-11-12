@@ -41,7 +41,7 @@ sed -i '/pam_unix.so/c\password        [success=1 default=ignore]      pam_unix.
 
 #logon attempt delay
 echo 'auth     required     pam_faildelay.so     delay=4000000' | sudo tee -a /etc/pam.d/common-auth
-print "VERIFY THIS WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+print "VERIFY THIS WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
 #login.defs
 cp ./importfiles/login.defs /etc/login.defs
