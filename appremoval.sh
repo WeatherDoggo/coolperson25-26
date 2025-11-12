@@ -75,7 +75,6 @@ print "remove tftpd?????????"
 
 #appremoval burpsuite (broken)
 appremoval reaver
-appremoval wash
 appremoval mdk3
 appremoval mdk4
 appremoval proxychains
