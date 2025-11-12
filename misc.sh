@@ -50,7 +50,7 @@ print "Root crontab scheduled jobs removed with crontab -r."
 
 #Visudo
 cp /etc/sudoers ./backups/sudoers
-cp /etc/sudoers.d ./backups/sudoers.d
+cp -a /etc/sudoers.d ./backups/sudoers.d
 chmod 777 ./backups/sudoers
 #chmod 777 ./backups/sudoers.d
 print "sudoers & sudoers.d backed up."
