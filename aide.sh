@@ -7,4 +7,6 @@ function print() {
 apt-get install aide -y -qq >> $LOG
 cp /etc/aide/aide.conf ./backups/aide.conf
 cp ./importfiles/aide.conf /etc/aide/aide.conf
+sed -i '/^SILENTREPORTS=/d' /etc/default/aide
+echo 'SILENTREPORTS=no' | sudo tee -a /etc/default/aide
 aideinit
