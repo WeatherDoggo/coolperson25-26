@@ -102,7 +102,7 @@ source ./apparmor.sh
 announce "apparmor.sh done."
 
 announce "Running logs.sh..."
-source ./logs/logs.sh
+source ./logs.sh
 announce "logs.sh done."
 
 #announce "Running aide.sh..."
