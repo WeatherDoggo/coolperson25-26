@@ -18,9 +18,8 @@ backup /etc/pam.d/common-auth
 backup /etc/security/faillock.conf
 backup /etc/security/pwquality.conf
 backup /etc/sysctl.conf
-backup /etc/audit/auditd.conf
 backup /etc/security/limits.conf
-if "$OS" == "mint"; then
+if [[ "$OS" == "mint" ]]; then
   backup /etclinuxmint/mintupdate.conf
 elif [[ $OS == "ubuntu" ]]; then
   backup /etc/gdm/custom.conf
