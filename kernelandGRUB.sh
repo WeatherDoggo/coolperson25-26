@@ -4,8 +4,6 @@ function print() {
   echo -e "$1" | sudo tee -a "$LOG" 
 }
 
-print "In /etc/grub.d/40_custom, set check_signatures=enforce"
-
 #enable Kernel ExecShield
 sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT=/{
   /exec-shield=1/! s/"$/ exec-shield=1"/
