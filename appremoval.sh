@@ -71,6 +71,8 @@ appremoval openvpn
 appremoval filezilla
 appremoval bluetooth
 appremoval bluez*
+appremoval zangband
+appremoval amule
 print "remove tftpd?????????"
 
 #appremoval burpsuite (broken)
