@@ -18,6 +18,8 @@ echo 'APT::Periodic::Unattended-Upgrade "1";' | sudo tee -a /etc/apt/apt.conf.d/
 #change smth in /etc/apt/apt.conf.d/ (50unattended-upgrades?)
 else #Mint 21
 	print "DO THE AUTOMATIC UPDATES MANUALLY!!!"
+	sudo deluser --remove-home guest
+	print "Guest account removed (I think)."
 fi
 
 #sysctl.conf
