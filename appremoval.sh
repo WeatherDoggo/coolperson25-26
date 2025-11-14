@@ -111,6 +111,14 @@ appremoval ldap-utils
 appremoval apport
 #Metasploit (broken)
 
+#telnet
+systemctl stop telnet.socket >> $LOG 2>>$LOG
+systemctl stop telnet.service >> $LOG 2>>$LOG
+apt-get purge *telnet* -y -qq >> $LOG
+print "telnet removed."
+ufw deny 23 >> $LOG
+print "port 23 closed."
+
 #Games
 appremoval pvpgn
 apt-get purge aisleriot gnome-mahjongg gnome-mines gnome-sudoku -y -qq >> $LOG
