@@ -156,3 +156,6 @@ useradd -D -f 30 >> $LOG
 #Lock root account
 passwd -l root >> $LOG
 print "Root account locked."
+
+echo "TMOUT=600" | sudo tee -a /etc/profile
+print "Idle users will be logged out."
