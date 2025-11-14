@@ -90,8 +90,7 @@ appremoval strace
 appremoval gdb
 appremoval radare2
 appremoval hashcat
-
-
+appremoval lprng
 appremoval netcat
 appremoval netcat-openbsd
 appremoval netcat-traditional
