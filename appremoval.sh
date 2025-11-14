@@ -71,7 +71,6 @@ appremoval openvpn
 appremoval filezilla
 appremoval bluetooth
 appremoval bluez*
-appremoval zangband
 appremoval amule
 print "remove tftpd?????????"
 
@@ -115,5 +114,6 @@ appremoval apport
 #Games
 appremoval pvpgn
 apt-get purge aisleriot gnome-mahjongg gnome-mines gnome-sudoku -y -qq >> $LOG
+appremoval zangband
 
 print "Common servers, hacking tools, games, and more removed."
