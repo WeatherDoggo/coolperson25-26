@@ -16,4 +16,9 @@ sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT=\"\(.*\)\"/GRUB_CMDLINE_LINUX_DEFAULT=\"\1 
 cp ./importfiles/limits.conf /etc/security/limits.conf
 print "Core dumps disabled and limit of 2000 processes set with limits.conf."
 
+#Kernel Module Blacklisting
+echo "blacklist usb-storage" | sudo tee /etc/modprobe.d/usb-storage.conf
+echo "blacklist cramfs" | sudo tee /etc/modprobe.d/cramfs.conf
+sudo update-initramfs -u
+
 update-grub
