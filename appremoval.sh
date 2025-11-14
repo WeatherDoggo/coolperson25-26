@@ -97,17 +97,19 @@ appremoval netcat-traditional
 appremoval ncat
 appremoval socat
 appremoval sbd
+appremoval rlogin
 #nis
 appremoval nis
 #rsh (remote shell)
-appremoval rsh-client
-appremoval rsh-server
+appremoval rsh*
 #talk
 appremoval talk
 #ldap
 appremoval ldap-utils
 #apport (collects sensitive data)
 appremoval apport
+#FTP
+appremoval ftp
 #Metasploit (broken)
 
 #telnet
