@@ -54,7 +54,6 @@ function isitneeded() {
   fi
 }
 isitneeded ssh
-isitneeded telnet
 isitneeded MySQL
 isitneeded apache2
 isitneeded nginx
@@ -115,10 +114,6 @@ announce "Conditional configurations:"
 announce "Running ssh.sh..."
 source ./conditional/ssh.sh
 announce "ssh.sh done."
-
-announce "Running telnet.sh..."
-source ./conditional/telnet.sh
-announce "telnet.sh done."
 
 announce "Running MySQL.sh..."
 source ./conditional/MySQL.sh
