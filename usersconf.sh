@@ -163,5 +163,5 @@ print "Idle users will be logged out."
 if [[ $OS == ubuntu ]]; then
 else #Mint 21
 	sudo deluser --remove-home guest
-	print "Guest account removed (I think)."
+	print "Guest account removed (I think, yet to be tested)."
 fi
