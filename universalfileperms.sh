@@ -26,18 +26,18 @@ print "pwquality.conf permissions configured."
 
 #Cron
 chown root:root /etc/crontab
-chmod og-rwx /etc/crontab
+chmod 640 /etc/crontab
 chown root:root /etc/crontab
 chown root:root /etc/cron.hourly/
-chmod og-rwx /etc/cron.hourly/
+chmod 640 /etc/cron.hourly/
 chown root:root /etc/cron.daily/
-chmod og-rwx /etc/cron.daily/
+chmod 640 /etc/cron.daily/
 chown root:root /etc/cron.weekly/
-chmod og-rwx /etc/cron.weekly/
+chmod 640 /etc/cron.weekly/
 chown root:root /etc/cron.monthly/
-chmod og-rwx /etc/cron.monthly/
+chmod 640 /etc/cron.monthly/
 chown root:root /etc/cron.d/
-chmod og-rwx /etc/cron.d/
+chmod 640 /etc/cron.d/
 print "cron file permissions configured."
 
 touch /etc/cron.allow
