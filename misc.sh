@@ -76,10 +76,6 @@ else
   cp -a ./backups/sudoers.d /etc/sudoers.d
 fi
 
-#exit interactive command shell user sessions after 15 minutes of inactivity
-su -c "echo TMOUT=900 >> /etc/profile.d/99-terminal_tmout.sh" 
-export TMOUT=900
-
 #Remove prohibited mp3 files
 print "Can users have media files?"
 read mediastatus
