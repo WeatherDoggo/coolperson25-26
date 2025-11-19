@@ -22,19 +22,24 @@ function appremoval () {
 appremoval autofs
 systemctl stop avahi-daemon.socket >> $LOG 2>>$LOG
 appremoval avahi-daemon
+#DHCP server
 systemctl stop isc-dhcp-server6.service >> $LOG 2>>$LOG
 appremoval isc-dhcp-server
-appremoval bind9
+#DNS server
+systemctl stop named.service
+apt-get remove bind9 --auto-remove -y -qq "$1" >> $LOG
 appremoval dnsmasq
+#ldap server
 appremoval slapd
+#Message access server services
 systemctl stop dovecot.socket dovecot.service >> $LOG 2>>$LOG
 apt-get purge dovecot-imapd dovecot-pop3d -y -qq >> $LOG 2>>$LOG
-#print "message access server services removed."
+#Network file services
 appremoval nfs*
-#appremoval ypserv
-#appremoval rpcbind
+appremoval ypserv
+appremoval rpcbind
 appremoval cups
-#appremoval rsync
+appremoval rsync
 appremoval snmpd
 appremoval tftpd-hpa
 appremoval xinetd
