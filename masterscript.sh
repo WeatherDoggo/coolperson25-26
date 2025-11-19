@@ -60,7 +60,6 @@ isitneeded nginx
 isitneeded squid
 isitneeded samba
 isitneeded vsftpd
-isitneeded ftp
 #isitneeded(docker) SPECIFIFY WHAT DOCKER IS USED WITH SO IT ISNT DISABLED BY ACCIDENT!
 announce "Critical services marked."
 
