@@ -43,12 +43,14 @@ appremoval rsync
 appremoval snmpd
 appremoval tftpd-hpa
 appremoval xinetd
+appremoval xserver-common
 appremoval lighttpd
 appremoval nikto
 appremoval nmap
 appremoval tcpdump
 appremoval wireshark
 appremoval zenmap
+appremoval snmp
 appremoval snmpd
 appremoval inetutils-inetd
 appremoval john
@@ -77,7 +79,7 @@ appremoval filezilla
 appremoval bluetooth
 appremoval bluez*
 appremoval amule
-print "remove tftpd?????????"
+appremoval tftpd-hpa
 
 #appremoval burpsuite (broken)
 appremoval reaver
