@@ -13,16 +13,25 @@ print "libpam-runtime, libpam-pwquality, and libpam-modules installed."
 #faillock.conf
 cp ./importfiles/faillock.conf /etc/security/faillock.conf
 print "faillock.conf configured."
+
 #pwquality.conf
 cp ./importfiles/pwquality.conf /etc/security/pwquality.conf
 print "pwquality.conf configured."
 sed -i '/pam_pwquality\.so/ s/$/ minlen=15/' /usr/share/pam-configs/pwquality
 print "minlen added to pwquality pam-configs."
 
-print "Deploying PAM config fragments for faillock..."
+print "Setting up faillock, pwhistory, and faillock_notify..."
 rm -f /usr/share/pam-configs/faillock /usr/share/pam-configs/faillock_notify
 cp ./importfiles/faillock /usr/share/pam-configs/faillock
 cp ./importfiles/faillock_notify /usr/share/pam-configs/faillock_notify
+rm -f /usr/share/pam-configs/pwhistory
+cp ./importfiles/pwhistory /usr/share/pam-configs/pwhistory
+
+pam-auth-update --enable unix
+pam-auth-update --enable faillock
+pam-auth-update --enable faillock_notify
+pam-auth-update --enable pwquality
+pam-auth-update --enable pwhistory
 
 #No null passwords/common-auth
 sed -i 's/nullok//g' /usr/share/pam-configs/unix
