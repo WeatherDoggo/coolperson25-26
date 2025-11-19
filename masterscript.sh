@@ -138,10 +138,6 @@ announce "Running vsftpd.sh..."
 source ./conditional/vsftpd.sh
 announce "vsftpd.sh done."
 
-announce "Running ftp.sh..."
-source ./conditional/ftp.sh
-announce "ftp.sh done."
-
 announce "Conditional configurations complete."
 
 announce "Running kernelandGRUB.sh..."
