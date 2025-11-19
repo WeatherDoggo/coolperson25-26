@@ -26,8 +26,7 @@ print "pwquality.conf permissions configured."
 
 #Cron
 chown root:root /etc/crontab
-chmod 640 /etc/crontab
-chown root:root /etc/crontab
+chmod og-rwx /etc/crontab
 chown root:root /etc/cron.hourly/
 chmod 640 /etc/cron.hourly/
 chown root:root /etc/cron.daily/
