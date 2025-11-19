@@ -110,6 +110,7 @@ appremoval ldap-utils
 appremoval apport
 #FTP
 appremoval ftp
+appremoval tnftp
 #Metasploit (broken)
 
 #telnet
