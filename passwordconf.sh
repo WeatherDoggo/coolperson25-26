@@ -48,7 +48,7 @@ grep -q '^\s*auth\s+\[default=die\]\s+pam_faillock.so\s+authfail\s*$' /etc/pam.d
   echo 'auth [default=die] pam_faillock.so authfail' | sudo tee -a /etc/pam.d/common-auth
 
 #pwquality.so confs
-sed -i '/pam_pwquality.so/c\password        requisite                       pam_pwquality.so retry=3 minlen=15' /etc/pam.d/common-password
+sed -i '/pam_pwquality.so/c\password        requisite                       pam_pwquality.so retry=3 minlen=14' /etc/pam.d/common-password
 
 #pam_unix.so confs
 sed -i '/pam_unix.so/c\password        [success=1 default=ignore]      pam_unix.so obscure use_authok try_first_pass yescrypt sha512 shadow rounds=100000 remember=24' /etc/pam.d/common-password
