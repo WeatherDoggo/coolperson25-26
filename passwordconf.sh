@@ -39,6 +39,9 @@ sed -i 's/nullok//g' /usr/share/pam-configs/faillock_notify
 sed -i 's/nullok//g' /usr/share/pam-configs/faillock
 sed -i 's/nullok//g' /etc/pam.d/common-auth
 sed -i 's/nullok//g' /etc/pam.d/common-password
+sed -i 's/nullok//g' /etc/pam.d/common-session
+sed -i 's/nullok//g' /etc/pam.d/common-session-noninteractive
+sed -i 's/nullok//g' /etc/pam.d/common-account
 print "Null passwords disabled."
 
 grep -q '^\s*auth\s+sufficient\s+pam_faillock.so\s+authsucc\s*$' /etc/pam.d/common-auth || \
