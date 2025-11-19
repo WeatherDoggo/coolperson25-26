@@ -27,12 +27,6 @@ cp ./importfiles/faillock_notify /usr/share/pam-configs/faillock_notify
 rm -f /usr/share/pam-configs/pwhistory
 cp ./importfiles/pwhistory /usr/share/pam-configs/pwhistory
 
-pam-auth-update --enable unix
-pam-auth-update --enable faillock
-pam-auth-update --enable faillock_notify
-pam-auth-update --enable pwquality
-pam-auth-update --enable pwhistory
-
 #No null passwords/common-auth
 sed -i 's/nullok//g' /usr/share/pam-configs/unix
 sed -i 's/nullok//g' /usr/share/pam-configs/faillock_notify
@@ -41,6 +35,7 @@ sed -i 's/nullok//g' /etc/pam.d/common-auth
 sed -i 's/nullok//g' /etc/pam.d/common-password
 sed -i 's/nullok//g' /etc/pam.d/common-session
 sed -i 's/nullok//g' /etc/pam.d/common-session-noninteractive
+sed -i 's/nullok//g' /etc/pam.d/common-account
 sed -i 's/nullok//g' /etc/pam.d/common-account
 print "Null passwords disabled."
 
@@ -54,7 +49,7 @@ grep -q '^\s*auth\s+\[default=die\]\s+pam_faillock.so\s+authfail\s*$' /etc/pam.d
 sed -i '/pam_pwquality.so/c\password        requisite                       pam_pwquality.so retry=3 minlen=14' /etc/pam.d/common-password
 
 #pam_unix.so confs
-sed -i '/pam_unix.so/c\password        [success=1 default=ignore]      pam_unix.so obscure use_authok try_first_pass yescrypt sha512 shadow rounds=100000 remember=24' /etc/pam.d/common-password
+sed -i '/pam_unix.so/c\password        [success=1 default=ignore]      pam_unix.so obscure use_authok try_first_pass yescrypt sha512 shadow rounds=100000' /etc/pam.d/common-password
 sed -i '/Password:/{
     n
     s/$/ sha512 shadow rounds=100000 remember=24/
@@ -67,5 +62,10 @@ echo 'auth     required     pam_faildelay.so     delay=4000000' | sudo tee -a /e
 cp ./importfiles/login.defs /etc/login.defs
 print "login.defs configured."
 
+pam-auth-update --enable unix
+pam-auth-update --enable faillock
+pam-auth-update --enable faillock_notify
+pam-auth-update --enable pwquality
+pam-auth-update --enable pwhistory
 pam-auth-update --force --package >> $LOG
 print "PAM modules updated."
