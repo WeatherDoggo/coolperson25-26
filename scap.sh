@@ -5,14 +5,12 @@ function print() {
 }
 
 #Installing OpenSCAP-Workbench
-apt-get install pkg-config cmake g++ git libopenscap-dev qtbase5-dev qt5-qmake libqt5xmlpatterns5-dev xmllint -y -qq >> $LOG
+apt-get install pkg-config cmake g++ git libopenscap-dev qtbase5-dev qt5-qmake libqt5xmlpatterns5-dev xmllint asciidoc -y -qq >> $LOG
 git clone https://github.com/OpenSCAP/scap-workbench.git
 cd scap-workbench
 sudo rm -rf build
 mkdir build
 cd build
-cmake ../
-touch ~/scap-workbench/doc/user_manual.html
 cmake ../
 make
 make install
