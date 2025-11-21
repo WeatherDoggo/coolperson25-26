@@ -152,6 +152,10 @@ announce "Running postscripttasks.sh..."
 source ./postscripttasks.sh
 announce "postscipttasks.sh done."
 
+announce "Running scap.sh..."
+source ./scap.sh
+announce "scap.sh done."
+
 announce "RUN LONGSCANS.SH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
 apt-get autoclean -y -qq >> $LOG
