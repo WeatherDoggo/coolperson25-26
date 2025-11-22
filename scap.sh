@@ -24,4 +24,4 @@ cmake ../
 make -j4
 
 
-print "scap-workbench should be ready for use. Use the ds file within ~/content/build for ubuntu 24."
+print "scap-workbench should be ready for use. Use the ds file within ~/content/build."
