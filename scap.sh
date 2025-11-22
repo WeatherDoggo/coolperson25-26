@@ -17,6 +17,7 @@ make
 make install
 
 #check files
+apt-get install python3-jinja2 -y | sudo tee -a $LOG
 git clone -b master https://github.com/ComplianceAsCode/content.git
 cd content/build/
 cmake ../
