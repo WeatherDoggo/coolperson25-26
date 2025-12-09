@@ -40,5 +40,5 @@ print "Firewall enabled, port 1337 closed, and loopback traffic is configured."
     echo -e "\n - Audit Passed -\n- All open ports have a rule in UFW\n"
   fi
 }
-print "For each port in the audit that does not have a firewall rule, evaluate the service listening port and add a rule accepting or denying inbound connections (ex. ufw allow in <port>/<tcp or udp protocol>)
+print "For each port in the audit that does not have a firewall rule, evaluate the service listening port and add a rule accepting or denying inbound connections (ex. ufw allow in <port>/<tcp or udp protocol>):"
 read portconfirm
