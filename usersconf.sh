@@ -161,6 +161,7 @@ echo "TMOUT=600" | sudo tee -a /etc/profile
 print "Idle users will be logged out."
 
 if [[ $OS == ubuntu ]]; then
+	echo ""
 else #Mint 21
 	sudo deluser --remove-home guest
 	print "Guest account removed (I think, yet to be tested)."
