@@ -17,6 +17,7 @@ echo 'APT::Periodic::AutocleanInterval "7";' | sudo tee -a /etc/apt/apt.conf.d/1
 echo 'APT::Periodic::Unattended-Upgrade "1";' | sudo tee -a /etc/apt/apt.conf.d/10periodic
 #change smth in /etc/apt/apt.conf.d/ (50unattended-upgrades?)
 else #Mint 21
+echo ""
 fi
 
 #sysctl.conf
