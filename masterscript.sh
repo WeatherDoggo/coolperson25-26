@@ -144,10 +144,6 @@ announce "Running kernelandGRUB.sh..."
 source ./kernelandGRUB.sh
 announce "kernelandGRUB.sh done."
 
-announce "Running manualscans2.sh..."
-source ./manualscans2.sh
-announce "manualscans2.sh done."
-
 announce "Running postscripttasks.sh..."
 source ./postscripttasks.sh
 announce "postscipttasks.sh done."
