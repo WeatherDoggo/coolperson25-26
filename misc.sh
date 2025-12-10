@@ -3,22 +3,6 @@ LOG=./logs/main.log
 function print() {
   echo -e "$1" | sudo tee -a "$LOG" 
 }
-print "What is your username?"
-read USERNAME
-
-#OS-Specific Changed
-if [[ $OS == ubuntu ]]; then
-#Automatic Updates
-DEBIAN_FRONTEND=noninteractive sudo apt-get install unattended-upgrades "-y" "-qq" >> $LOG
-	# Enable automatic upgrades and set update frequency (adjust per policy)
-echo 'APT::Periodic::Update-Package-Lists "1";' | sudo tee /etc/apt/apt.conf.d/10periodic
-echo 'APT::Periodic::Download-Upgradeable-Packages "1";' | sudo tee -a /etc/apt/apt.conf.d/10periodic
-echo 'APT::Periodic::AutocleanInterval "7";' | sudo tee -a /etc/apt/apt.conf.d/10periodic
-echo 'APT::Periodic::Unattended-Upgrade "1";' | sudo tee -a /etc/apt/apt.conf.d/10periodic
-#change smth in /etc/apt/apt.conf.d/ (50unattended-upgrades?)
-else #Mint 21
-echo ""
-fi
 
 #sysctl.conf
 cp ./importfiles/sysctl.conf /etc/sysctl.conf
