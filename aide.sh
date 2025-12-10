@@ -5,7 +5,7 @@ function print() {
 }
 
 apt-get install aide -y -qq >> $LOG
-aide --init >> $LOG
+aideinit >> $LOG
 mv /var/lib/aide/aide.db.new /var/lib/aide/aide.db
 #Edit /etc/aide.conf
 aide --check
