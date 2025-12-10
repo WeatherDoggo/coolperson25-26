@@ -7,14 +7,6 @@ function print() {
 if [[ $OS == "mint" ]]; then
   print "Configure lightdm!"
 elif [[ $OS == "ubuntu" ]]; then
-  #mkdir -p /etc/dconf/
-  #echo -e "1. Add/check that /etc/dconf/profile/ contains the following:\nuser-db:user\nsystem-db:{NAME_OF_DCONF_DATABASE}\n2. Create the directory /etc/dconf/db/local.d/ if it doesn't already exist\n 3. Create the key file /etc/dconf/db/local.d/00-screensaver to provide
-#information for the local database; ex file in importfiles\nDid this need to be done?"
-  #read GDMdatabase
-  
-  #print "you must logout and restart computer for changes to take effect."
-  
-  cp importfiles/custom.conf /etc/gdm/custom.conf
   cp importfiles/custom.conf /etc/gdm3/custom.conf
 
   #Screensaver
