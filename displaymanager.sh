@@ -9,6 +9,7 @@ if [[ $OS == "mint" ]]; then
 elif [[ $OS == "ubuntu" ]]; then
   cp importfiles/custom.conf /etc/gdm3/custom.conf
   cp importfiles/greeter.dconf-defaults /etc/gdm3/greeter.dconf-defaults
+  print "userlist and restart button hidden on login."
 
   #Screensaver
   #gsettings set org.gnome.desktop.screensaver lock-delay 5
