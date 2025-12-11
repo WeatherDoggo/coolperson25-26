@@ -59,6 +59,10 @@ locate *.zip > ./scans/zippaths.txt
 chmod 777 ./scans/zippaths.txt
 print ".zip file paths listed in zippaths.txt."
 
+mawk -F: '$3 < 1000 || $3 > 65533 {print $1, $3}' /etc/passwd > ./scans/strangeusers.txt
+chmod 777 ./scans/strangeusers.txt
+print "Strange UIDs listed in strangeusers.txt"
+
 #Confirmation before continuting with other scripts
 print "Have you reviewed the scans?"
 read confirm
