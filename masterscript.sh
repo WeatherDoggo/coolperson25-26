@@ -144,9 +144,8 @@ announce "Running kernelandGRUB.sh..."
 source ./kernelandGRUB.sh
 announce "kernelandGRUB.sh done."
 
-announce "Running postscripttasks.sh..."
-source ./postscripttasks.sh
-announce "postscipttasks.sh done."
+chmod 666 ./scans
+chmod 666 ./logs/main.log
 
 announce "Running scap.sh..."
 source ./scap.sh
