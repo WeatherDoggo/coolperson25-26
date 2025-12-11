@@ -20,10 +20,11 @@ make install
 cd ../
 cd ../
 apt-get install python3-jinja2 -y | sudo tee -a $LOG
-git clone -b master https://github.com/ComplianceAsCode/content.git
-cd content/build/
-cmake ../
-make -j4
+cp ./importfiles/
+#git clone -b master https://github.com/ComplianceAsCode/content.git
+#cd content/build/
+#cmake ../
+#make -j4
 
 
 print "scap-workbench should be ready for use. Use the ds file within ~/content/build."
