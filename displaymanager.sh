@@ -8,6 +8,7 @@ if [[ $OS == "mint" ]]; then
   print "Configure lightdm!"
 elif [[ $OS == "ubuntu" ]]; then
   cp importfiles/custom.conf /etc/gdm3/custom.conf
+  cp importfiles/greeter.dconf-defaults /etc/gdm3/greeter.dconf-defaults
 
   #Screensaver
   #gsettings set org.gnome.desktop.screensaver lock-delay 5
