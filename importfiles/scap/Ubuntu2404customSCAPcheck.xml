@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xccdf:Tailoring xmlns:xccdf="http://checklists.nist.gov/xccdf/1.2" id="xccdf_scap-workbench_tailoring_default">
+  <xccdf:benchmark href="/tmp/scap-workbench-BifONn/ssg-ubuntu2404-ds.xml"/>
+  <xccdf:version time="2025-12-11T18:47:36">1</xccdf:version>
+  <xccdf:Profile id="xccdf_patriot.cyber_profile_UBUNTU2404_CYBERPATRIOT" extends="xccdf_org.ssgproject.content_profile_cis_level1_workstation">
+    <xccdf:title xmlns:xhtml="http://www.w3.org/1999/xhtml" xml:lang="en-US" override="true">CIS Ubuntu Linux 24.04 LTS Benchmark CYBERPATRIOT</xccdf:title>
+    <xccdf:description xmlns:xhtml="http://www.w3.org/1999/xhtml" xml:lang="en-US" override="true">This profile defines a baseline that aligns to the "Level 1 - Workstation"
+configuration from the Center for Internet Security® 
+Ubuntu Linux 24.04 LTS Benchmark™, v1.0.0, released 2024-08-26.
+
+This profile includes Center for Internet Security®
+Ubuntu Linux 24.04 LTS Benchmark™ content.</xccdf:description>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_telnetd_removed" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_ntp" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_service_chronyd_enabled" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_service_chronyd_disabled" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_chrony_installed" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_chronyd_sync_clock" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_timesyncd_removed" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_ntp_removed" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_timesyncd_installed" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_chronyd_run_as_chrony_user" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_ntp_single_service_active" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_chronyd_server_directive" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_service_timesyncd_enabled" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_service_timesyncd_disabled" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_chronyd_or_ntpd_set_maxpoll" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_service_timesyncd_configured" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_chronyd_configure_pool_and_server" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_chronyd_specify_remote_server" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_printing" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_cups_removed" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_service_cups_disabled" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_sshd_enable_pubkey_auth" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_accounts_passwords_pam_faildelay_delay" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_accounts_passwords_pam_faillock_silent" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_accounts_passwords_pam_faillock_audit" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_accounts_passwords_pam_faillock_root_unlock_time" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_set_password_hashing_algorithm_auth_stig" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_prevent_direct_root_logins" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_accounts_password_set_min_life_existing" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_accounts_minimum_age_login_defs" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_no_duplicate_uids" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_no_empty_passwords" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_no_nologin_in_shells" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_disable_ctrlaltdel_reboot" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_accounts-physical" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_apparmor_configured" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_all_apparmor_profiles_enforced" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_sysctl_kernel_dmesg_restrict" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_permissions_within_important_dirs" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_root_permissions_syslibrary_files" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_file_groupownership_system_commands_dirs" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_dir_groupownership_binary_dirs" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_file_ownership_binary_dirs" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_file_permissions_binary_dirs" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_dir_ownership_binary_dirs" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_dir_permissions_binary_dirs" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_file_ownership_library_dirs" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_file_permissions_library_dirs" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_dir_ownership_library_dirs" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_dir_group_ownership_library_dirs" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_file_owner_var_log" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_file_permissions_var_log" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_disk_partitioning" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_partition_for_var_tmp" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_partition_for_var_log_audit" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_partition_for_var_log" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_partition_for_var" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_partition_for_tmp" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_partition_for_home" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_partition_for_dev_shm" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_encrypt_partitions" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_dconf_gnome_disable_ctrlaltdel_reboot" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_gnome_system_settings" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_aide_periodic_checking_systemd_timer" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_network-uncommon" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_kernel_module_tipc_disabled" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_kernel_module_sctp_disabled" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_kernel_module_rds_disabled" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_kernel_module_dccp_disabled" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_package_ufw_removed" selected="false"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_ufw_only_required_services" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_ufw_rate_limit" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_service_bluetooth_disabled" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_wireless_software" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_group_network-wireless" selected="true"/>
+    <xccdf:select idref="xccdf_org.ssgproject.content_rule_wireless_disable_interfaces" selected="true"/>
+  </xccdf:Profile>
+</xccdf:Tailoring>
