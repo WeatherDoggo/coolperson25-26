@@ -19,8 +19,9 @@ make install
 #check files
 cd ../
 cd ../
-apt-get install python3-jinja2 -y | sudo tee -a $LOG
-cp ./importfiles/
+#apt-get install python3-jinja2 -y | sudo tee -a $LOG
+mkdir ./scapfiles
+cp -r ./importfiles/scap ./scapfiles
 #git clone -b master https://github.com/ComplianceAsCode/content.git
 #cd content/build/
 #cmake ../
