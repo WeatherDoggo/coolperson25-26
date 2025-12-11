@@ -62,3 +62,7 @@ print "crontab jobs backed up in scans/cronjobs.txt."
 locate *.zip > ./standalonescans/zippaths.txt
 chmod 777 ./standalonescans/zippaths.txt
 print ".zip file paths listed in zippaths.txt."
+
+mawk -F: '$3 < 1000 || $3 > 65533 {print $1, $3}' /etc/passwd > ./standalonescans/strangeusers.txt
+chmod 777 ./standalonescans/strangeusers.txt
+print "Strange UIDs listed in strangeusers.txt"
