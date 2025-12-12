@@ -62,12 +62,12 @@ sed -i '/Password:/{
 }' /usr/share/pam-configs/unix
 
 #logon attempt delay
-echo 'auth     required     pam_faildelay.so     delay=4000000' | sudo tee -a /etc/pam.d/common-auth
+#echo 'auth     required     pam_faildelay.so     delay=4000000' | sudo tee -a /etc/pam.d/common-auth
 
 #login.defs
 cp ./importfiles/login.defs /etc/login.defs
 print "login.defs configured."
 
-sed -i '/^@include common-auth/i auth optional pam_faildelay.so delay=4000000' /etc/pam.d/sudo
+#sed -i '/^@include common-auth/i auth optional pam_faildelay.so delay=4000000' /etc/pam.d/sudo
 
 print "PAM modules updated."
