@@ -38,6 +38,13 @@ sed -i 's/nullok//g' /etc/pam.d/common-session-noninteractive
 sed -i 's/nullok//g' /etc/pam.d/common-account
 print "Null passwords disabled."
 
+pam-auth-update --enable unix
+pam-auth-update --enable faillock
+pam-auth-update --enable faillock_notify
+pam-auth-update --enable pwquality
+pam-auth-update --enable pwhistory
+pam-auth-update --force --package >> $LOG
+
 grep -q '^\s*auth\s+sufficient\s+pam_faillock.so\s+authsucc\s*$' /etc/pam.d/common-auth || \
   echo 'auth sufficient pam_faillock.so authsucc' | sudo tee -a /etc/pam.d/common-auth
 
@@ -61,10 +68,6 @@ echo 'auth     required     pam_faildelay.so     delay=4000000' | sudo tee -a /e
 cp ./importfiles/login.defs /etc/login.defs
 print "login.defs configured."
 
-pam-auth-update --enable unix
-pam-auth-update --enable faillock
-pam-auth-update --enable faillock_notify
-pam-auth-update --enable pwquality
-pam-auth-update --enable pwhistory
-pam-auth-update --force --package >> $LOG
+sed -i '/^@include common-auth/i auth optional pam_faildelay.so delay=4000000' /etc/pam.d/sudo
+
 print "PAM modules updated."
