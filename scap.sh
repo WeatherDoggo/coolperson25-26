@@ -22,8 +22,8 @@ if [[ $scapquery == "y" || $scapquery == "Y" ]]; then
 fi
 
 #check files
-cd ../
-cd ../
+#cd ../
+#cd ../
 #apt-get install python3-jinja2 -y | sudo tee -a $LOG
 #git clone -b master https://github.com/ComplianceAsCode/content.git
 #cd content/build/
