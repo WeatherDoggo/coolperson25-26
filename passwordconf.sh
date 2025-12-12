@@ -45,11 +45,11 @@ pam-auth-update --enable pwquality
 pam-auth-update --enable pwhistory
 pam-auth-update --force --package >> $LOG
 
-grep -q '^\s*auth\s+sufficient\s+pam_faillock.so\s+authsucc\s*$' /etc/pam.d/common-auth || \
-  echo 'auth sufficient pam_faillock.so authsucc' | sudo tee -a /etc/pam.d/common-auth
+#grep -q '^\s*auth\s+sufficient\s+pam_faillock.so\s+authsucc\s*$' /etc/pam.d/common-auth || \
+#  echo 'auth sufficient pam_faillock.so authsucc' | sudo tee -a /etc/pam.d/common-auth
 
-grep -q '^\s*auth\s+\[default=die\]\s+pam_faillock.so\s+authfail\s*$' /etc/pam.d/common-auth || \
-  echo 'auth [default=die] pam_faillock.so authfail' | sudo tee -a /etc/pam.d/common-auth
+#grep -q '^\s*auth\s+\[default=die\]\s+pam_faillock.so\s+authfail\s*$' /etc/pam.d/common-auth || \
+#  echo 'auth [default=die] pam_faillock.so authfail' | sudo tee -a /etc/pam.d/common-auth
 
 #pwquality.so confs
 sed -i '/pam_pwquality.so/c\password        requisite                       pam_pwquality.so retry=3 minlen=14' /etc/pam.d/common-password
