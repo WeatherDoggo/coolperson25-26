@@ -3,15 +3,15 @@ LOG=./logs/main.log
 function print() {
   echo -e "$1" | sudo tee -a "$LOG" 
 }
-
-print "HAVE YOU REVISED THE LIST OF SERVICES BEING REMOVED???"
-read removalconfirm
-if [[ "$removalconfirm" == "yes" || "$removalconfirm" == "y" ]]; then
-  print "Removing processes..."
+while true; do
+  print "HAVE YOU REVISED THE LIST OF SERVICES BEING REMOVED???"
+  read removalconfirm
+  if [[ "$removalconfirm" == "yes" || "$removalconfirm" == "y" ]]; then
+    print "Removing processes..."
+    break
   else
-  print "Rerun with proper app list configured."
-  exit
-fi
+    print "Rerun with proper app list configured, or type y."
+  fi
 
 function appremoval () {
   systemctl stop "$1".service >> $LOG 2>>$LOG
