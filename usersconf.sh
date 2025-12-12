@@ -164,5 +164,4 @@ if [[ $OS == ubuntu ]]; then
 	echo ""
 else #Mint 21
 	deluser --remove-home guest
-	print "Guest account removed (I think, yet to be tested)."
 fi
