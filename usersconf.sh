@@ -159,9 +159,3 @@ print "Root account locked."
 
 echo "TMOUT=600" | sudo tee -a /etc/profile
 print "Idle users will be logged out."
-
-if [[ $OS == ubuntu ]]; then
-	echo ""
-else #Mint 21
-	deluser --remove-home guest
-fi
