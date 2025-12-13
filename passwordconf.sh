@@ -21,10 +21,8 @@ sed -i '/pam_pwquality\.so/ s/$/ minlen=15/' /usr/share/pam-configs/pwquality
 print "minlen added to pwquality pam-configs."
 
 print "Setting up faillock, pwhistory, and faillock_notify..."
-rm -f /usr/share/pam-configs/faillock /usr/share/pam-configs/faillock_notify
 cp ./importfiles/faillock /usr/share/pam-configs/faillock
 cp ./importfiles/faillock_notify /usr/share/pam-configs/faillock_notify
-rm -f /usr/share/pam-configs/pwhistory
 cp ./importfiles/pwhistory /usr/share/pam-configs/pwhistory
 
 #No null passwords/common-auth
