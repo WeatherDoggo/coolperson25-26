@@ -24,11 +24,10 @@ print "Setting up faillock, pwhistory, and faillock_notify..."
 cp ./importfiles/faillock /usr/share/pam-configs/faillock
 cp ./importfiles/faillock_notify /usr/share/pam-configs/faillock_notify
 cp ./importfiles/pwhistory /usr/share/pam-configs/pwhistory
+cp ./importfiles/fscrypt /usr/share/pam-configs/fscrypt
+cp ./importfiles/unix /usr/share/pam-configs/unix
 
 #No null passwords/common-auth
-sed -i 's/nullok//g' /usr/share/pam-configs/unix
-sed -i 's/nullok//g' /usr/share/pam-configs/faillock_notify
-sed -i 's/nullok//g' /usr/share/pam-configs/faillock
 sed -i 's/nullok//g' /etc/pam.d/common-auth
 sed -i 's/nullok//g' /etc/pam.d/common-password
 sed -i 's/nullok//g' /etc/pam.d/common-session
