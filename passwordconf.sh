@@ -26,6 +26,7 @@ cp ./importfiles/faillock_notify /usr/share/pam-configs/faillock_notify
 cp ./importfiles/pwhistory /usr/share/pam-configs/pwhistory
 cp ./importfiles/fscrypt /usr/share/pam-configs/fscrypt
 cp ./importfiles/unix /usr/share/pam-configs/unix
+cp ./importfiles/faildelay /usr/share/pam-configs/faildelay
 
 pam-auth-update --enable unix
 pam-auth-update --enable faillock
@@ -33,6 +34,7 @@ pam-auth-update --enable faillock_notify
 pam-auth-update --enable pwquality
 pam-auth-update --enable pwhistory
 pam-auth-update --enable fscrypt
+pam-auth-update --enable faildelay
 pam-auth-update --force --package >> $LOG
 
 #grep -q '^\s*auth\s+sufficient\s+pam_faillock.so\s+authsucc\s*$' /etc/pam.d/common-auth || \
