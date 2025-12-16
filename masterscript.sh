@@ -103,10 +103,6 @@ announce "Running auditing.sh..."
 source ./auditing.sh
 announce "auditing.sh done."
 
-#announce "Running aide.sh..."
-#source ./aide.sh
-#announce "aide.sh done."
-
 #Conditional configurations
 announce "Conditional configurations:"
 
