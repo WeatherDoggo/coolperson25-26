@@ -36,7 +36,7 @@ pam-auth-update --enable pwhistory
 pam-auth-update --enable fscrypt
 pam-auth-update --enable faildelay
 pam-auth-update --disable mkhomedir
-pam-auth-update --force --package >> $LOG
+#pam-auth-update --force --package >> $LOG
 
 #grep -q '^\s*auth\s+sufficient\s+pam_faillock.so\s+authsucc\s*$' /etc/pam.d/common-auth || \
 #  echo 'auth sufficient pam_faillock.so authsucc' | sudo tee -a /etc/pam.d/common-auth
