@@ -147,9 +147,9 @@ announce "kernelandGRUB.sh done."
 chmod 666 ./scans
 chmod 666 ./logs/main.log
 
-announce "Running scap.sh..."
-source ./scap.sh
-announce "scap.sh done."
+#announce "Running scap.sh..."
+#source ./scap.sh
+#announce "scap.sh done."
 
 announce "RUN LONGSCANS.SH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
