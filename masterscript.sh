@@ -149,6 +149,7 @@ chmod 666 ./logs/main.log
 
 announce "RUN LONGSCANS.SH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
+apt-get purge postfix -y -qq >> $LOG
 apt-get autoclean -y -qq >> $LOG
 apt-get clean -y -qq >> $LOG
 apt-get autoremove -y -qq >> $LOG
