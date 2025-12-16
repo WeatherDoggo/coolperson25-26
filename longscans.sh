@@ -28,11 +28,23 @@ else
 fi
 #It does this by comparing file hashes, looking for suspicious modules, and checking system configuration.
 
+print "Do you want to run lynis?"
+read lynisquery
+if [[ "$lynisquery" == "yes" || "$lynisquery" == "y" ]]; then
+  print "Installing lynis..."
+  apt-get install lynis -y -qq >> $LOG
+
+  print "Running a default system scan..."
+  lynis audit system | sudo tee -a $LOG
+else
+  print "lynis skipped."
+fi
+
 print "Do you want to run clamAV?"
 read clamAVinstallquery
 if [[ "$clamAVinstallquery" == "yes" || "$clamAVinstallquery" == "y" ]]; then
     print "Installing ClamAV..."
-    apt-get install clamav clamav-daemon -y -qq
+    apt-get install clamav clamav-daemon -y -qq >> $LOG
 
     print "Updating virus database..."
     systemctl stop clamav-freshclam || true
