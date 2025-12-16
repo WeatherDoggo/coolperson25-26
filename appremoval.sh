@@ -80,6 +80,11 @@ appremoval bluetooth
 appremoval bluez*
 appremoval amule
 appremoval tftpd-hpa
+appremoval hexchat
+appremoval warpinator
+appremoval transmission-gtk
+
+
 
 #appremoval burpsuite (broken)
 appremoval reaver
