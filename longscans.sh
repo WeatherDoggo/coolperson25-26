@@ -40,6 +40,18 @@ else
   print "lynis skipped."
 fi
 
+print "Do you want to run AIDE?"
+read aidequery
+if [[ "$aidequery" == "yes" || "$aidequery" == "y" ]]; then
+  print "Installing AIDE..."
+  apt-get install aide -y -qq >> $LOG
+
+  print "Running aideinit..."
+  aideinit >> $LOG
+else
+  print "AIDE skipped."
+fi
+
 print "Do you want to run clamAV?"
 read clamAVinstallquery
 if [[ "$clamAVinstallquery" == "yes" || "$clamAVinstallquery" == "y" ]]; then
