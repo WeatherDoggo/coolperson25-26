@@ -61,6 +61,7 @@ isitneeded squid
 isitneeded samba
 isitneeded vsftpd
 isitneeded postfix
+isitneeded php
 #isitneeded(docker) SPECIFIFY WHAT DOCKER IS USED WITH SO IT ISNT DISABLED BY ACCIDENT!
 announce "Critical services marked."
 
@@ -134,6 +135,10 @@ announce "samba.sh done."
 announce "Running vsftpd.sh..."
 source ./conditional/vsftpd.sh
 announce "vsftpd.sh done."
+
+announce "Running php.sh..."
+source ./conditional/php.sh
+announce "php.sh done."
 
 announce "Running postfix.sh..."
 source ./conditional/postfix.sh
