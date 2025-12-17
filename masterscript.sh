@@ -28,7 +28,7 @@ OS=""
 #  announce "OS not recognized. Exiting..."
 #  exit
 #fi
-OS="Mint"
+OS="mint"
 
 announce "Running backup.sh..."
 source ./logs/backup.sh
