@@ -79,3 +79,10 @@ then
 else
 	print "Media files have not been configured."
 fi
+
+print "Installing fail2ban..."
+apt-get install fail2ban -y -qq >> $LOG
+#cp ./importfiles/ (jail.local or jail.conf?) /etc/fail2ban/ (jail.local or jail.conf?
+systemctl start fail2ban
+systemctl enable fail2ban
+print "fail2ban installed and configured with defaults. Change accordingly with the required services!"
