@@ -10,6 +10,6 @@ then
 	print "CONFIGURE POSTFIX!!!!!!!!!!!!!!!!!"
 else
   systemctl stop postfix
-  apt-get purge postfix
+  apt-get purge postfix -y -qq >> $LOG
   print "postfix mailserver removed."
 fi
