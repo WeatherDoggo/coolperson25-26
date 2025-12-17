@@ -1,4 +1,3 @@
-#1/bin/bash
 #!/bin/bash
 LOG=./logs/main.log
 function print() {
