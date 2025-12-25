@@ -74,10 +74,10 @@ chmod 777 ./scans/filesnoowner.txt
 print "Files with no owning user/group listed in filesnoowner.txt"
 
 #Insecure files and directories
-find / -xdev -type f -perm -002 -ls > ./scans/insecurethings.txt
-chmod 777 ./scans/insecurethings.txt
-find / -xdev -type d -perm -002 -ls >> ./scans/insecurethings.txt
-print "Files and directories that need securing have been stored in insecurethings.txt."
+find / -xdev -type f -perm -002 -ls > ./scans/writeablethings.txt
+chmod 777 ./scans/writeablethings.txt
+find / -xdev -type d -perm -002 -ls >> ./scans/writeablethings.txt
+print "Files and directories that need securing have been stored in writeablethings.txt."
 
 #Confirmation before continuting with other scripts
 print "Have you reviewed the scans?"
