@@ -66,3 +66,18 @@ print ".zip file paths listed in zippaths.txt."
 mawk -F: '$3 < 1000 || $3 > 65533 {print $1, $3}' /etc/passwd > ./standalonescans/strangeusers.txt
 chmod 777 ./standalonescans/strangeusers.txt
 print "Strange UIDs listed in strangeusers.txt"
+
+find / -type f -name ".*" > ./standalonescans/hiddenfiles.txt
+chmod 777 ./standalonescans/hiddenfiles.txt
+print "Hidden files listed in hiddenfiles.txt"
+
+#Files without an owner
+find / -xdev \( -nouser -o -nogroup \) -print > ./standalonescans/filesnoowner.txt
+chmod 777 ./standalonescans/filesnoowner.txt
+print "Files with no owning user/group listed in filesnoowner.txt"
+
+#Insecure files and directories
+find / -xdev -type f -perm -002 -ls > ./standalonescans/writeablethings.txt
+chmod 777 ./standalonescans/writeablethings.txt
+find / -xdev -type d -perm -002 -ls >> ./standalonescans/writeablethings.txt
+print "Files and directories that need securing have been stored in writeablethings.txt."
