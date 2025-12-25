@@ -14,7 +14,7 @@ chmod 777 ./standalonescans/hackcrack.txt
 print "Apps with hack or crack have been scanned for."
 
 ss -tulnp > ./standalonescans/ss_-tulnp.txt
-chmod 777 ./scastandalonescansns2/ss_-tulnp.txt
+chmod 777 ./standalonescans/ss_-tulnp.txt
 print "Ran ss -tulnp to scan listening ports."
 
 ps aux > ./standalonescans/ps_aux.txt
