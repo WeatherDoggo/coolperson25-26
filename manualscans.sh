@@ -63,8 +63,9 @@ mawk -F: '$3 < 1000 || $3 > 65533 {print $1, $3}' /etc/passwd > ./scans/strangeu
 chmod 777 ./scans/strangeusers.txt
 print "Strange UIDs listed in strangeusers.txt"
 
-
-
+find / -type f -name ".*" > ./scans/hiddenfiles.txt
+chmod 777 ./scans/hiddenfiles.txt
+print "Hidden files listed in hiddenfiles.txt"
 
 #Confirmation before continuting with other scripts
 print "Have you reviewed the scans?"
