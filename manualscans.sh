@@ -63,9 +63,21 @@ mawk -F: '$3 < 1000 || $3 > 65533 {print $1, $3}' /etc/passwd > ./scans/strangeu
 chmod 777 ./scans/strangeusers.txt
 print "Strange UIDs listed in strangeusers.txt"
 
+#Hidden Files
 find / -type f -name ".*" > ./scans/hiddenfiles.txt
 chmod 777 ./scans/hiddenfiles.txt
 print "Hidden files listed in hiddenfiles.txt"
+
+#Files without an owner
+find / -xdev \( -nouser -o -nogroup \) -print > ./scans/filesnoowner.txt
+chmod 777 ./scans/filesnoowner.txt
+print "Files with no owning user/group listed in filesnoowner.txt"
+
+#Insecure files and directories
+find / -xdev -type f -perm -002 -ls > ./scans/insecurethings.txt
+chmod 777 ./scans/insecurethings.txt
+find / -xdev -type d -perm -002 -ls >> ./scans/insecurethings.txt
+print "Files and directories that need securing have been stored in insecurethings.txt."
 
 #Confirmation before continuting with other scripts
 print "Have you reviewed the scans?"
