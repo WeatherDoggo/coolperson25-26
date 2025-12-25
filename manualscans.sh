@@ -51,9 +51,9 @@ cat /etc/resolv.conf > ./scans/suspiciousDNS.txt
 chmod 777 ./scans/suspiciousDNS.txt
 print "Check for suspicious DNS servers that could be redirecting traffic." >> ./scans/suspiciousDNS.txt
 
-cat /etc/crontab > ./scans/cronjobs.txt
+cat /etc/crontab /etc/cron.*/* > ./scans/cronjobs.txt
 chmod 777 ./scans/cronjobs.txt
-print "crontab jobs listed in scans/cronjobs.txt."
+print "crontab & cron.* jobs listed in scans/cronjobs.txt."
 
 locate *.zip > ./scans/zippaths.txt
 chmod 777 ./scans/zippaths.txt
@@ -62,6 +62,9 @@ print ".zip file paths listed in zippaths.txt."
 mawk -F: '$3 < 1000 || $3 > 65533 {print $1, $3}' /etc/passwd > ./scans/strangeusers.txt
 chmod 777 ./scans/strangeusers.txt
 print "Strange UIDs listed in strangeusers.txt"
+
+
+
 
 #Confirmation before continuting with other scripts
 print "Have you reviewed the scans?"
