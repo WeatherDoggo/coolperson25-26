@@ -79,6 +79,10 @@ chmod 777 ./scans/writeablethings.txt
 find / -xdev -type d -perm -002 -ls >> ./scans/writeablethings.txt
 print "Files and directories that need securing have been stored in writeablethings.txt."
 
+#mkdir ./scans/diffs
+#diff -B -i ./scans/$file ./logs/cleanscans/$file >> ./scans/diffs/diff$file
+#chmod 770 ./scans/diffs/diff$file
+
 #Confirmation before continuting with other scripts
 print "Have you reviewed the scans?"
 read confirm
