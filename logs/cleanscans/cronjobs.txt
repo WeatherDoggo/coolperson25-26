@@ -1,0 +1,303 @@
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+# You can also override PATH, but by default, newer versions inherit it from the environment
+#PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name command to be executed
+17 *	* * *	root    cd / && run-parts --report /etc/cron.hourly
+25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
+#!/bin/sh
+#
+# anacron's cron script
+#
+# This script updates anacron time stamps. It is called through run-parts
+# either by anacron itself or by cron.
+#
+# The script is called "0anacron" to assure that it will be executed
+# _before_ all other scripts.
+
+test -x /usr/sbin/anacron || exit 0
+anacron -u cron.daily
+#!/bin/sh
+
+set -e
+
+# Systemd systems use a systemd timer unit which is preferable to
+# run. We want to randomize the apt update and unattended-upgrade
+# runs as much as possible to avoid hitting the mirrors all at the
+# same time. The systemd time is better at this than the fixed
+# cron.daily time
+if [ -d /run/systemd/system ]; then
+    exit 0
+fi
+
+check_power()
+{
+    # laptop check, on_ac_power returns:
+    #       0 (true)    System is on main power
+    #       1 (false)   System is not on main power
+    #       255 (false) Power status could not be determined
+    # Desktop systems always return 255 it seems
+    if command -v on_ac_power >/dev/null; then
+        if on_ac_power; then
+            :
+        elif [ $? -eq 1 ]; then
+            return 1
+        fi
+    fi
+    return 0
+}
+
+# sleep for a random interval of time (default 30min)
+# (some code taken from cron-apt, thanks)
+random_sleep()
+{
+    RandomSleep=1800
+    eval $(apt-config shell RandomSleep APT::Periodic::RandomSleep)
+    if [ $RandomSleep -eq 0 ]; then
+	return
+    fi
+    if [ -z "$RANDOM" ] ; then
+        # A fix for shells that do not have this bash feature.
+	RANDOM=$(( $(dd if=/dev/urandom bs=2 count=1 2> /dev/null | cksum | cut -d' ' -f1) % 32767 ))
+    fi
+    TIME=$(($RANDOM % $RandomSleep))
+    sleep $TIME
+}
+
+# delay the job execution by a random amount of time
+random_sleep
+
+# ensure we don't do this on battery
+check_power || exit 0
+
+# run daily job
+exec /usr/lib/apt/apt.systemd.daily
+#!/bin/sh
+
+bak=/var/backups
+
+# Shamelessly ripped from /etc/cron.daily/standard
+if test -f /var/lib/aptitude/pkgstates && cd $bak ; then
+	if ! cmp -s aptitude.pkgstates.0 /var/lib/aptitude/pkgstates ; then
+		cp -p /var/lib/aptitude/pkgstates aptitude.pkgstates
+		savelog -c 7 aptitude.pkgstates > /dev/null
+	fi
+fi
+#!/bin/sh
+
+set -e
+
+if [ -x /usr/sbin/update-cracklib -a -r /etc/cracklib/cracklib.conf ]
+then
+    status="$(/usr/sbin/update-cracklib)"
+    if [ -n "${status}" ]
+    then
+        /usr/bin/logger -p cron.info -t cracklib "updated dictionary (read/written words: ${status})."
+    else
+        /usr/bin/logger -p cron.info -t cracklib "no dictionary update necessary."
+    fi
+fi
+
+exit 0
+#!/bin/sh
+
+# Skip if systemd is running.
+if [ -d /run/systemd/system ]; then
+  exit 0
+fi
+
+/usr/libexec/dpkg/dpkg-db-backup
+#!/bin/sh
+
+# skip in favour of systemd timer
+if [ -d /run/systemd/system ]; then
+    exit 0
+fi
+
+# this cronjob persists removals (but not purges)
+if [ ! -x /usr/sbin/logrotate ]; then
+    exit 0
+fi
+
+/usr/sbin/logrotate /etc/logrotate.conf
+EXITVALUE=$?
+if [ $EXITVALUE != 0 ]; then
+    /usr/bin/logger -t logrotate "ALERT exited abnormally with [$EXITVALUE]"
+fi
+exit $EXITVALUE
+#!/bin/sh
+#
+# man-db cron daily
+
+set -e
+
+if [ -d /run/systemd/system ]; then
+    # Skip in favour of systemd timer.
+    exit 0
+fi
+
+# This should be set by cron, but apparently isn't always; see
+# https://bugs.debian.org/209185.  Add fallbacks so that start-stop-daemon
+# can be found.
+export PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
+
+iosched_idle=
+# Don't try to change I/O priority in a vserver or OpenVZ.
+if ! egrep -q '(envID|VxID):.*[1-9]' /proc/self/status && \
+   ([ ! -d /proc/vz ] || [ -d /proc/bc ]); then
+    iosched_idle='--iosched idle'
+fi
+
+if ! [ -d /var/cache/man ]; then
+    # Recover from deletion, per FHS.
+    install -d -o man -g man -m 0755 /var/cache/man
+fi
+
+# expunge old catman pages which have not been read in a week
+if [ -d /var/cache/man ]; then
+  cd /
+  start-stop-daemon --start --pidfile /dev/null --startas /bin/sh \
+	--oknodo --chuid man $iosched_idle -- -c \
+	"find /var/cache/man -type f -name '*.gz' -atime +6 -print0 | \
+	 xargs -r0 rm -f"
+fi
+
+# regenerate man database
+if [ -x /usr/bin/mandb ]; then
+    # --pidfile /dev/null so it always starts; mandb isn't really a daemon,
+    # but we want to start it like one.
+    start-stop-daemon --start --pidfile /dev/null \
+		      --startas /usr/bin/mandb --oknodo --chuid man \
+		      $iosched_idle \
+		      -- --no-purge --quiet
+fi
+
+exit 0
+#! /bin/sh
+
+set -e
+
+UPDATEDB=/usr/sbin/updatedb.plocate
+
+# Skip if systemd timer is available.
+if [ -d /run/systemd/system ]; then
+    exit 0
+fi
+
+[ -x $UPDATEDB ] || exit 0
+
+if which on_ac_power >/dev/null 2>&1; then
+    ON_BATTERY=0
+    on_ac_power >/dev/null 2>&1 || ON_BATTERY=$?
+    if [ "$ON_BATTERY" -eq 1 ]; then
+        exit 0
+    fi
+fi
+
+# See ionice(1).
+IONICE=
+if [ -x /usr/bin/ionice ] &&
+    /usr/bin/ionice -c3 true 2>/dev/null; then
+    IONICE="/usr/bin/ionice -c3"
+fi
+
+# See nocache(1).
+NOCACHE=
+if [ -x /usr/bin/nocache ]; then
+    NOCACHE="/usr/bin/nocache"
+fi
+
+flock --nonblock /run/plocate.daily.lock $NOCACHE $IONICE nice $UPDATEDB
+# /etc/cron.d/anacron: crontab entries for the anacron package
+
+SHELL=/bin/sh
+
+30 7-23 * * *   root	[ -x /etc/init.d/anacron ] && if [ ! -d /run/systemd/system ]; then /usr/sbin/invoke-rc.d anacron start >/dev/null; fi
+30 3 * * 0 root test -e /run/systemd/system || SERVICE_MODE=1 /usr/lib/x86_64-linux-gnu/e2fsprogs/e2scrub_all_cron
+10 3 * * * root test -e /run/systemd/system || SERVICE_MODE=1 /sbin/e2scrub_all -A -r
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# TRIM the first Sunday of every month.
+24 0 1-7 * * root if [ $(date +\%w) -eq 0 ] && [ -x /usr/lib/zfs-linux/trim ]; then /usr/lib/zfs-linux/trim; fi
+
+# Scrub the second Sunday of every month.
+24 0 8-14 * * root if [ $(date +\%w) -eq 0 ] && [ -x /usr/lib/zfs-linux/scrub ]; then /usr/lib/zfs-linux/scrub; fi
+#!/bin/sh
+#
+# anacron's cron script
+#
+# This script updates anacron time stamps. It is called through run-parts
+# either by anacron itself or by cron.
+#
+# The script is called "0anacron" to assure that it will be executed
+# _before_ all other scripts.
+
+test -x /usr/sbin/anacron || exit 0
+anacron -u cron.monthly
+#!/bin/sh
+#
+# anacron's cron script
+#
+# This script updates anacron time stamps. It is called through run-parts
+# either by anacron itself or by cron.
+#
+# The script is called "0anacron" to assure that it will be executed
+# _before_ all other scripts.
+
+test -x /usr/sbin/anacron || exit 0
+anacron -u cron.weekly
+#!/bin/sh
+#
+# man-db cron weekly
+
+set -e
+
+if [ -d /run/systemd/system ]; then
+    # Skip in favour of systemd timer.
+    exit 0
+fi
+
+# This should be set by cron, but apparently isn't always; see
+# https://bugs.debian.org/209185.  Add fallbacks so that start-stop-daemon
+# can be found.
+export PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
+
+iosched_idle=
+# Don't try to change I/O priority in a vserver or OpenVZ.
+if ! egrep -q '(envID|VxID):.*[1-9]' /proc/self/status && \
+   ([ ! -d /proc/vz ] || [ -d /proc/bc ]); then
+    iosched_idle='--iosched idle'
+fi
+
+if ! [ -d /var/cache/man ]; then
+    # Recover from deletion, per FHS.
+    install -d -o man -g man -m 0755 /var/cache/man
+fi
+
+# regenerate man database
+if [ -x /usr/bin/mandb ]; then
+    # --pidfile /dev/null so it always starts; mandb isn't really a daemon,
+    # but we want to start it like one.
+    start-stop-daemon --start --pidfile /dev/null \
+		      --startas /usr/bin/mandb --oknodo --chuid man \
+		      $iosched_idle \
+		      -- --quiet
+fi
+
+exit 0

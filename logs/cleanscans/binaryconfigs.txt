@@ -1,0 +1,30 @@
+  4980959     52 -rwsr-xr-x   1 root     root        52296 Jun 11  2025 /usr/sbin/mount.cifs
+  4984353     24 -rwxr-sr-x   1 root     shadow      22680 Jun 12  2025 /usr/sbin/pam_extrausers_chkpwd
+  4989687     24 -rwsr-xr-x   1 root     root        22680 Nov 23  2020 /usr/sbin/mount.ecryptfs_private
+  4984721     28 -rwxr-sr-x   1 root     shadow      26776 Jun 12  2025 /usr/sbin/unix_chkpwd
+  4989729    416 -rwsr-xr--   1 root     dip        424512 Feb 24  2022 /usr/sbin/pppd
+  4987892     24 -rwxr-sr-x   1 root     shadow      23136 Feb  6  2024 /usr/bin/expiry
+  4981005     40 -rwxr-sr-x   1 root     crontab     39568 Mar 23  2022 /usr/bin/crontab
+  4981264     36 -rwsr-xr-x   1 root     root        35200 Mar 23  2022 /usr/bin/fusermount3
+  4987886     72 -rwxr-sr-x   1 root     shadow      72184 Feb  6  2024 /usr/bin/chage
+  4981975     32 -rwsr-xr-x   1 root     root        30872 Feb 26  2022 /usr/bin/pkexec
+  4984812     40 -rwsr-xr-x   1 root     root        40496 Feb  6  2024 /usr/bin/newgrp
+  4981606    228 -rwsr-xr-x   1 root     root       232416 Jun 25  2025 /usr/bin/sudo
+  4987909     60 -rwsr-xr-x   1 root     root        59976 Feb  6  2024 /usr/bin/passwd
+  4983868    288 -rwxr-sr-x   1 root     _ssh       293304 Apr 11  2025 /usr/bin/ssh-agent
+  4984856     56 -rwsr-xr-x   1 root     root        55680 Apr  9  2024 /usr/bin/su
+  4987195     48 -rwsr-xr-x   1 root     root        47488 Apr  9  2024 /usr/bin/mount
+  4987890     44 -rwsr-xr-x   1 root     root        44808 Feb  6  2024 /usr/bin/chsh
+  4987197     36 -rwsr-xr-x   1 root     root        35200 Apr  9  2024 /usr/bin/umount
+  4981982    308 -rwxr-sr-x   1 root     plocate    313904 Feb 17  2022 /usr/bin/plocate
+  4987888     72 -rwsr-xr-x   1 root     root        72712 Feb  6  2024 /usr/bin/chfn
+  4987907     72 -rwsr-xr-x   1 root     root        72072 Feb  6  2024 /usr/bin/gpasswd
+  4989334     24 -rwxr-sr-x   1 root     mail        22856 Jun 19  2023 /usr/libexec/camel-lock-helper-1.2
+  4989356     20 -rwsr-xr-x   1 root     root        18736 Feb 26  2022 /usr/libexec/polkit-agent-helper-1
+  4982300     36 -rwsr-xr--   1 root     messagebus    35112 Oct 25  2022 /usr/lib/dbus-1.0/dbus-daemon-launch-helper
+  4980810     16 -rwsr-sr-x   1 root     root          14488 Oct 23 13:47 /usr/lib/xorg/Xorg.wrap
+  4988824    332 -rwsr-xr-x   1 root     root         338536 Apr 11  2025 /usr/lib/openssh/ssh-keysign
+Watch for the following:
+Setuid on scripts (.sh, .py, etc.)
+Binaries in user-writable paths like /tmp, /home, or /var/tmp
+Binaries with 777 permissions

@@ -1,0 +1,8 @@
+/usr/lib/libreoffice/share/config/images_colibre.zip
+/usr/lib/libreoffice/share/config/images_helpimg.zip
+/usr/lib/libreoffice/share/config/wizard/web/buttons/elementary.zip
+/usr/lib/libreoffice/share/config/wizard/web/buttons/round-white.zip
+/usr/lib/libreoffice/share/config/wizard/web/buttons/simple.zip
+/usr/lib/libreoffice/share/config/wizard/web/buttons/sukapura.zip
+/usr/share/libreoffice/share/config/images_colibre.zip
+/usr/share/libreoffice/share/config/images_helpimg.zip

@@ -1,0 +1,5 @@
+Applications with hack, crack, or evil in the name:
+
+ii  cracklib-runtime                           2.9.6-3.4build4                            amd64        runtime support for password checker library cracklib2
+ii  libcrack2:amd64                            2.9.6-3.4build4                            amd64        pro-active password checker library
+ii  libfont-ttf-perl                           1.06-1.1                                   all          Perl module for TrueType font hacking
