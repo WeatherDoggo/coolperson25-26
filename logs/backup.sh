@@ -20,7 +20,7 @@ backup /etc/security/pwquality.conf
 backup /etc/sysctl.conf
 backup /etc/security/limits.conf
 if [[ "$OS" == "mint" ]]; then
-  backup /etclinuxmint/mintupdate.conf
+  backup /etc/linuxmint/mintupdate.conf
 elif [[ $OS == "ubuntu" ]]; then
   backup /etc/gdm/custom.conf
   backup /etc/gdm3/custom.conf
