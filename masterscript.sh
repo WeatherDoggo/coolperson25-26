@@ -76,7 +76,7 @@ announce "universalfileperms.sh done."
 
 announce "Running usersconf.sh..."
 source ./usersconf.sh
-announce "users.sh done."
+announce "usersconf.sh done."
 
 announce "Running passwordconf.sh..."
 source ./passwordconf.sh
