@@ -87,11 +87,26 @@ print "Files and directories that need securing have been stored in writeablethi
 #diff files
 mkdir ./scans/diffs
 chmod 666 ./scans/diffs
-function filediff () {
-  local file="$1"
-  diff -B -i ./scans/$file ./logs/cleanscans/$file >> ./scans/diffs/diff$file
-  chmod 666 ./scans/diffs/diff$file
+function filediff() {
+  diff -B -i ./scans/$1 ./logs/cleanscans/$1 >> ./scans/diffs/diff$1
+  chmod 666 ./scans/diffs/diff$1
 }
+filediff PIDpaths.txt
+filediff aptapps.txt
+filediff binaryconfigs.txt
+filediff cronjobs.txt
+filediff filesnoowner.txt
+filediff hackcrack.txt
+filediff hiddenfiles.txt
+filediff hostentries.txt
+filediff list-unit-files.txt
+filediff lsof.txt
+filediff ps_aux.txt
+filediff ss_-tulnp.txt
+filediff strangeusers.txt
+filediff suspiciousDNS.txt
+filediff writeablethings.txt
+filediff zippaths.txt
 print "diffs created for scans."
 
 #Confirmation before continuting with other scripts
