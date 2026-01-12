@@ -88,7 +88,7 @@ print "Files and directories that need securing have been stored in writeablethi
 mkdir ./scans/diffs
 chmod 777 ./scans/diffs
 function filediff() {
-  diff -B -i ./scans/$1 ./logs/cleanscans/$1 >> ./scans/diffs/diff$1
+  diff -B -i ./scans/$1 ./logs/cleanscans/$1 > ./scans/diffs/diff$1
   chmod 777 ./scans/diffs/diff$1
 }
 filediff PIDpaths.txt
