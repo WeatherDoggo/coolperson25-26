@@ -86,3 +86,28 @@ find / -xdev -type f -perm -002 -ls > ./standalonescans/writeablethings.txt
 chmod 777 ./standalonescans/writeablethings.txt
 find / -xdev -type d -perm -002 -ls >> ./standalonescans/writeablethings.txt
 print "Files and directories that need securing have been stored in writeablethings.txt."
+
+#diff files
+mkdir ./standalonescans/diffs
+chmod 777 ./standalonescans/diffs
+function filediff() {
+  diff -B -i ./standalonescans/$1 ./logs/cleanscans/$1 > ./standalonescans/diffs/diff$1
+  chmod 777 ./standalonescans/diffs/diff$1
+}
+filediff PIDpaths.txt
+filediff aptapps.txt
+filediff binaryconfigs.txt
+filediff cronjobs.txt
+filediff filesnoowner.txt
+filediff hackcrack.txt
+filediff hiddenfiles.txt
+filediff hostentries.txt
+filediff list-unit-files.txt
+filediff lsof.txt
+filediff ps_aux.txt
+filediff ss_-tulnp.txt
+filediff strangeusers.txt
+filediff suspiciousDNS.txt
+filediff writeablethings.txt
+filediff zippaths.txt
+print "diffs created for scans."
