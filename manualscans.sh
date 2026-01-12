@@ -13,6 +13,11 @@ dpkg -l | grep -E 'hack|crack|evil' >> ./scans/hackcrack.txt
 chmod 777 ./scans/hackcrack.txt
 print "Apps with hack or crack have been scanned for."
 
+#All Installed Apps
+apt list --installed > ./scans/aptapps.txt
+chmod 777 ./scans/aptapps.txt
+print "apt installed apps listed in aptapps.txt."
+
 ss -tulnp > ./scans/ss_-tulnp.txt
 chmod 777 ./scans/ss_-tulnp.txt
 print "Ran ss -tulnp to scan listening ports."
