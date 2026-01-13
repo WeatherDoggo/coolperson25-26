@@ -12,6 +12,7 @@ while true; do
   else
     print "Rerun with proper app list configured, or type y."
   fi
+done
 
 function appremoval () {
   systemctl stop "$1".service >> $LOG 2>>$LOG
