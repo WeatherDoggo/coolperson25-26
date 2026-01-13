@@ -134,6 +134,7 @@ for user in $vmusers; do
     if [[ "$is_auth_admin" == false ]]; then
       print "Removing $user's sudo access..."
       deluser "$user" sudo
+      deluser "$user" adm
     fi
   fi
 done
