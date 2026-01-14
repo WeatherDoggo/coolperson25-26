@@ -47,10 +47,14 @@ find / -type f -mtime -7 -print0 | xargs -0 ls -lt > ./standalonescans/modifiedf
 chmod 777 ./standalonescans/modifiedfiles.txt
 print "Listed all files modified in the last 7 days."
 
-find / -type f -perm /6000 -ls > ./standalonescans/binaryconfigs.txt
-chmod 777 ./standalonescans/binaryconfigs.txt
-print "Listed all SUID/SGID binaries in binaryconfigs.txt to check for misconfiguration."
-print "Watch for the following:\nSetuid on scripts (.sh, .py, etc.)\nBinaries in user-writable paths like /tmp, /home, or /var/tmp\nBinaries with 777 permissions" >> ./standalonescans/binaryconfigs.txt
+#find / -type f -perm /6000 -ls > ./standalonescans/binaryconfigs.txt
+#chmod 777 ./standalonescans/binaryconfigs.txt
+#print "Listed all SUID/SGID binaries in binaryconfigs.txt to check for misconfiguration."
+#print "Watch for the following:\nSetuid on scripts (.sh, .py, etc.)\nBinaries in user-writable paths like /tmp, /home, or /var/tmp\nBinaries with 777 permissions" >> ./standalonescans/binaryconfigs.txt
+
+find / -perm -u=s -type f 2>/dev/null > ./standalonescans/suid.txt
+chmod 777 ./standalonescans/suid.txt
+print "suid binaries listed in suid.txt."
 
 cat /etc/hosts > ./standalonescans/hostentries.txt
 chmod 777 ./standalonescans/hostentries.txt
