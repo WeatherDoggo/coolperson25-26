@@ -44,7 +44,7 @@ appremoval rsync
 appremoval snmpd
 appremoval tftpd-hpa
 appremoval xinetd
-appremoval xserver-common
+#appremoval xserver-common
 appremoval lighttpd
 appremoval nikto
 appremoval nmap
