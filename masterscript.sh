@@ -37,6 +37,22 @@ announce "backup.sh done."
 announce "Running manualscans.sh..."
 source ./manualscans.sh
 announce "manualscans.sh done."
+
+print "Do you want to run lynis?"
+read lynisq
+if [[ "$lynisq" == "yes" || "$lynisq" == "y" ]]; then
+  print "Installing lynis..."
+  apt-get install lynis -y -qq >> $LOG
+
+  print "Running a lynis scan and writing to prelynis.txt..."
+  touch ./scans/prelynis.txt
+  chmod 777 ./scans/prelynis.txt
+  lynis audit system | sudo tee -a ./scans/prelynis.txt
+  print "lynis scan done."
+else
+  print "lynis skipped."
+fi
+
 announce "Finish the forensics questions now."
 read done1
 announce "Are you sure you are done with the forensics questions?"
