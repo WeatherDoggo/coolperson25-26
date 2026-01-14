@@ -111,6 +111,7 @@ filediff strangeusers.txt
 filediff suspiciousDNS.txt
 filediff writeablethings.txt
 filediff zippaths.txt
+filediff suid.txt
 print "diffs created for scans."
 
 #Confirmation before continuting with other scripts
