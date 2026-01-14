@@ -43,10 +43,14 @@ for pid in $(ls /proc | grep -E '^[0-9]+$'); do
 chmod 777 ./scans/PIDpaths.txt
 print "Resolved all of the executible paths of PIDS in PIDpaths.txt. Look for ones in /tmp, /dev/shm, or ones that have been deleted but are still running." >> ./scans/PIDpaths.txt
 
-find / -type f -perm /6000 -ls > ./scans/binaryconfigs.txt
-chmod 777 ./scans/binaryconfigs.txt
-print "Listed all SUID/SGID binaries in binaryconfigs.txt to check for misconfiguration."
-print "Watch for the following:\nSetuid on scripts (.sh, .py, etc.)\nBinaries in user-writable paths like /tmp, /home, or /var/tmp\nBinaries with 777 permissions" >> ./scans/binaryconfigs.txt
+#find / -type f -perm /6000 -ls > ./scans/binaryconfigs.txt
+#chmod 777 ./scans/binaryconfigs.txt
+#print "Listed all SUID/SGID binaries in binaryconfigs.txt to check for misconfiguration."
+#print "Watch for the following:\nSetuid on scripts (.sh, .py, etc.)\nBinaries in user-writable paths like /tmp, /home, or /var/tmp\nBinaries with 777 permissions" >> ./scans/binaryconfigs.txt
+
+find / -perm -u=s -type f 2>/dev/null > ./scans/suid.txt
+chmod 777 ./scans/suid.txt
+print "suid binaries listed in suid.txt."
 
 cat /etc/hosts > ./scans/hostentries.txt
 chmod 777 ./scans/hostentries.txt
@@ -93,7 +97,7 @@ function filediff() {
 }
 filediff PIDpaths.txt
 filediff aptapps.txt
-filediff binaryconfigs.txt
+#filediff binaryconfigs.txt
 filediff cronjobs.txt
 filediff filesnoowner.txt
 filediff hackcrack.txt
