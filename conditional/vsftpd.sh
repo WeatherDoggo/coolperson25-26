@@ -23,7 +23,6 @@ then
 	systemctl restart vsftpd.service >> $LOG
 	systemctl status vsftpd.service
 	print "vsftpd.conf restarted."
-	print "DO THE SSL CONFIGS MANUALLY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 else
 	systemctl stop vsftpd.service >> $LOG 2>>$LOG
 	apt-get purge vsftpd -y -qq >> $LOG
