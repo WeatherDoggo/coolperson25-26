@@ -23,7 +23,6 @@ ufw deny in from 127.0.0.0/8
 ufw deny in from ::1
 systemctl enable ufw.service --now >> $LOG
 print "Firewall enabled, port 1337 closed, and loopback traffic is configured."
-#MAKE IT SO LISTENING PROCESSES IS CHECKED BEFORE CLOSING PORT 1337!!!!!!!
 
 {
   unset a_ufwout;unset a_openports
