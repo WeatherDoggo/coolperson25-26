@@ -1,4 +1,4 @@
-#!/bin/bash
+c#!/bin/bash
 LOG=./logs/main.log
 function print() {
   echo -e "$1" | sudo tee -a "$LOG" 
@@ -19,6 +19,11 @@ function appremoval () {
   sudo apt-get purge --auto-remove -y -qq "$1" | sudo tee -a $LOG
   print "$1 removed."
 }
+
+systemctl disable cups
+systemctl stop cups
+systemctl disable avahi-daemon
+systemctl stop avahi-daemon
 
 appremoval autofs
 systemctl stop avahi-daemon.socket 2>>$LOG  | sudo tee -a $LOG
