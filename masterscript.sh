@@ -6,7 +6,7 @@ function print() {
 function announce() {
   echo -e "\033[1;36m$1\033[0m" | sudo tee -a $LOG 
 }
-announce "HAS UPDATE, UPGRADE, & AUTOREMOVE BEEN RUN?"
+announce "HAS UPDATE, UPGRADE, DIST-UPGRADE, & AUTOREMOVE BEEN RUN? CHECK sources.list TOO!"
 read runconfirm
 if [[ $runconfirm == "yes" || $runconfirm == "y" ]]; then
   announce "Proceeding..."
