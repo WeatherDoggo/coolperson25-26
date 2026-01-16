@@ -16,25 +16,25 @@ done
 
 function appremoval () {
   systemctl stop "$1".service >> $LOG 2>>$LOG
-  sudo apt-get purge --auto-remove -y -qq "$1" >> $LOG
+  sudo apt-get purge --auto-remove -y -qq "$1" | sudo tee -a $LOG
   print "$1 removed."
 }
 
 appremoval autofs
-systemctl stop avahi-daemon.socket >> $LOG 2>>$LOG
+systemctl stop avahi-daemon.socket 2>>$LOG  | sudo tee -a $LOG
 appremoval avahi-daemon
 #DHCP server
-systemctl stop isc-dhcp-server6.service >> $LOG 2>>$LOG
+systemctl stop isc-dhcp-server6.service 2>>$LOG | sudo tee -a $LOG
 appremoval isc-dhcp-server
 #DNS server
 systemctl stop named.service
-apt-get remove bind9 --auto-remove -y -qq "$1" >> $LOG
+apt-get remove bind9 --auto-remove -y -qq "$1" | sudo tee -a $LOG
 appremoval dnsmasq
 #ldap server
 appremoval slapd
 #Message access server services
-systemctl stop dovecot.socket dovecot.service >> $LOG 2>>$LOG
-apt-get purge dovecot-imapd dovecot-pop3d -y -qq >> $LOG 2>>$LOG
+systemctl stop dovecot.socket dovecot.service 2>>$LOG | sudo tee -a $LOG
+apt-get purge dovecot-imapd dovecot-pop3d -y -qq 2>>$LOG | sudo tee -a $LOG
 #Network file services
 appremoval nfs*
 appremoval ypserv
@@ -75,7 +75,6 @@ appremoval snort
 appremoval doona
 appremoval xprobe
 appremoval imagemagick*
-appremoval openvpn
 appremoval filezilla
 appremoval bluetooth
 appremoval bluez*
@@ -84,7 +83,24 @@ appremoval tftpd-hpa
 appremoval hexchat
 appremoval warpinator
 appremoval transmission-gtk
-
+#Services
+appremoval openvpn
+appremoval mongod*
+appremoval nordvpn
+appremoval protonvpn*
+appremoval rsh*
+appremoval talk
+appremoval ldap-utils
+appremoval apport
+appremoval ftp
+appremoval tnftp
+appremoval nis
+appremoval jenkins
+appremoval grafana*
+appremoval postgresql
+appremoval postgresql\*
+appremoval redis-server
+appremoval mariadb-*
 
 
 #appremoval burpsuite (broken)
@@ -111,19 +127,6 @@ appremoval ncat
 appremoval socat
 appremoval sbd
 appremoval rlogin
-#nis
-appremoval nis
-#rsh (remote shell)
-appremoval rsh*
-#talk
-appremoval talk
-#ldap
-appremoval ldap-utils
-#apport (collects sensitive data)
-appremoval apport
-#FTP
-appremoval ftp
-appremoval tnftp
 #Metasploit (broken)
 
 #telnet
