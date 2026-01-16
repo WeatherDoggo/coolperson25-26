@@ -34,7 +34,7 @@ print "Firewall enabled, port 1337 closed, and loopback traffic is configured."
   done < <(ss -tuln | awk '($5!~/%lo:/ && $5!~/127.0.0.1:/ && $5!~/\[?::1\]?:/) {split($5, a, ":"); print a[2]}' | sort -u)
   a_diff=("$(printf '%s\n' "${a_openports[@]}" "${a_ufwout[@]}" "${a_ufwout[@]}" | sort | uniq -u)")
   if [[ -n "${a_diff[*]}" ]]; then
-    echo -e "\n- Audit Result:\n ** FAIL **\n- The following listening port(s) don't have a rule in UFW: $(printf '%s\n' \\n"${a_diff[*]}")\n- End List"
+    echo -e "\n- Audit Result:\n The following listening port(s) don't have a rule in UFW: $(printf '%s\n' \\n"${a_diff[*]}")\n- End List"
   else
     echo -e "\n - Audit Passed -\n- All open ports have a rule in UFW\n"
   fi
