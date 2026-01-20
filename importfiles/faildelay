@@ -1,6 +1,6 @@
 Name: Fail delay on auth failure
 Default: yes
-Priority: 0
-Auth-Type: additional
+Priority: 400
+Auth-Type: Additional
 Auth-Initial:
     optional        pam_faildelay.so delay=2000000
