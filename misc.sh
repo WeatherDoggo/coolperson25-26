@@ -6,7 +6,6 @@ function print() {
 
 #sysctl.conf
 cp ./importfiles/sysctl.conf /etc/sysctl.conf
-sysctl -w net.ipv4.route.flush=1
 
 sysctl --system
 sysctl -p
