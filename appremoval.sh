@@ -88,6 +88,7 @@ appremoval tftpd-hpa
 appremoval hexchat
 appremoval warpinator
 appremoval transmission-gtk
+appremoval endless-sky
 #Services
 appremoval openvpn
 appremoval mongod*
