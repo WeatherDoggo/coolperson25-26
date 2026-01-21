@@ -13,10 +13,13 @@ print "UID & GID for root set to 0."
 #Collect the users on the VM, and exclude the one i'm not supposed to edit.
 print "What is your username?"
 read myusername
+awk -F: '($3 == 0) { print $1 }' /etc/passwd
+print "these are all users with UID = 0, double check this."
+read hiddenrootconfirm
+
 vmusers=`(grep -v 'nologin' /etc/passwd | cut -d':' -f1,6 | grep 'home' | cut -d':' -f1 | grep -v "${myusername}")`
 print "\nUsers found on VM:\n$vmusers"
 print "Any users like syslog should be nologin! (sudo usermod -s /sbin/nologin <username>)"
-
 #Collect the user info given out by Cyberpatriot
 print "Copy and paste the list of the authorized admin user/password list here, then press Ctrl + D:"
 givenadminlist=$(cat)
