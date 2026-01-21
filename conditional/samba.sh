@@ -6,10 +6,9 @@ function print() {
 
 if [[ $sambaneeded == "yes" || $sambaneeded == "y" ]];
 then
-	#cp /etc/nginx/nginx.conf ../backups/nginx.conf
-	print "CONFIGURE SAMBA!!!!!!!!!!!!!!!!!"
-	#cp importfiles/nginx.conf /etc/nginx/nginx.conf
-#smb.cnf
+	cp /etc/samba/smb.conf ../backups/smb.conf
+	cp importfiles/smb.conf /etc/samba/smb.conf
+	print "samba configured with smb.conf."
 else
 	systemctl stop samba.service >> $LOG 2>>$LOG
 	systemctl stop smbd.service >> $LOG 2>>$LOG
