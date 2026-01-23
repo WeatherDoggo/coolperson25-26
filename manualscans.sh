@@ -91,6 +91,16 @@ chmod 777 ./scans/writeablethings.txt
 find / -xdev -type d -perm -002 -ls >> ./scans/writeablethings.txt
 print "Files and directories that need securing have been stored in writeablethings.txt."
 
+: > ./scans/kernelmodules.txt   # truncate output file
+# Get each module name from /proc/modules
+awk '{print $1}' /proc/modules | while read -r mod; do
+    # Get filename and description (may be empty)
+    fname=$(modinfo -F filename "$mod" 2>/dev/null)
+    desc=$(modinfo -F description "$mod" 2>/dev/null)
+    printf '%s\t%s\t%s\n' "$mod" "$fname" "$desc" >> "$out"
+done
+chmod 777 ./scans/kernelmoduleinfo.txt
+print "kernel module filepaths and descriptions printed."
 #diff files
 #mkdir ./scans/diffs
 #chmod 777 ./scans/diffs
