@@ -70,5 +70,3 @@ else
     print "ClamAV skipped."
 fi
 
-print "Do you want to run debsums?"
-
