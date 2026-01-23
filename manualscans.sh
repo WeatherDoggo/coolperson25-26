@@ -43,7 +43,7 @@ for pid in $(ls /proc | grep -E '^[0-9]+$'); do
     fi 
   done
 chmod 777 ./scans/resources/PIDpaths.txt
-print "Resolved all of the executible paths of PIDS in PIDpaths.txt. Look for ones in /tmp, /dev/shm, or ones that have been deleted but are still running." >> ./scans/PIDpaths.txt
+print "Resolved all of the executible paths of PIDS in PIDpaths.txt. Look for ones in /tmp, /dev/shm, or ones that have been deleted but are still running." >> ./scans/resources/PIDpaths.txt
 
 #find / -type f -perm /6000 -ls > ./scans/binaryconfigs.txt
 #chmod 777 ./scans/binaryconfigs.txt
