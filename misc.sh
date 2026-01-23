@@ -7,8 +7,8 @@ function print() {
 #sysctl.conf
 cp ./importfiles/sysctl.conf /etc/sysctl.conf
 
-echo 'kernel.dmesg_restrict=1' | sudo tee /etc/sysctl.d/99-dmesg-restrict.conf
-sysctl -p /etc/sysctl.d/99-dmesg-restrict.conf
+#echo 'kernel.dmesg_restrict=1' | sudo tee /etc/sysctl.d/99-dmesg-restrict.conf
+#sysctl -p /etc/sysctl.d/99-dmesg-restrict.conf
 
 sysctl --system
 sysctl -p
