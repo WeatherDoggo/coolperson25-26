@@ -6,6 +6,8 @@ function print() {
 
 mkdir ./scans/
 chmod 777 ./scans/
+mkdir ./scans/resources
+chmod 777 ./scans/resources
 print "Running scans and sending results to /scans/..."
 
 print "Applications with hack, crack, or evil in the name:\n" > ./scans/hackcrack.txt
@@ -14,8 +16,8 @@ chmod 777 ./scans/hackcrack.txt
 print "Apps with hack or crack have been scanned for."
 
 #All Installed Apps
-apt list --installed > ./scans/aptapps.txt
-chmod 777 ./scans/aptapps.txt
+apt list --installed > ./scans/resources/aptapps.txt
+chmod 777 ./scans/resources/aptapps.txt
 print "apt installed apps listed in aptapps.txt."
 
 ss -tulnp > ./scans/ss_-tulnp.txt
@@ -37,10 +39,10 @@ print "Ran lsof to list all open network connections and the processes that open
 print "PIDpaths"  > ./scans/PIDpaths.txt
 for pid in $(ls /proc | grep -E '^[0-9]+$'); do 
   if [ -e "/proc/$pid/exe" ];
-    then print "PID: $pid, Command: $(readlink -f /proc/$pid/exe)" >> ./scans/PIDpaths.txt
+    then print "PID: $pid, Command: $(readlink -f /proc/$pid/exe)" >> ./scans/resources/PIDpaths.txt
     fi 
   done
-chmod 777 ./scans/PIDpaths.txt
+chmod 777 ./scans/resources/PIDpaths.txt
 print "Resolved all of the executible paths of PIDS in PIDpaths.txt. Look for ones in /tmp, /dev/shm, or ones that have been deleted but are still running." >> ./scans/PIDpaths.txt
 
 #find / -type f -perm /6000 -ls > ./scans/binaryconfigs.txt
@@ -74,8 +76,8 @@ chmod 777 ./scans/strangeusers.txt
 print "Strange UIDs listed in strangeusers.txt"
 
 #Hidden Files
-find / -type f -name ".*" > ./scans/hiddenfiles.txt
-chmod 777 ./scans/hiddenfiles.txt
+find / -type f -name ".*" > ./scans/resources/hiddenfiles.txt
+chmod 777 ./scans/resources/hiddenfiles.txt
 print "Hidden files listed in hiddenfiles.txt"
 
 #Files without an owner
