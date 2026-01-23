@@ -60,7 +60,8 @@ cat /etc/resolv.conf > ./scans/suspiciousDNS.txt
 chmod 777 ./scans/suspiciousDNS.txt
 print "Check for suspicious DNS servers that could be redirecting traffic." >> ./scans/suspiciousDNS.txt
 
-cat /etc/crontab /etc/cron.*/* > ./scans/cronjobs.txt
+crontab -l > ./scans/cronjobs.txt
+#cat /etc/crontab /etc/cron.*/* > ./scans/cronjobs.txt
 chmod 777 ./scans/cronjobs.txt
 print "crontab & cron.* jobs listed in scans/cronjobs.txt."
 
@@ -89,30 +90,30 @@ find / -xdev -type d -perm -002 -ls >> ./scans/writeablethings.txt
 print "Files and directories that need securing have been stored in writeablethings.txt."
 
 #diff files
-mkdir ./scans/diffs
-chmod 777 ./scans/diffs
-function filediff() {
-  diff -B -i ./scans/$1 ./logs/cleanscans/$1 > ./scans/diffs/diff$1
-  chmod 777 ./scans/diffs/diff$1
-}
-filediff PIDpaths.txt
-filediff aptapps.txt
+#mkdir ./scans/diffs
+#chmod 777 ./scans/diffs
+#function filediff() {
+#  diff -B -i ./scans/$1 ./logs/cleanscans/$1 > ./scans/diffs/diff$1
+#  chmod 777 ./scans/diffs/diff$1
+#}
+#filediff PIDpaths.txt
+#filediff aptapps.txt
 #filediff binaryconfigs.txt
-filediff cronjobs.txt
-filediff filesnoowner.txt
-filediff hackcrack.txt
-filediff hiddenfiles.txt
-filediff hostentries.txt
-filediff list-unit-files.txt
-filediff lsof.txt
-filediff ps_aux.txt
-filediff ss_-tulnp.txt
-filediff strangeusers.txt
-filediff suspiciousDNS.txt
-filediff writeablethings.txt
-filediff zippaths.txt
-filediff suid.txt
-print "diffs created for scans."
+#filediff cronjobs.txt
+#filediff filesnoowner.txt
+#filediff hackcrack.txt
+#filediff hiddenfiles.txt
+#filediff hostentries.txt
+#filediff list-unit-files.txt
+#filediff lsof.txt
+#filediff ps_aux.txt
+#filediff ss_-tulnp.txt
+#filediff strangeusers.txt
+#filediff suspiciousDNS.txt
+#filediff writeablethings.txt
+#filediff zippaths.txt
+#filediff suid.txt
+#print "diffs created for scans."
 
 #Confirmation before continuting with other scripts
 print "Have you reviewed the scans?"
