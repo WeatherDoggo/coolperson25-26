@@ -4,91 +4,93 @@ function print() {
   echo -e "$1" | sudo tee -a "$LOG" 
 }
 
-mkdir ./standalonestandalonescans/
-chmod 777 ./standalonestandalonescans/
-print "Running standalonescans and sending results to /standalonestandalonescans/..."
+mkdir ./standalonescans/
+mkdir ./standalonescans/resources
+chmod 777 ./standalonescans/resources
+chmod 777 ./standalonescans/
+print "Running standalonescans and sending results to /standalonescans/..."
 
-print "Applications with hack, crack, or evil in the name:\n" > ./standalonestandalonescans/hackcrack.txt
-dpkg -l | grep -E 'hack|crack|evil' >> ./standalonestandalonescans/hackcrack.txt
-chmod 777 ./standalonestandalonescans/hackcrack.txt
+print "Applications with hack, crack, or evil in the name:\n" > ./standalonescans/hackcrack.txt
+dpkg -l | grep -E 'hack|crack|evil' >> ./standalonescans/hackcrack.txt
+chmod 777 ./standalonescans/hackcrack.txt
 print "Apps with hack or crack have been scanned for."
 
 #All Installed Apps
-apt list --installed > ./standalonestandalonescans/aptapps.txt
-chmod 777 ./standalonestandalonescans/aptapps.txt
+apt list --installed > ./standalonescans/aptapps.txt
+chmod 777 ./standalonescans/aptapps.txt
 print "apt installed apps listed in aptapps.txt."
 
-ss -tulnp > ./standalonestandalonescans/ss_-tulnp.txt
-chmod 777 ./standalonestandalonescans/ss_-tulnp.txt
+ss -tulnp > ./standalonescans/ss_-tulnp.txt
+chmod 777 ./standalonescans/ss_-tulnp.txt
 print "Ran ss -tulnp to scan listening ports."
 
-ps aux > ./standalonestandalonescans/ps_aux.txt
-chmod 777 ./standalonestandalonescans/ps_aux.txt
+ps aux > ./standalonescans/ps_aux.txt
+chmod 777 ./standalonescans/ps_aux.txt
 print "Ran ps aux to see running processes."
 
-systemctl list-unit-files --type=service > ./standalonestandalonescans/list-unit-files.txt
-chmod 777 ./standalonestandalonescans/list-unit-files.txt
+systemctl list-unit-files --type=service > ./standalonescans/list-unit-files.txt
+chmod 777 ./standalonescans/list-unit-files.txt
 print "Ran systemctl list-unit-files to see all processes on the VM."
 
-lsof -i -P -n > ./standalonestandalonescans/lsof.txt
-chmod 777 ./standalonestandalonescans/lsof.txt
+lsof -i -P -n > ./standalonescans/lsof.txt
+chmod 777 ./standalonescans/lsof.txt
 print "Ran lsof to list all open network connections and the processes that opened them."
 
-print "PIDpaths"  > ./standalonestandalonescans/PIDpaths.txt
+print "PIDpaths"  > ./standalonescans/PIDpaths.txt
 for pid in $(ls /proc | grep -E '^[0-9]+$'); do 
   if [ -e "/proc/$pid/exe" ];
-    then print "PID: $pid, Command: $(readlink -f /proc/$pid/exe)" >> ./standalonestandalonescans/PIDpaths.txt
+    then print "PID: $pid, Command: $(readlink -f /proc/$pid/exe)" >> ./standalonescans/PIDpaths.txt
     fi 
   done
-chmod 777 ./standalonestandalonescans/PIDpaths.txt
-print "Resolved all of the executible paths of PIDS in PIDpaths.txt. Look for ones in /tmp, /dev/shm, or ones that have been deleted but are still running." >> ./standalonestandalonescans/PIDpaths.txt
+chmod 777 ./standalonescans/PIDpaths.txt
+print "Resolved all of the executible paths of PIDS in PIDpaths.txt. Look for ones in /tmp, /dev/shm, or ones that have been deleted but are still running." >> ./standalonescans/PIDpaths.txt
 
-find / -type f -mtime -7 -print0 | xargs -0 ls -lt > ./standalonestandalonescans/modifiedfiles.txt
-chmod 777 ./standalonestandalonescans/modifiedfiles.txt
+find / -type f -mtime -7 -print0 | xargs -0 ls -lt > ./standalonescans/modifiedfiles.txt
+chmod 777 ./standalonescans/modifiedfiles.txt
 print "Listed all files modified in the last 7 days."
 
-#find / -type f -perm /6000 -ls > ./standalonestandalonescans/binaryconfigs.txt
-#chmod 777 ./standalonestandalonescans/binaryconfigs.txt
+#find / -type f -perm /6000 -ls > ./standalonescans/binaryconfigs.txt
+#chmod 777 ./standalonescans/binaryconfigs.txt
 #print "Listed all SUID/SGID binaries in binaryconfigs.txt to check for misconfiguration."
-#print "Watch for the following:\nSetuid on scripts (.sh, .py, etc.)\nBinaries in user-writable paths like /tmp, /home, or /var/tmp\nBinaries with 777 permissions" >> ./standalonestandalonescans/binaryconfigs.txt
+#print "Watch for the following:\nSetuid on scripts (.sh, .py, etc.)\nBinaries in user-writable paths like /tmp, /home, or /var/tmp\nBinaries with 777 permissions" >> ./standalonescans/binaryconfigs.txt
 
-find / -perm -u=s -type f 2>/dev/null > ./standalonestandalonescans/suid.txt
-chmod 777 ./standalonestandalonescans/suid.txt
+find / -perm -u=s -type f 2>/dev/null > ./standalonescans/suid.txt
+chmod 777 ./standalonescans/suid.txt
 print "suid binaries listed in suid.txt."
 
-cat /etc/hosts > ./standalonestandalonescans/hostentries.txt
-chmod 777 ./standalonestandalonescans/hostentries.txt
-print "Check for any unusual entries that redirect traffic to malicious IPs." >> ./standalonestandalonescans/hostentries.txt
+cat /etc/hosts > ./standalonescans/hostentries.txt
+chmod 777 ./standalonescans/hostentries.txt
+print "Check for any unusual entries that redirect traffic to malicious IPs." >> ./standalonescans/hostentries.txt
 
-cat /etc/resolv.conf > ./standalonestandalonescans/suspiciousDNS.txt
-chmod 777 ./standalonestandalonescans/suspiciousDNS.txt
-print "Check for suspicious DNS servers that could be redirecting traffic." >> ./standalonestandalonescans/suspiciousDNS.txt
+cat /etc/resolv.conf > ./standalonescans/suspiciousDNS.txt
+chmod 777 ./standalonescans/suspiciousDNS.txt
+print "Check for suspicious DNS servers that could be redirecting traffic." >> ./standalonescans/suspiciousDNS.txt
 
-cat /etc/crontab > ./standalonestandalonescans/cronjobs.txt
-chmod 777 ./standalonestandalonescans/cronjobs.txt
+cat /etc/crontab > ./standalonescans/cronjobs.txt
+chmod 777 ./standalonescans/cronjobs.txt
 print "crontab jobs backed up in standalonescans/cronjobs.txt."
 
-locate *.zip > ./standalonestandalonescans/zippaths.txt
-chmod 777 ./standalonestandalonescans/zippaths.txt
+locate *.zip > ./standalonescans/zippaths.txt
+chmod 777 ./standalonescans/zippaths.txt
 print ".zip file paths listed in zippaths.txt."
 
-mawk -F: '$3 < 1000 || $3 > 65533 {print $1, $3}' /etc/passwd > ./standalonestandalonescans/strangeusers.txt
-chmod 777 ./standalonestandalonescans/strangeusers.txt
+mawk -F: '$3 < 1000 || $3 > 65533 {print $1, $3}' /etc/passwd > ./standalonescans/strangeusers.txt
+chmod 777 ./standalonescans/strangeusers.txt
 print "Strange UIDs listed in strangeusers.txt"
 
-find / -type f -name ".*" > ./standalonestandalonescans/hiddenfiles.txt
-chmod 777 ./standalonestandalonescans/hiddenfiles.txt
+find / -type f -name ".*" > ./standalonescans/hiddenfiles.txt
+chmod 777 ./standalonescans/hiddenfiles.txt
 print "Hidden files listed in hiddenfiles.txt"
 
 #Files without an owner
-find / -xdev \( -nouser -o -nogroup \) -print > ./standalonestandalonescans/filesnoowner.txt
-chmod 777 ./standalonestandalonescans/filesnoowner.txt
+find / -xdev \( -nouser -o -nogroup \) -print > ./standalonescans/filesnoowner.txt
+chmod 777 ./standalonescans/filesnoowner.txt
 print "Files with no owning user/group listed in filesnoowner.txt"
 
 #Insecure files and directories
-find / -xdev -type f -perm -002 -ls > ./standalonestandalonescans/writeablethings.txt
-chmod 777 ./standalonestandalonescans/writeablethings.txt
-find / -xdev -type d -perm -002 -ls >> ./standalonestandalonescans/writeablethings.txt
+find / -xdev -type f -perm -002 -ls > ./standalonescans/writeablethings.txt
+chmod 777 ./standalonescans/writeablethings.txt
+find / -xdev -type d -perm -002 -ls >> ./standalonescans/writeablethings.txt
 print "Files and directories that need securing have been stored in writeablethings.txt."
 
 
@@ -120,11 +122,11 @@ chmod 777 ./standalonescans/resources/kernelpaths.txt
 print "kernel module filepaths and descriptions printed."
 
 #diff files
-#mkdir ./standalonestandalonescans/diffs
-#chmod 777 ./standalonestandalonescans/diffs
+#mkdir ./standalonescans/diffs
+#chmod 777 ./standalonescans/diffs
 #function filediff() {
-#  diff -B -i ./standalonestandalonescans/$1 ./logs/cleanstandalonescans/$1 > ./standalonestandalonescans/diffs/diff$1
-#  chmod 777 ./standalonestandalonescans/diffs/diff$1
+#  diff -B -i ./standalonescans/$1 ./logs/cleanstandalonescans/$1 > ./standalonescans/diffs/diff$1
+#  chmod 777 ./standalonescans/diffs/diff$1
 #}
 #filediff PIDpaths.txt
 #filediff aptapps.txt
