@@ -31,7 +31,7 @@ authusers=()
 #For the admins list:
 IFS=$'\n' read -r -d '' -a admin_lines <<< "$givenadminlist"
 for line in "${admin_lines[@]}"; do
-  if [[ "$line" != *"password"* ]]; then #Removes password lines
+  if [[ "$line" != *"password"* || "$line" != *"Password"* ]]; then #Removes password lines
     username=$(echo "$line" | awk '{print $1}')
     if [[ "$username" != "$myusername" ]]; then #Removes myusername from list
       authadmins+=("$username")
