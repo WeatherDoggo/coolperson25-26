@@ -63,7 +63,7 @@ print "Check for suspicious DNS servers that could be redirecting traffic." >> .
 crontab -l > ./scans/cronjobs.txt
 #cat /etc/crontab /etc/cron.*/* > ./scans/cronjobs.txt
 chmod 777 ./scans/cronjobs.txt
-print "crontab & cron.* jobs listed in scans/cronjobs.txt."
+print "crontab jobs listed in scans/cronjobs.txt."
 
 locate *.zip > ./scans/zippaths.txt
 chmod 777 ./scans/zippaths.txt
