@@ -89,6 +89,7 @@ appremoval hexchat
 appremoval warpinator
 appremoval transmission-gtk
 appremoval endless-sky
+appremoval bleachbit
 #Services
 appremoval openvpn
 appremoval mongod*
