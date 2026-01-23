@@ -36,7 +36,7 @@ lsof -i -P -n > ./scans/lsof.txt
 chmod 777 ./scans/lsof.txt
 print "Ran lsof to list all open network connections and the processes that opened them."
 
-print "PIDpaths"  > ./scans/PIDpaths.txt
+print "PIDpaths"  > ./scans/resources/PIDpaths.txt
 for pid in $(ls /proc | grep -E '^[0-9]+$'); do 
   if [ -e "/proc/$pid/exe" ];
     then print "PID: $pid, Command: $(readlink -f /proc/$pid/exe)" >> ./scans/resources/PIDpaths.txt
