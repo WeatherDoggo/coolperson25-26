@@ -3,4 +3,7 @@ Default: no
 Priority: 1024
 Auth-Type: Primary
 Auth:
-    requisite pam_faillock.so preauth silent
+    required pam_faillock.so preauth silent deny=3 unlock_time=600
+Account-Type: Primary
+Account:
+    required pam_faillock.so
