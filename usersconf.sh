@@ -108,7 +108,7 @@ vmusers=`(grep -v 'nologin' /etc/passwd | cut -d':' -f1,6 | grep 'home' | cut -d
 #Change all passwords (except for the one for yourself)
 newpassword="Cyb3r1a!Cyb3r1a!"
 for user in $vmusers; do
-    print "Changing password for $user:"
+    #print "Changing password for $user:"
     # Use chpasswd to set the password
     # The 'echo' command pipes the username:password to chpasswd
     print "$user:$newpassword" | sudo chpasswd
@@ -118,9 +118,9 @@ for user in $vmusers; do
         print "Failed to change password for $user."
     fi
     chage -m 7 $user
-    print "Minimum password age set for $user."
+    #print "Minimum password age set for $user."
     chage -M 90 $user
-    print "Maximum password age set for $user."
+    #print "Maximum password age set for $user."
 done
 
 #Remove admin from unauthorized users
