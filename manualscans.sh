@@ -102,6 +102,7 @@ awk '{print $1}' /proc/modules | while read -r mod; do
     fi
     printf '%s\t%s\t%s\n' "$mod" "$desc" >> ./scans/kerneldesc.txt
 done
+echo "use dmesg | grep -i warning for warnings" >> ./scans/kerneldesc.txt
 chmod 777 ./scans/kerneldesc.txt
 
 : > ./scans/resources/kernelpaths.txt   # truncate output file
