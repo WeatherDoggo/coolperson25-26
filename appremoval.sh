@@ -126,7 +126,7 @@ appremoval radare2
 appremoval hashcat
 appremoval lprng
 appremoval netcat
-appremoval netcat-openbsd
+#appremoval netcat-openbsd
 appremoval netcat-traditional
 appremoval ncat
 appremoval socat
