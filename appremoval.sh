@@ -40,7 +40,7 @@ appremoval slapd
 systemctl stop dovecot.socket dovecot.service 2>>$LOG | sudo tee -a $LOG
 apt-get purge dovecot-imapd dovecot-pop3d -y -qq 2>>$LOG | sudo tee -a $LOG
 #Network file services
-appremoval nfs*
+appremoval 'nfs*'
 appremoval ypserv
 appremoval rpcbind
 appremoval cups
@@ -77,10 +77,10 @@ appremoval sucrack
 appremoval snort
 appremoval doona
 appremoval xprobe
-appremoval imagemagick*
+appremoval 'imagemagick*'
 appremoval filezilla
 appremoval bluetooth
-appremoval bluez*
+appremoval 'bluez*'
 appremoval amule
 appremoval tftpd-hpa
 appremoval hexchat
@@ -90,10 +90,10 @@ appremoval endless-sky
 appremoval bleachbit
 #Services
 appremoval openvpn
-appremoval mongod*
+appremoval 'mongod*'
 appremoval nordvpn
-appremoval protonvpn*
-appremoval rsh*
+appremoval 'protonvpn*'
+appremoval'rsh*'
 appremoval talk
 appremoval ldap-utils
 appremoval apport
@@ -101,11 +101,11 @@ appremoval ftp
 appremoval tnftp
 appremoval nis
 appremoval jenkins
-appremoval grafana*
+appremoval 'grafana*'
 appremoval postgresql
-appremoval postgresql\*
+appremoval 'postgresql\*'
 appremoval redis-server
-appremoval mariadb-*
+appremoval 'mariadb-*'
 
 
 #appremoval burpsuite (broken)
@@ -137,7 +137,7 @@ appremoval rlogin
 #telnet
 systemctl stop telnet.socket >> $LOG 2>>$LOG
 systemctl stop telnet.service >> $LOG 2>>$LOG
-apt-get purge *telnet* -y -qq >> $LOG
+apt-get purge '*telnet*' -y -qq >> $LOG
 print "telnet removed."
 ufw deny 23 >> $LOG
 print "port 23 closed."
