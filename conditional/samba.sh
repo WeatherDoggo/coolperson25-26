@@ -8,6 +8,7 @@ if [[ $sambaneeded == "yes" || $sambaneeded == "y" ]];
 then
 	cp /etc/samba/smb.conf ../backups/smb.conf
 	cp importfiles/smb.conf /etc/samba/smb.conf
+	systemctl status smbd.service
 	print "samba configured with smb.conf."
 else
 	systemctl stop samba.service >> $LOG 2>>$LOG
